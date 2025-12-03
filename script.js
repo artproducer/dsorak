@@ -194,3 +194,58 @@ document.addEventListener('DOMContentLoaded', () => {
         hideShowArrows(slides, prevButton, nextButton, currentIndex);
     });
 });
+
+// ===== CUSTOM COMBO LOGIC =====
+document.addEventListener('DOMContentLoaded', () => {
+    const checkboxes = document.querySelectorAll('.platform-option input[type="checkbox"]');
+    const priceDisplay = document.getElementById('ultimate-price');
+    const btnUltimate = document.getElementById('btn-ultimate');
+    const discount = 5000;
+
+    if (!checkboxes.length || !priceDisplay || !btnUltimate) return;
+
+    function updateCombo() {
+        let total = 0;
+        let selectedNames = [];
+
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                total += parseInt(cb.dataset.price);
+                selectedNames.push(cb.dataset.name);
+            }
+        });
+
+        // Calculate discount based on count
+        const count = selectedNames.length;
+        let discount = 0;
+
+        if (count === 2) discount = 3000;
+        else if (count === 3) discount = 5000;
+        else if (count === 4) discount = 7000;
+        else if (count >= 5) discount = 12000;
+
+        let finalPrice = total > 0 ? total - discount : 0;
+        if (finalPrice < 0) finalPrice = 0;
+
+        // Format price
+        priceDisplay.textContent = '$' + finalPrice.toLocaleString('es-CO');
+
+        // Update savings text
+        const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
+        if (savingsDisplay) {
+            savingsDisplay.textContent = discount > 0 ? `💰 Ahorro de $${discount.toLocaleString('es-CO')} aplicado` : 'Selecciona 2 o más para descuento';
+        }
+
+        // Update WhatsApp Link
+        const message = `Hola! Quiero armar mi Combo Personalizado con: ${selectedNames.join(', ')}. Precio Total: $${finalPrice.toLocaleString('es-CO')} (Ahorro: $${discount.toLocaleString('es-CO')})`;
+        const encodedMessage = encodeURIComponent(message);
+        btnUltimate.href = `https://wa.me/573058588651?text=${encodedMessage}`;
+    }
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateCombo);
+    });
+
+    // Initial calculation
+    updateCombo();
+});

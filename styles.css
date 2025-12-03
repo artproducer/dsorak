@@ -239,6 +239,108 @@ nav {
     content: '🔥';
 }
 
+/* ===== CUSTOM COMBO STYLES ===== */
+.custom-combo-selector {
+    margin: 1rem 0;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: var(--radius-md);
+}
+
+.selector-instruction {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.platform-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 Columns on Desktop */
+    gap: 1rem;
+    /* Increased gap from 0.5rem */
+    padding-right: 5px;
+    /* Add a little padding */
+}
+
+/* Custom Scrollbar for checkboxes */
+.platform-checkboxes::-webkit-scrollbar {
+    width: 4px;
+}
+
+.platform-checkboxes::-webkit-scrollbar-thumb {
+    background: var(--medium-gray);
+    border-radius: 4px;
+}
+
+.platform-option {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    display: block;
+    /* Full width */
+}
+
+.platform-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    /* Reduced horizontal padding slightly */
+    background-color: white;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    /* Slightly smaller font to fit single line */
+    color: var(--text-dark);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.platform-option:hover .checkmark {
+    border-color: var(--primary);
+    background-color: #fff5f5;
+}
+
+.platform-option input:checked~.checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(229, 9, 20, 0.3);
+}
+
+.platform-option input:checked~.checkmark::after {
+    content: '✓';
+    font-weight: bold;
+}
+
+/* Improve Savings Visibility - Reverted to standard style but kept margin */
+.combo-ultimate .combo-savings {
+    /* background-color: #e50914; Removed red background */
+    /* color: white; Removed white text */
+    /* padding: 0.5rem; */
+    /* border-radius: var(--radius-sm); */
+    /* font-weight: 700; */
+    margin-top: 1rem;
+    display: block;
+    /* Ensure it takes full width if needed */
+    width: 100%;
+}
+
 .hero h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
@@ -436,8 +538,13 @@ section {
 
 .combos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    /* Make the 3rd column (Ultimate) wider */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+    /* Align to top so heights don't stretch weirdly if content differs */
 }
 
 .combo-card {
@@ -861,6 +968,7 @@ footer {
 
     .combos-grid {
         grid-template-columns: 1fr;
+        /* Stack on mobile */
     }
 
     .footer-content {
@@ -1027,5 +1135,11 @@ footer {
     .carousel-slide {
         width: 100%;
         padding: 0;
+    }
+
+    /* Custom Combo Mobile */
+    .platform-checkboxes {
+        grid-template-columns: 1fr;
+        /* 1 Column on Mobile */
     }
 }

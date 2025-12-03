@@ -418,7 +418,7 @@
                 <h3 class="combo-name">Combo Premium</h3>
                 <p class="combo-tagline">El más popular</p>
                 <div class="combo-price">
-                    <span class="amount">$35.000</span>
+                    <span class="amount">$34.000</span>
                     <span class="period">/mes</span>
                 </div>
                 <ul class="combo-includes">
@@ -432,26 +432,76 @@
                     target="_blank">Obtener Combo</a>
             </div>
 
-            <!-- Combo Ultimate -->
-            <div class="combo-card">
-                <h3 class="combo-name">Combo Ultimate</h3>
-                <p class="combo-tagline">Todo en uno</p>
+            <!-- Combo Ultimate (Customizable) -->
+            <div class="combo-card combo-ultimate">
+                <h3 class="combo-name">Combo Personalizado</h3>
+                <p class="combo-tagline">Arma tu plan ideal</p>
+
                 <div class="combo-price">
-                    <span class="amount">$70.000</span>
+                    <span class="amount" id="ultimate-price">$12.000</span>
                     <span class="period">/mes</span>
                 </div>
-                <ul class="combo-includes">
-                    <li>Netflix</li>
-                    <li>Disney+</li>
-                    <li>HBO Max</li>
-                    <li>Prime Video</li>
-                    <li>Spotify Premium</li>
-                    <li>YouTube Premium</li>
-                    <li>Paramount+</li>
-                </ul>
-                <div class="combo-savings">💰 Ahorro de $25.000</div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Ultimate" class="btn btn-primary"
-                    target="_blank">Obtener Combo</a>
+
+                <div class="custom-combo-selector">
+                    <p class="selector-instruction">Selecciona tus plataformas:</p>
+                    <div class="platform-checkboxes">
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="15000" data-name="Netflix" checked>
+                            <span class="checkmark">Netflix ($15k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="10000" data-name="Disney+ Premium">
+                            <span class="checkmark">Disney+ Premium ($10k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="6000" data-name="Disney+ Standard">
+                            <span class="checkmark">Disney+ Standard ($6k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="8000" data-name="HBO Max">
+                            <span class="checkmark">HBO Max ($8k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="8000" data-name="Prime Video">
+                            <span class="checkmark">Prime Video ($8k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="8000" data-name="Spotify">
+                            <span class="checkmark">Spotify ($8k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="7000" data-name="YouTube Premium">
+                            <span class="checkmark">YouTube ($7k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="7000" data-name="Paramount+">
+                            <span class="checkmark">Paramount+ ($7k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="7000" data-name="Crunchyroll">
+                            <span class="checkmark">Crunchyroll ($7k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="8000" data-name="Apple TV+">
+                            <span class="checkmark">Apple TV+ ($8k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="10000" data-name="IPTV Premium">
+                            <span class="checkmark">IPTV ($10k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="8000" data-name="Plex">
+                            <span class="checkmark">Plex ($8k)</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="checkbox" data-price="8000" data-name="Canva Pro">
+                            <span class="checkmark">Canva ($8k)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="combo-savings">💰 Ahorro de $5.000 aplicado</div>
+                <a href="#" id="btn-ultimate" class="btn btn-primary" target="_blank">Obtener Mi Combo</a>
             </div>
         </div>
     </section>
