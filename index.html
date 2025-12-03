@@ -7,10 +7,9 @@
     <title>DSORAK - Tu Tienda de Streaming</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -22,10 +21,10 @@
                 <span class="brand-text">DSORAK</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
+
                 <li><a href="#plataformas">Plataformas</a></li>
                 <li><a href="#combos">Combos</a></li>
-                <li><a href="#referencias">Referencias</a></li>
+                <li><a href="#capturas">Referencias</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <div class="menu-toggle" onclick="toggleMenu()">
@@ -39,345 +38,353 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <span class="close-menu" onclick="toggleMenu()">✕</span>
-        <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+
         <a href="#plataformas" onclick="toggleMenu()">Plataformas</a>
         <a href="#combos" onclick="toggleMenu()">Combos</a>
-        <a href="#referencias" onclick="toggleMenu()">Referencias</a>
+        <a href="#capturas" onclick="toggleMenu()">Referencias</a>
         <a href="#faq" onclick="toggleMenu()">FAQ</a>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-bg"></div>
-        <div class="hero-particles">
-            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
-            <div class="particle" style="top: 60%; left: 20%; animation-delay: 1s;"></div>
-            <div class="particle" style="top: 30%; left: 80%; animation-delay: 2s;"></div>
-            <div class="particle" style="top: 70%; left: 70%; animation-delay: 0.5s;"></div>
-            <div class="particle" style="top: 40%; left: 50%; animation-delay: 1.5s;"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-badge">Entretenimiento Premium al mejor precio</div>
-            <h1>Tu Streaming Favorito<br><span class="gradient-text">Sin Límites</span></h1>
-            <p>Accede a las mejores plataformas de streaming con cuentas 100% legítimas, entrega inmediata y soporte
-                24/7. ¡Más de 500 clientes satisfechos!</p>
-            <div class="hero-buttons">
-                <a href="https://wa.me/573058588651?text=Hola%20DSORAK!%20Quiero%20información%20sobre%20las%20plataformas%20de%20streaming"
-                    class="btn btn-primary" target="_blank">
-                    💬 Contactar por WhatsApp
-                </a>
-                <a href="#plataformas" class="btn btn-secondary">
-                    Ver Plataformas →
-                </a>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Plataformas Section -->
     <section id="plataformas">
         <div class="section-header">
             <h2>🎬 Nuestras Plataformas</h2>
-            <p>Elige tu plataforma favorita y comienza a disfrutar hoy mismo. Precios en pesos colombianos.</p>
+            <p>Elige tu plataforma favorita y comienza a disfrutar hoy mismo</p>
         </div>
         <div class="platforms-grid">
             <!-- Netflix -->
-            <div class="platform-card netflix">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/netflix.png" alt="Netflix">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Netflix</h3>
-                        <p class="platform-desc">Series, películas y documentales en 4K UHD</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/netflix.png" alt="Netflix">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Netflix</h3>
+                    <p class="platform-desc">Series, películas y documentales en 4K UHD</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Netflix%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $15.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Netflix%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $28.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$15.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$40.000</span>
+            </div>
+            <!-- Disney+ Premium -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/disney-plus.png" alt="Disney+ Premium">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Disney+ Premium</h3>
+                    <p class="platform-desc">Sin anuncios, 7 ESPN y eventos exclusivos</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Disney%2B%20Premium%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $10.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Disney%2B%20Premium%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $18.000</a>
+                        </div>
                     </div>
                 </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Netflix" class="btn btn-primary"
-                    target="_blank">Comprar Ahora</a>
+            </div>
+            <!-- Disney+ Standard -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/disney-plus.png" alt="Disney+ Standard">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Disney+ Estándar</h3>
+                    <p class="platform-desc">Con anuncios y 3 canales de ESPN</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Disney%2B%20Standard%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $6.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Disney%2B%20Standard%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $10.000</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Disney+ -->
-            <div class="platform-card disney">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/disney.png" alt="Disney+">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Disney+</h3>
-                        <p class="platform-desc">Disney, Pixar, Marvel, Star Wars y National Geographic</p>
-                    </div>
-                </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$12.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$32.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Disney%2B" class="btn btn-primary"
-                    target="_blank">Comprar Ahora</a>
-            </div>
+
 
             <!-- HBO Max -->
-            <div class="platform-card hbo">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/hbo.png" alt="HBO Max">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">HBO Max</h3>
-                        <p class="platform-desc">Series exclusivas, películas y contenido de Warner</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/hbo-max.png" alt="HBO Max">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">HBO Max</h3>
+                    <p class="platform-desc">Series exclusivas y películas de Warner</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20HBO%20Max%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $8.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20HBO%20Max%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $14.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$12.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$32.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20HBO%20Max" class="btn btn-primary"
-                    target="_blank">Comprar Ahora</a>
             </div>
 
             <!-- Prime Video -->
-            <div class="platform-card prime">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/prime.png" alt="Prime Video">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Prime Video</h3>
-                        <p class="platform-desc">Contenido exclusivo de Amazon en 4K</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/prime-video.png" alt="Prime Video">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Prime Video</h3>
+                    <p class="platform-desc">Contenido exclusivo de Amazon en 4K</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Prime%20Video%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $8.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Prime%20Video%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $14.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$10.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$27.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Prime%20Video"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
             </div>
-
-            <!-- Spotify -->
-            <div class="platform-card spotify">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/spotify.png" alt="Spotify">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Spotify Premium</h3>
-                        <p class="platform-desc">Música sin anuncios y descarga offline</p>
-                    </div>
-                </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$8.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$22.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Spotify%20Premium"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
-            </div>
-
             <!-- YouTube Premium -->
-            <div class="platform-card youtube">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/youtube.png" alt="YouTube">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">YouTube Premium</h3>
-                        <p class="platform-desc">Sin anuncios + YouTube Music incluido</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/youtube-premium.png" alt="YouTube Premium">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">YouTube Premium</h3>
+                    <p class="platform-desc">Sin anuncios + YouTube Music incluido</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20YouTube%20Premium%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $7.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20YouTube%20Premium%20por%203%20Meses"
+                                class="btn btn-primary" target="_blank">3 Meses - $15.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$10.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$27.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20YouTube%20Premium"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
             </div>
-
             <!-- Crunchyroll -->
-            <div class="platform-card crunchyroll">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/crunchyroll.png" alt="Crunchyroll">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Crunchyroll</h3>
-                        <p class="platform-desc">El mejor anime del mundo sin publicidad</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/crunchyroll.png" alt="Crunchyroll">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Crunchyroll</h3>
+                    <p class="platform-desc">El mejor anime del mundo sin publicidad</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Crunchyroll%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $7.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Crunchyroll%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $12.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$10.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$27.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Crunchyroll"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
             </div>
-
+            <!-- Spotify -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/spotify.png" alt="Spotify">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Spotify Premium</h3>
+                    <p class="platform-desc">Música sin anuncios y descarga offline</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Spotify%20Premium%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $8.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Spotify%20Premium%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $14.000</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Paramount+ -->
-            <div class="platform-card paramount">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/paramount.png" alt="Paramount+">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Paramount+</h3>
-                        <p class="platform-desc">Series, películas y deportes en vivo</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/paramount-plus.png" alt="Paramount+">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Paramount+</h3>
+                    <p class="platform-desc">Series, películas y deportes en vivo</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Paramount%2B%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $7.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Paramount%2B%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $12.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$10.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$27.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Paramount%2B"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
             </div>
-
             <!-- Apple TV+ -->
-            <div class="platform-card apple">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/apple.png" alt="Apple TV+">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Apple TV+</h3>
-                        <p class="platform-desc">Contenido original de Apple en 4K Dolby Vision</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/apple-tv.png" alt="Apple TV+">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Apple TV+</h3>
+                    <p class="platform-desc">Contenido original Apple en 4K Dolby</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Apple%20TV%2B%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $8.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Apple%20TV%2B%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $14.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$10.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$27.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Apple%20TV%2B"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
             </div>
-
+            <!-- IPTV Premium -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/iptv.png" alt="IPTV Premium">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">IPTV Premium</h3>
+                    <p class="platform-desc">Canales en vivo de todo el mundo</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20IPTV%20Premium%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $10.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20IPTV%20Premium%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $18.000</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Plex -->
-            <div class="platform-card plex">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/plex.png" alt="Plex">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Plex</h3>
-                        <p class="platform-desc">Contenido multimedia organizado y streaming</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/plex.png" alt="Plex">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Plex</h3>
+                    <p class="platform-desc">Contenido multimedia y streaming</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Plex%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $8.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Plex%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $14.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$12.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$32.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Plex" class="btn btn-primary"
-                    target="_blank">Comprar Ahora</a>
             </div>
 
             <!-- Canva Pro -->
-            <div class="platform-card canva">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/canva.png" alt="Canva Pro">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">Canva Pro</h3>
-                        <p class="platform-desc">Diseño gráfico profesional sin límites</p>
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/canva.png" alt="Canva Pro">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Canva Pro</h3>
+                    <p class="platform-desc">Diseño gráfico profesional premium</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Canva%20Pro%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $8.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Canva%20Pro%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $14.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$15.000</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$40.000</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Canva%20Pro"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
             </div>
 
-            <!-- IPTV -->
-            <div class="platform-card iptv">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <img src="assets/images/iptv.png" alt="IPTV Premium">
-                    </div>
-                    <div class="platform-info">
-                        <h3 class="platform-name">IPTV Premium</h3>
-                        <p class="platform-desc">+5000 canales en vivo de todo el mundo</p>
+            <!-- Gemini AI Pro -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/gemini.png" alt="Gemini AI Pro">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Gemini AI Pro</h3>
+                    <p class="platform-desc">Modelo de IA más capaz y general</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Gemini%20AI%20Pro%20por%201%20Mes"
+                                class="btn btn-primary" target="_blank">1 Mes - $10.000</a>
+                        </div>
                     </div>
                 </div>
-                <div class="platform-prices">
-                    <div class="price-row">
-                        <span class="price-label">1 Mes</span>
-                        <span class="price-value">$20.000</span>
+            </div>
+
+            <!-- ChatGPT Plus -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/chatgpt.png" alt="ChatGPT Plus">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">ChatGPT Plus</h3>
+                    <p class="platform-desc">IA avanzada con GPT-5.1 y más</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20ChatGPT%20Plus%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $10.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20ChatGPT%20Plus%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $18.000</a>
+                        </div>
                     </div>
-                    <div class="price-row">
-                        <span class="price-label">3 Meses</span>
-                        <span class="price-value">$55.000</span>
+
+                </div>
+            </div>
+
+
+            <!-- VIX Premium -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/vix.png" alt="VIX Premium">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">VIX Premium</h3>
+                    <p class="platform-desc">Series, películas y deportes en español</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20VIX%20Premium%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $7.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20VIX%20Premium%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $12.000</a>
+                        </div>
                     </div>
                 </div>
-                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20IPTV%20Premium"
-                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Viki Rakuten -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/viki.png" alt="Viki Rakuten">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Viki Rakuten</h3>
+                    <p class="platform-desc">El mejor contenido asiático y K-dramas</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Viki%20Rakuten%20por%201%20Mes"
+                                class="btn btn-secondary" target="_blank">1 Mes - $8.000</a>
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Viki%20Rakuten%20por%202%20Meses"
+                                class="btn btn-primary" target="_blank">2 Meses - $16.000</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Microsoft Office -->
+            <div class="platform-card">
+                <div class="platform-icon">
+                    <img src="assets/images/office.png" alt="Microsoft Office">
+                </div>
+                <div class="platform-info">
+                    <h3 class="platform-name">Microsoft Office</h3>
+                    <p class="platform-desc">Licencia original de por vida</p>
+                    <div class="platform-bottom">
+                        <div class="platform-actions">
+                            <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Microsoft%20Office%20Vitalicia"
+                                class="btn btn-primary" target="_blank">De Por Vida - $30.000</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -385,44 +392,42 @@
     <!-- Combos Section -->
     <section id="combos">
         <div class="section-header">
-            <h2>🔥 Combos Especiales</h2>
-            <p>Ahorra más combinando tus plataformas favoritas. ¡Ofertas exclusivas!</p>
+            <h2>🎁 Combos Especiales</h2>
+            <p>Ahorra más combinando tus plataformas favoritas</p>
         </div>
         <div class="combos-grid">
-            <!-- Combo Básico -->
+            <!-- Combo Starter -->
             <div class="combo-card">
                 <h3 class="combo-name">Combo Starter</h3>
                 <p class="combo-tagline">Perfecto para empezar</p>
                 <div class="combo-price">
-                    <span class="amount">$25.000</span>
-                    <span class="period">/ mes</span>
+                    <span class="amount">$20.000</span>
+                    <span class="period">/mes</span>
                 </div>
-                <span class="combo-savings">Ahorras $5.000</span>
                 <ul class="combo-includes">
-                    <li>Netflix Premium</li>
-                    <li>Spotify Premium</li>
-                    <li>Soporte prioritario</li>
+                    <li>Netflix</li>
+                    <li>Prime Video</li>
                 </ul>
+                <div class="combo-savings">💰 Ahorro de $3.000</div>
                 <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Starter" class="btn btn-primary"
                     target="_blank">Obtener Combo</a>
             </div>
 
-            <!-- Combo Popular -->
+            <!-- Combo Premium -->
             <div class="combo-card featured">
                 <h3 class="combo-name">Combo Premium</h3>
-                <p class="combo-tagline">El favorito de nuestros clientes</p>
+                <p class="combo-tagline">El más popular</p>
                 <div class="combo-price">
-                    <span class="amount">$45.000</span>
-                    <span class="period">/ mes</span>
+                    <span class="amount">$30.000</span>
+                    <span class="period">/mes</span>
                 </div>
-                <span class="combo-savings">Ahorras $12.000</span>
                 <ul class="combo-includes">
-                    <li>Netflix Premium 4K</li>
+                    <li>Netflix</li>
                     <li>Disney+ Premium</li>
                     <li>HBO Max</li>
-                    <li>Spotify Premium</li>
-                    <li>Soporte 24/7</li>
+                    <li>Prime Video</li>
                 </ul>
+                <div class="combo-savings">💰 Ahorro de $11.000</div>
                 <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Premium" class="btn btn-primary"
                     target="_blank">Obtener Combo</a>
             </div>
@@ -430,88 +435,88 @@
             <!-- Combo Ultimate -->
             <div class="combo-card">
                 <h3 class="combo-name">Combo Ultimate</h3>
-                <p class="combo-tagline">Todo el entretenimiento en uno</p>
+                <p class="combo-tagline">Todo en uno</p>
                 <div class="combo-price">
                     <span class="amount">$70.000</span>
-                    <span class="period">/ mes</span>
+                    <span class="period">/mes</span>
                 </div>
-                <span class="combo-savings">Ahorras $25.000</span>
                 <ul class="combo-includes">
-                    <li>Netflix Premium 4K</li>
-                    <li>Disney+ Premium</li>
+                    <li>Netflix</li>
+                    <li>Disney+</li>
                     <li>HBO Max</li>
                     <li>Prime Video</li>
                     <li>Spotify Premium</li>
                     <li>YouTube Premium</li>
-                    <li>Crunchyroll Premium</li>
-                    <li>Soporte VIP 24/7</li>
+                    <li>Paramount+</li>
                 </ul>
+                <div class="combo-savings">💰 Ahorro de $25.000</div>
                 <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Ultimate" class="btn btn-primary"
                     target="_blank">Obtener Combo</a>
             </div>
         </div>
     </section>
 
-    <!-- Referencias Section -->
-    <section id="referencias">
+    <!-- Capturas Section -->
+    <section id="capturas">
         <div class="section-header">
-            <h2>⭐ Referencias de Clientes</h2>
-            <p>Mira lo que dicen nuestros clientes satisfechos. ¡Más de 500 clientes felices!</p>
+            <h2>📸 Galería de Clientes</h2>
+            <p>Evidencia real de nuestros servicios entregados</p>
         </div>
-        <div class="referencias-grid">
-            <div class="referencia-card">
-                <div class="referencia-placeholder">📱</div>
-                <div class="referencia-content">
-                    <div class="referencia-stars">★★★★★</div>
-                    <p class="referencia-text">"Excelente servicio, muy rápido y confiable. Ya llevo 6 meses con ellos."
-                    </p>
-                    <span class="referencia-author">— Cliente satisfecho</span>
-                </div>
+        <div class="carousel-container">
+            <div class="carousel-track-container">
+                <ul class="carousel-track">
+                    <li class="carousel-slide current-slide">
+                        <img src="assets/images/screenshot1.jpg" alt="Captura 1">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot2.jpg" alt="Captura 2">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot3.jpg" alt="Captura 3">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot4.jpg" alt="Captura 4">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot5.jpg" alt="Captura 5">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot6.jpg" alt="Captura 6">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot7.jpg" alt="Captura 7">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot8.jpg" alt="Captura 8">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot9.jpg" alt="Captura 9">
+                    </li>
+                    <li class="carousel-slide">
+                        <img src="assets/images/screenshot10.jpg" alt="Captura 10">
+                    </li>
+                </ul>
             </div>
-            <div class="referencia-card">
-                <div class="referencia-placeholder">💬</div>
-                <div class="referencia-content">
-                    <div class="referencia-stars">★★★★★</div>
-                    <p class="referencia-text">"Los mejores precios que he encontrado. Súper recomendados!"</p>
-                    <span class="referencia-author">— Cliente verificado</span>
-                </div>
-            </div>
-            <div class="referencia-card">
-                <div class="referencia-placeholder">✅</div>
-                <div class="referencia-content">
-                    <div class="referencia-stars">★★★★★</div>
-                    <p class="referencia-text">"Respuesta inmediata y cuentas funcionando perfectamente."</p>
-                    <span class="referencia-author">— Cliente frecuente</span>
-                </div>
-            </div>
-            <div class="referencia-card">
-                <div class="referencia-placeholder">🎉</div>
-                <div class="referencia-content">
-                    <div class="referencia-stars">★★★★★</div>
-                    <p class="referencia-text">"Ya recomendé a toda mi familia. Servicio A1!"</p>
-                    <span class="referencia-author">— Cliente premium</span>
-                </div>
-            </div>
-            <div class="referencia-card">
-                <div class="referencia-placeholder">🔒</div>
-                <div class="referencia-content">
-                    <div class="referencia-stars">★★★★★</div>
-                    <p class="referencia-text">"Muy seguro y profesional. Sin ningún problema hasta ahora."</p>
-                    <span class="referencia-author">— Cliente nuevo</span>
-                </div>
-            </div>
-            <div class="referencia-card">
-                <div class="referencia-placeholder">💯</div>
-                <div class="referencia-content">
-                    <div class="referencia-stars">★★★★★</div>
-                    <p class="referencia-text">"El combo Premium vale cada peso. Lo recomiendo 100%."</p>
-                    <span class="referencia-author">— Cliente VIP</span>
-                </div>
+            <button class="carousel-button carousel-button--left is-hidden">
+                ❮
+            </button>
+            <button class="carousel-button carousel-button--right">
+                ❯
+            </button>
+
+            <div class="carousel-nav">
+                <button class="carousel-indicator current-slide"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 2rem; color: var(--text-muted);">
-            <em>💡 Las capturas de pantalla de clientes reales serán agregadas próximamente</em>
-        </p>
     </section>
 
     <!-- FAQ Section -->
@@ -605,7 +610,7 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#plataformas">Plataformas</a></li>
                     <li><a href="#combos">Combos</a></li>
-                    <li><a href="#referencias">Referencias</a></li>
+                    <li><a href="#capturas">Capturas</a></li>
                 </ul>
             </div>
             <div class="footer-links">

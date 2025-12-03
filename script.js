@@ -1,40 +1,38 @@
-// Mobile Menu Toggle
+// ===== MOBILE MENU TOGGLE =====
 function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
     menu.classList.toggle('active');
 }
 
-// FAQ Toggle
+// ===== FAQ ACCORDION =====
 function toggleFaq(element) {
     const faqItem = element.parentElement;
     const wasActive = faqItem.classList.contains('active');
-    
+
     // Close all FAQ items
     document.querySelectorAll('.faq-item').forEach(item => {
         item.classList.remove('active');
     });
-    
+
     // Open clicked item if it wasn't active
     if (!wasActive) {
         faqItem.classList.add('active');
     }
 }
 
-// Header scroll effect
-window.addEventListener('scroll', function() {
+// ===== HEADER SCROLL EFFECT =====
+window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
-        header.style.padding = '0.75rem 2rem';
-        header.style.background = 'rgba(13, 13, 26, 0.95)';
+        header.classList.add('scrolled');
     } else {
-        header.style.padding = '1rem 2rem';
-        header.style.background = 'rgba(13, 13, 26, 0.8)';
+        header.classList.remove('scrolled');
     }
 });
 
-// Smooth scroll for navigation links
+// ===== SMOOTH SCROLL FOR NAVIGATION =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -42,11 +40,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+            }
         }
     });
 });
 
-// Animation on scroll
+// ===== ANIMATION ON SCROLL =====
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -57,14 +60,137 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-document.querySelectorAll('.platform-card, .combo-card, .referencia-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
+// Observe all cards when DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.platform-card, .combo-card, .referencia-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(card);
+    });
+});
+
+// ===== CAROUSEL =====
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-button--right');
+    const prevButton = document.querySelector('.carousel-button--left');
+    const dotsNav = document.querySelector('.carousel-nav');
+    const dots = Array.from(dotsNav.children);
+
+    // Check if slides exist
+    if (slides.length === 0) return;
+
+    const getSlideWidth = () => slides[0].getBoundingClientRect().width;
+
+    const setSlidePosition = (slide, index) => {
+        slide.style.left = getSlideWidth() * index + 'px';
+    };
+
+    // Initial positioning
+    slides.forEach(setSlidePosition);
+
+    const moveToSlide = (track, currentSlide, targetSlide) => {
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+        currentSlide.classList.remove('current-slide');
+        targetSlide.classList.add('current-slide');
+    };
+
+    const updateDots = (currentDot, targetDot) => {
+        currentDot.classList.remove('current-slide');
+        targetDot.classList.add('current-slide');
+    };
+
+    const getVisibleSlides = () => window.innerWidth > 768 ? 3 : 1;
+
+    const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
+        const visibleSlides = getVisibleSlides();
+        if (targetIndex === 0) {
+            prevButton.classList.add('is-hidden');
+            nextButton.classList.remove('is-hidden');
+        } else if (targetIndex >= slides.length - visibleSlides) {
+            prevButton.classList.remove('is-hidden');
+            nextButton.classList.add('is-hidden');
+        } else {
+            prevButton.classList.remove('is-hidden');
+            nextButton.classList.remove('is-hidden');
+        }
+    };
+
+    // Click Left
+    prevButton.addEventListener('click', e => {
+        const currentSlide = track.querySelector('.current-slide');
+        const prevSlide = currentSlide.previousElementSibling;
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const prevDot = currentDot.previousElementSibling;
+        const prevIndex = slides.findIndex(slide => slide === prevSlide);
+
+        if (prevSlide) {
+            moveToSlide(track, currentSlide, prevSlide);
+            updateDots(currentDot, prevDot);
+            hideShowArrows(slides, prevButton, nextButton, prevIndex);
+        }
+    });
+
+    // Click Right
+    nextButton.addEventListener('click', e => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling;
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const nextDot = currentDot.nextElementSibling;
+        const nextIndex = slides.findIndex(slide => slide === nextSlide);
+
+        // Check if we can move (don't move past the end)
+        if (nextSlide && nextIndex <= slides.length - getVisibleSlides()) {
+            moveToSlide(track, currentSlide, nextSlide);
+            updateDots(currentDot, nextDot);
+            hideShowArrows(slides, prevButton, nextButton, nextIndex);
+        } else if (nextSlide && getVisibleSlides() === 1) {
+            // Mobile behavior (always move if next slide exists)
+            moveToSlide(track, currentSlide, nextSlide);
+            updateDots(currentDot, nextDot);
+            hideShowArrows(slides, prevButton, nextButton, nextIndex);
+        }
+    });
+
+    // Click Nav Indicators
+    dotsNav.addEventListener('click', e => {
+        const targetDot = e.target.closest('button');
+        if (!targetDot) return;
+
+        const currentSlide = track.querySelector('.current-slide');
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const targetIndex = dots.findIndex(dot => dot === targetDot);
+        const targetSlide = slides[targetIndex];
+
+        // Adjust target index if it goes out of bounds for desktop
+        if (targetIndex > slides.length - getVisibleSlides()) {
+            // Optional: prevent clicking dots that show empty space? 
+            // For now, let it slide but arrows might behave weirdly if we don't clamp.
+            // Let's just move.
+        }
+
+        moveToSlide(track, currentSlide, targetSlide);
+        updateDots(currentDot, targetDot);
+        hideShowArrows(slides, prevButton, nextButton, targetIndex);
+    });
+
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+        slides.forEach(setSlidePosition);
+        const currentSlide = track.querySelector('.current-slide');
+        if (currentSlide) {
+            track.style.transform = 'translateX(-' + currentSlide.style.left + ')';
+        }
+        // Update arrows on resize
+        const currentIndex = slides.findIndex(slide => slide === currentSlide);
+        hideShowArrows(slides, prevButton, nextButton, currentIndex);
+    });
 });
