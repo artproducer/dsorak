@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSORAK - Tu Tienda de Streaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <span class="streaming-text">Streaming</span>
+                <span class="brand-text">DSORAK</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#plataformas">Plataformas</a></li>
+                <li><a href="#combos">Combos</a></li>
+                <li><a href="#referencias">Referencias</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <span class="close-menu" onclick="toggleMenu()">✕</span>
+        <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+        <a href="#plataformas" onclick="toggleMenu()">Plataformas</a>
+        <a href="#combos" onclick="toggleMenu()">Combos</a>
+        <a href="#referencias" onclick="toggleMenu()">Referencias</a>
+        <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg"></div>
+        <div class="hero-particles">
+            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="top: 60%; left: 20%; animation-delay: 1s;"></div>
+            <div class="particle" style="top: 30%; left: 80%; animation-delay: 2s;"></div>
+            <div class="particle" style="top: 70%; left: 70%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="top: 40%; left: 50%; animation-delay: 1.5s;"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">Entretenimiento Premium al mejor precio</div>
+            <h1>Tu Streaming Favorito<br><span class="gradient-text">Sin Límites</span></h1>
+            <p>Accede a las mejores plataformas de streaming con cuentas 100% legítimas, entrega inmediata y soporte
+                24/7. ¡Más de 500 clientes satisfechos!</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/573058588651?text=Hola%20DSORAK!%20Quiero%20información%20sobre%20las%20plataformas%20de%20streaming"
+                    class="btn btn-primary" target="_blank">
+                    💬 Contactar por WhatsApp
+                </a>
+                <a href="#plataformas" class="btn btn-secondary">
+                    Ver Plataformas →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plataformas Section -->
+    <section id="plataformas">
+        <div class="section-header">
+            <h2>🎬 Nuestras Plataformas</h2>
+            <p>Elige tu plataforma favorita y comienza a disfrutar hoy mismo. Precios en pesos colombianos.</p>
+        </div>
+        <div class="platforms-grid">
+            <!-- Netflix -->
+            <div class="platform-card netflix">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/netflix.png" alt="Netflix">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Netflix</h3>
+                        <p class="platform-desc">Series, películas y documentales en 4K UHD</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$15.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$40.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Netflix" class="btn btn-primary"
+                    target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Disney+ -->
+            <div class="platform-card disney">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/disney.png" alt="Disney+">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Disney+</h3>
+                        <p class="platform-desc">Disney, Pixar, Marvel, Star Wars y National Geographic</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$12.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$32.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Disney%2B" class="btn btn-primary"
+                    target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- HBO Max -->
+            <div class="platform-card hbo">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/hbo.png" alt="HBO Max">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">HBO Max</h3>
+                        <p class="platform-desc">Series exclusivas, películas y contenido de Warner</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$12.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$32.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20HBO%20Max" class="btn btn-primary"
+                    target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Prime Video -->
+            <div class="platform-card prime">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/prime.png" alt="Prime Video">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Prime Video</h3>
+                        <p class="platform-desc">Contenido exclusivo de Amazon en 4K</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$10.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$27.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Prime%20Video"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Spotify -->
+            <div class="platform-card spotify">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/spotify.png" alt="Spotify">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Spotify Premium</h3>
+                        <p class="platform-desc">Música sin anuncios y descarga offline</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$8.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$22.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Spotify%20Premium"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- YouTube Premium -->
+            <div class="platform-card youtube">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/youtube.png" alt="YouTube">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">YouTube Premium</h3>
+                        <p class="platform-desc">Sin anuncios + YouTube Music incluido</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$10.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$27.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20YouTube%20Premium"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Crunchyroll -->
+            <div class="platform-card crunchyroll">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/crunchyroll.png" alt="Crunchyroll">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Crunchyroll</h3>
+                        <p class="platform-desc">El mejor anime del mundo sin publicidad</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$10.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$27.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Crunchyroll"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Paramount+ -->
+            <div class="platform-card paramount">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/paramount.png" alt="Paramount+">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Paramount+</h3>
+                        <p class="platform-desc">Series, películas y deportes en vivo</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$10.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$27.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Paramount%2B"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Apple TV+ -->
+            <div class="platform-card apple">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/apple.png" alt="Apple TV+">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Apple TV+</h3>
+                        <p class="platform-desc">Contenido original de Apple en 4K Dolby Vision</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$10.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$27.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Apple%20TV%2B"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Plex -->
+            <div class="platform-card plex">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/plex.png" alt="Plex">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Plex</h3>
+                        <p class="platform-desc">Contenido multimedia organizado y streaming</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$12.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$32.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Plex" class="btn btn-primary"
+                    target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- Canva Pro -->
+            <div class="platform-card canva">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/canva.png" alt="Canva Pro">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Canva Pro</h3>
+                        <p class="platform-desc">Diseño gráfico profesional sin límites</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$15.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$40.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20Canva%20Pro"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+
+            <!-- IPTV -->
+            <div class="platform-card iptv">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <img src="assets/images/iptv.png" alt="IPTV Premium">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">IPTV Premium</h3>
+                        <p class="platform-desc">+5000 canales en vivo de todo el mundo</p>
+                    </div>
+                </div>
+                <div class="platform-prices">
+                    <div class="price-row">
+                        <span class="price-label">1 Mes</span>
+                        <span class="price-value">$20.000</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">3 Meses</span>
+                        <span class="price-value">$55.000</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20adquirir%20IPTV%20Premium"
+                    class="btn btn-primary" target="_blank">Comprar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combos Section -->
+    <section id="combos">
+        <div class="section-header">
+            <h2>🔥 Combos Especiales</h2>
+            <p>Ahorra más combinando tus plataformas favoritas. ¡Ofertas exclusivas!</p>
+        </div>
+        <div class="combos-grid">
+            <!-- Combo Básico -->
+            <div class="combo-card">
+                <h3 class="combo-name">Combo Starter</h3>
+                <p class="combo-tagline">Perfecto para empezar</p>
+                <div class="combo-price">
+                    <span class="amount">$25.000</span>
+                    <span class="period">/ mes</span>
+                </div>
+                <span class="combo-savings">Ahorras $5.000</span>
+                <ul class="combo-includes">
+                    <li>Netflix Premium</li>
+                    <li>Spotify Premium</li>
+                    <li>Soporte prioritario</li>
+                </ul>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Starter" class="btn btn-primary"
+                    target="_blank">Obtener Combo</a>
+            </div>
+
+            <!-- Combo Popular -->
+            <div class="combo-card featured">
+                <h3 class="combo-name">Combo Premium</h3>
+                <p class="combo-tagline">El favorito de nuestros clientes</p>
+                <div class="combo-price">
+                    <span class="amount">$45.000</span>
+                    <span class="period">/ mes</span>
+                </div>
+                <span class="combo-savings">Ahorras $12.000</span>
+                <ul class="combo-includes">
+                    <li>Netflix Premium 4K</li>
+                    <li>Disney+ Premium</li>
+                    <li>HBO Max</li>
+                    <li>Spotify Premium</li>
+                    <li>Soporte 24/7</li>
+                </ul>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Premium" class="btn btn-primary"
+                    target="_blank">Obtener Combo</a>
+            </div>
+
+            <!-- Combo Ultimate -->
+            <div class="combo-card">
+                <h3 class="combo-name">Combo Ultimate</h3>
+                <p class="combo-tagline">Todo el entretenimiento en uno</p>
+                <div class="combo-price">
+                    <span class="amount">$70.000</span>
+                    <span class="period">/ mes</span>
+                </div>
+                <span class="combo-savings">Ahorras $25.000</span>
+                <ul class="combo-includes">
+                    <li>Netflix Premium 4K</li>
+                    <li>Disney+ Premium</li>
+                    <li>HBO Max</li>
+                    <li>Prime Video</li>
+                    <li>Spotify Premium</li>
+                    <li>YouTube Premium</li>
+                    <li>Crunchyroll Premium</li>
+                    <li>Soporte VIP 24/7</li>
+                </ul>
+                <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Ultimate" class="btn btn-primary"
+                    target="_blank">Obtener Combo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referencias Section -->
+    <section id="referencias">
+        <div class="section-header">
+            <h2>⭐ Referencias de Clientes</h2>
+            <p>Mira lo que dicen nuestros clientes satisfechos. ¡Más de 500 clientes felices!</p>
+        </div>
+        <div class="referencias-grid">
+            <div class="referencia-card">
+                <div class="referencia-placeholder">📱</div>
+                <div class="referencia-content">
+                    <div class="referencia-stars">★★★★★</div>
+                    <p class="referencia-text">"Excelente servicio, muy rápido y confiable. Ya llevo 6 meses con ellos."
+                    </p>
+                    <span class="referencia-author">— Cliente satisfecho</span>
+                </div>
+            </div>
+            <div class="referencia-card">
+                <div class="referencia-placeholder">💬</div>
+                <div class="referencia-content">
+                    <div class="referencia-stars">★★★★★</div>
+                    <p class="referencia-text">"Los mejores precios que he encontrado. Súper recomendados!"</p>
+                    <span class="referencia-author">— Cliente verificado</span>
+                </div>
+            </div>
+            <div class="referencia-card">
+                <div class="referencia-placeholder">✅</div>
+                <div class="referencia-content">
+                    <div class="referencia-stars">★★★★★</div>
+                    <p class="referencia-text">"Respuesta inmediata y cuentas funcionando perfectamente."</p>
+                    <span class="referencia-author">— Cliente frecuente</span>
+                </div>
+            </div>
+            <div class="referencia-card">
+                <div class="referencia-placeholder">🎉</div>
+                <div class="referencia-content">
+                    <div class="referencia-stars">★★★★★</div>
+                    <p class="referencia-text">"Ya recomendé a toda mi familia. Servicio A1!"</p>
+                    <span class="referencia-author">— Cliente premium</span>
+                </div>
+            </div>
+            <div class="referencia-card">
+                <div class="referencia-placeholder">🔒</div>
+                <div class="referencia-content">
+                    <div class="referencia-stars">★★★★★</div>
+                    <p class="referencia-text">"Muy seguro y profesional. Sin ningún problema hasta ahora."</p>
+                    <span class="referencia-author">— Cliente nuevo</span>
+                </div>
+            </div>
+            <div class="referencia-card">
+                <div class="referencia-placeholder">💯</div>
+                <div class="referencia-content">
+                    <div class="referencia-stars">★★★★★</div>
+                    <p class="referencia-text">"El combo Premium vale cada peso. Lo recomiendo 100%."</p>
+                    <span class="referencia-author">— Cliente VIP</span>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: var(--text-muted);">
+            <em>💡 Las capturas de pantalla de clientes reales serán agregadas próximamente</em>
+        </p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-header">
+            <h2>❓ Preguntas Frecuentes</h2>
+            <p>Resolvemos tus dudas más comunes</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cómo funciona el servicio?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Una vez realices el pago, te enviamos las credenciales de acceso a tu WhatsApp en menos de 5
+                        minutos. Podrás acceder desde cualquier dispositivo compatible con la plataforma.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué métodos de pago aceptan?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Aceptamos Nequi, Daviplata, transferencia bancaria y pagos en efectivo por Efecty o Baloto.
+                        También aceptamos criptomonedas.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Tienen garantía?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        ¡Sí! Todas nuestras cuentas tienen garantía por el tiempo contratado. Si tienes algún problema,
+                        te lo solucionamos inmediatamente o te devolvemos tu dinero.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Puedo usar la cuenta en varios dispositivos?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Dependiendo del plan, puedes usar la cuenta en 1 o más dispositivos simultáneamente. Te
+                        indicamos las condiciones específicas al momento de la compra.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué pasa si mi cuenta deja de funcionar?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Contáctanos inmediatamente por WhatsApp y te proporcionaremos una nueva cuenta sin costo
+                        adicional. Nuestro soporte está disponible 24/7.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="streaming-text">Streaming</span>
+                    <span class="brand-text">DSORAK</span>
+                </a>
+                <p>Tu tienda de confianza para streaming premium. Entretenimiento sin límites a precios increíbles.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/573058588651" class="social-link" target="_blank">💬</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">📘</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#plataformas">Plataformas</a></li>
+                    <li><a href="#combos">Combos</a></li>
+                    <li><a href="#referencias">Referencias</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Plataformas</h4>
+                <ul>
+                    <li><a href="https://wa.me/573058588651?text=Quiero%20Netflix" target="_blank">Netflix</a></li>
+                    <li><a href="https://wa.me/573058588651?text=Quiero%20Disney%2B" target="_blank">Disney+</a></li>
+                    <li><a href="https://wa.me/573058588651?text=Quiero%20HBO%20Max" target="_blank">HBO Max</a></li>
+                    <li><a href="https://wa.me/573058588651?text=Quiero%20Spotify" target="_blank">Spotify</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="https://wa.me/573058588651" target="_blank">📱 +57 305 858 8651</a></li>
+                    <li><a href="#">📍 Colombia</a></li>
+                    <li><a href="#">⏰ Soporte 24/7</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 DSORAK. Todos los derechos reservados. | Hecho con ❤️ en Colombia</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/573058588651?text=Hola%20DSORAK!%20Quiero%20información%20sobre%20sus%20servicios"
+        class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
