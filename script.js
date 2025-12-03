@@ -1,9 +1,3 @@
-// ===== MOBILE MENU TOGGLE =====
-function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('active');
-}
-
 // ===== FAQ ACCORDION =====
 function toggleFaq(element) {
     const faqItem = element.parentElement;
@@ -33,17 +27,20 @@ window.addEventListener('scroll', function () {
 // ===== SMOOTH SCROLL FOR NAVIGATION =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            // Close mobile menu if open
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                }
             }
         }
     });
@@ -72,180 +69,192 @@ document.addEventListener('DOMContentLoaded', function () {
         card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(card);
     });
-});
 
-// ===== CAROUSEL =====
-document.addEventListener('DOMContentLoaded', () => {
+    // ===== CAROUSEL LOGIC =====
     const track = document.querySelector('.carousel-track');
-    if (!track) return;
+    if (track) {
+        const slides = Array.from(track.children);
+        const nextButton = document.querySelector('.carousel-button--right');
+        const prevButton = document.querySelector('.carousel-button--left');
+        const dotsNav = document.querySelector('.carousel-nav');
+        const dots = Array.from(dotsNav.children);
 
-    const slides = Array.from(track.children);
-    const nextButton = document.querySelector('.carousel-button--right');
-    const prevButton = document.querySelector('.carousel-button--left');
-    const dotsNav = document.querySelector('.carousel-nav');
-    const dots = Array.from(dotsNav.children);
+        // Check if slides exist
+        if (slides.length === 0) return;
 
-    // Check if slides exist
-    if (slides.length === 0) return;
+        const getSlideWidth = () => slides[0].getBoundingClientRect().width;
 
-    const getSlideWidth = () => slides[0].getBoundingClientRect().width;
+        const setSlidePosition = (slide, index) => {
+            slide.style.left = getSlideWidth() * index + 'px';
+        };
 
-    const setSlidePosition = (slide, index) => {
-        slide.style.left = getSlideWidth() * index + 'px';
-    };
-
-    // Initial positioning
-    slides.forEach(setSlidePosition);
-
-    const moveToSlide = (track, currentSlide, targetSlide) => {
-        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-        currentSlide.classList.remove('current-slide');
-        targetSlide.classList.add('current-slide');
-    };
-
-    const updateDots = (currentDot, targetDot) => {
-        currentDot.classList.remove('current-slide');
-        targetDot.classList.add('current-slide');
-    };
-
-    const getVisibleSlides = () => window.innerWidth > 768 ? 3 : 1;
-
-    const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
-        const visibleSlides = getVisibleSlides();
-        if (targetIndex === 0) {
-            prevButton.classList.add('is-hidden');
-            nextButton.classList.remove('is-hidden');
-        } else if (targetIndex >= slides.length - visibleSlides) {
-            prevButton.classList.remove('is-hidden');
-            nextButton.classList.add('is-hidden');
-        } else {
-            prevButton.classList.remove('is-hidden');
-            nextButton.classList.remove('is-hidden');
-        }
-    };
-
-    // Click Left
-    prevButton.addEventListener('click', e => {
-        const currentSlide = track.querySelector('.current-slide');
-        const prevSlide = currentSlide.previousElementSibling;
-        const currentDot = dotsNav.querySelector('.current-slide');
-        const prevDot = currentDot.previousElementSibling;
-        const prevIndex = slides.findIndex(slide => slide === prevSlide);
-
-        if (prevSlide) {
-            moveToSlide(track, currentSlide, prevSlide);
-            updateDots(currentDot, prevDot);
-            hideShowArrows(slides, prevButton, nextButton, prevIndex);
-        }
-    });
-
-    // Click Right
-    nextButton.addEventListener('click', e => {
-        const currentSlide = track.querySelector('.current-slide');
-        const nextSlide = currentSlide.nextElementSibling;
-        const currentDot = dotsNav.querySelector('.current-slide');
-        const nextDot = currentDot.nextElementSibling;
-        const nextIndex = slides.findIndex(slide => slide === nextSlide);
-
-        // Check if we can move (don't move past the end)
-        if (nextSlide && nextIndex <= slides.length - getVisibleSlides()) {
-            moveToSlide(track, currentSlide, nextSlide);
-            updateDots(currentDot, nextDot);
-            hideShowArrows(slides, prevButton, nextButton, nextIndex);
-        } else if (nextSlide && getVisibleSlides() === 1) {
-            // Mobile behavior (always move if next slide exists)
-            moveToSlide(track, currentSlide, nextSlide);
-            updateDots(currentDot, nextDot);
-            hideShowArrows(slides, prevButton, nextButton, nextIndex);
-        }
-    });
-
-    // Click Nav Indicators
-    dotsNav.addEventListener('click', e => {
-        const targetDot = e.target.closest('button');
-        if (!targetDot) return;
-
-        const currentSlide = track.querySelector('.current-slide');
-        const currentDot = dotsNav.querySelector('.current-slide');
-        const targetIndex = dots.findIndex(dot => dot === targetDot);
-        const targetSlide = slides[targetIndex];
-
-        // Adjust target index if it goes out of bounds for desktop
-        if (targetIndex > slides.length - getVisibleSlides()) {
-            // Optional: prevent clicking dots that show empty space? 
-            // For now, let it slide but arrows might behave weirdly if we don't clamp.
-            // Let's just move.
-        }
-
-        moveToSlide(track, currentSlide, targetSlide);
-        updateDots(currentDot, targetDot);
-        hideShowArrows(slides, prevButton, nextButton, targetIndex);
-    });
-
-    // Handle Window Resize
-    window.addEventListener('resize', () => {
+        // Initial positioning
         slides.forEach(setSlidePosition);
-        const currentSlide = track.querySelector('.current-slide');
-        if (currentSlide) {
-            track.style.transform = 'translateX(-' + currentSlide.style.left + ')';
-        }
-        // Update arrows on resize
-        const currentIndex = slides.findIndex(slide => slide === currentSlide);
-        hideShowArrows(slides, prevButton, nextButton, currentIndex);
-    });
-});
 
-// ===== CUSTOM COMBO LOGIC =====
-document.addEventListener('DOMContentLoaded', () => {
-    const checkboxes = document.querySelectorAll('.platform-option input[type="checkbox"]');
-    const priceDisplay = document.getElementById('ultimate-price');
-    const btnUltimate = document.getElementById('btn-ultimate');
-    const discount = 5000;
+        const moveToSlide = (track, currentSlide, targetSlide) => {
+            track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+            currentSlide.classList.remove('current-slide');
+            targetSlide.classList.add('current-slide');
+        };
 
-    if (!checkboxes.length || !priceDisplay || !btnUltimate) return;
+        const updateDots = (currentDot, targetDot) => {
+            currentDot.classList.remove('current-slide');
+            targetDot.classList.add('current-slide');
+        };
 
-    function updateCombo() {
-        let total = 0;
-        let selectedNames = [];
+        const getVisibleSlides = () => window.innerWidth > 768 ? 3 : 1;
 
-        checkboxes.forEach(cb => {
-            if (cb.checked) {
-                total += parseInt(cb.dataset.price);
-                selectedNames.push(cb.dataset.name);
+        const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
+            const visibleSlides = getVisibleSlides();
+            if (targetIndex === 0) {
+                prevButton.classList.add('is-hidden');
+                nextButton.classList.remove('is-hidden');
+            } else if (targetIndex >= slides.length - visibleSlides) {
+                prevButton.classList.remove('is-hidden');
+                nextButton.classList.add('is-hidden');
+            } else {
+                prevButton.classList.remove('is-hidden');
+                nextButton.classList.remove('is-hidden');
+            }
+        };
+
+        // Initial arrow state
+        hideShowArrows(slides, prevButton, nextButton, 0);
+
+        // Click Left
+        prevButton.addEventListener('click', e => {
+            const currentSlide = track.querySelector('.current-slide');
+            const prevSlide = currentSlide.previousElementSibling;
+            const currentDot = dotsNav.querySelector('.current-slide');
+            const prevDot = currentDot.previousElementSibling;
+            const prevIndex = slides.findIndex(slide => slide === prevSlide);
+
+            if (prevSlide) {
+                moveToSlide(track, currentSlide, prevSlide);
+                updateDots(currentDot, prevDot);
+                hideShowArrows(slides, prevButton, nextButton, prevIndex);
             }
         });
 
-        // Calculate discount based on count
-        const count = selectedNames.length;
-        let discount = 0;
+        // Click Right
+        nextButton.addEventListener('click', e => {
+            const currentSlide = track.querySelector('.current-slide');
+            const nextSlide = currentSlide.nextElementSibling;
+            const currentDot = dotsNav.querySelector('.current-slide');
+            const nextDot = currentDot.nextElementSibling;
+            const nextIndex = slides.findIndex(slide => slide === nextSlide);
 
-        if (count === 2) discount = 3000;
-        else if (count === 3) discount = 5000;
-        else if (count === 4) discount = 7000;
-        else if (count >= 5) discount = 12000;
+            // Check if we can move (don't move past the end)
+            if (nextSlide && nextIndex <= slides.length - getVisibleSlides()) {
+                moveToSlide(track, currentSlide, nextSlide);
+                updateDots(currentDot, nextDot);
+                hideShowArrows(slides, prevButton, nextButton, nextIndex);
+            } else if (nextSlide && getVisibleSlides() === 1) {
+                // Mobile behavior (always move if next slide exists)
+                moveToSlide(track, currentSlide, nextSlide);
+                updateDots(currentDot, nextDot);
+                hideShowArrows(slides, prevButton, nextButton, nextIndex);
+            }
+        });
 
-        let finalPrice = total > 0 ? total - discount : 0;
-        if (finalPrice < 0) finalPrice = 0;
+        // Click Nav Indicators
+        dotsNav.addEventListener('click', e => {
+            const targetDot = e.target.closest('button');
+            if (!targetDot) return;
 
-        // Format price
-        priceDisplay.textContent = '$' + finalPrice.toLocaleString('es-CO');
+            const currentSlide = track.querySelector('.current-slide');
+            const currentDot = dotsNav.querySelector('.current-slide');
+            const targetIndex = dots.findIndex(dot => dot === targetDot);
+            const targetSlide = slides[targetIndex];
 
-        // Update savings text
-        const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
-        if (savingsDisplay) {
-            savingsDisplay.textContent = discount > 0 ? `💰 Ahorro de $${discount.toLocaleString('es-CO')} aplicado` : 'Selecciona 2 o más para descuento';
-        }
+            // Adjust target index if it goes out of bounds for desktop
+            if (targetIndex > slides.length - getVisibleSlides()) {
+                // Optional: prevent clicking dots that show empty space? 
+                // For now, let it slide but arrows might behave weirdly if we don't clamp.
+                // Let's just move.
+            }
 
-        // Update WhatsApp Link
-        const message = `Hola! Quiero armar mi Combo Personalizado con: ${selectedNames.join(', ')}. Precio Total: $${finalPrice.toLocaleString('es-CO')} (Ahorro: $${discount.toLocaleString('es-CO')})`;
-        const encodedMessage = encodeURIComponent(message);
-        btnUltimate.href = `https://wa.me/573058588651?text=${encodedMessage}`;
+            moveToSlide(track, currentSlide, targetSlide);
+            updateDots(currentDot, targetDot);
+            hideShowArrows(slides, prevButton, nextButton, targetIndex);
+        });
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            slides.forEach(setSlidePosition);
+            const currentSlide = track.querySelector('.current-slide');
+            if (currentSlide) {
+                track.style.transform = 'translateX(-' + currentSlide.style.left + ')';
+            }
+            // Update arrows on resize
+            const currentIndex = slides.findIndex(slide => slide === currentSlide);
+            hideShowArrows(slides, prevButton, nextButton, currentIndex);
+        });
     }
 
-    checkboxes.forEach(cb => {
-        cb.addEventListener('change', updateCombo);
-    });
+    // ===== CUSTOM COMBO LOGIC =====
+    const checkboxes = document.querySelectorAll('.platform-option input[type="checkbox"]');
+    const priceDisplay = document.getElementById('ultimate-price');
+    const btnUltimate = document.getElementById('btn-ultimate');
 
-    // Initial calculation
-    updateCombo();
+    if (checkboxes.length && priceDisplay && btnUltimate) {
+        console.log('Custom Combo elements found');
+
+        function updateCombo() {
+            let total = 0;
+            let selectedNames = [];
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    total += parseInt(cb.dataset.price);
+                    selectedNames.push(cb.dataset.name);
+                }
+            });
+
+            // Calculate discount based on count
+            const count = selectedNames.length;
+            let discount = 0;
+
+            if (count === 2) discount = 3000;
+            else if (count === 3) discount = 5000;
+            else if (count === 4) discount = 7000;
+            else if (count >= 5) discount = 12000;
+
+            let finalPrice = total > 0 ? total - discount : 0;
+            if (finalPrice < 0) finalPrice = 0;
+
+            // Format price
+            priceDisplay.textContent = '$' + finalPrice.toLocaleString('es-CO');
+
+            // Update savings text
+            const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
+            if (savingsDisplay) {
+                savingsDisplay.textContent = discount > 0 ? `💰 Ahorro de $${discount.toLocaleString('es-CO')} aplicado` : 'Selecciona 2 o más para descuento';
+            }
+
+            // Update WhatsApp Link
+            // Ensure no extra spaces in the URL construction
+            const message = `Hola! Quiero armar mi Combo Personalizado con: ${selectedNames.join(', ')}. Precio Total: $${finalPrice.toLocaleString('es-CO')}`;
+
+            // Use encodeURIComponent to handle all special characters and spaces
+            const encodedMessage = encodeURIComponent(message);
+
+            // Construct the final URL
+            btnUltimate.href = `https://wa.me/573058588651?text=${encodedMessage}`;
+            console.log('Combo updated:', finalPrice, btnUltimate.href);
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateCombo);
+        });
+
+        // Initial calculation
+        updateCombo();
+    } else {
+        console.error('Custom Combo elements missing:', {
+            checkboxes: checkboxes.length,
+            priceDisplay: !!priceDisplay,
+            btnUltimate: !!btnUltimate
+        });
+    }
 });

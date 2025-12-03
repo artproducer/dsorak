@@ -330,15 +330,12 @@ nav {
 
 /* Improve Savings Visibility - Reverted to standard style but kept margin */
 .combo-ultimate .combo-savings {
-    /* background-color: #e50914; Removed red background */
-    /* color: white; Removed white text */
-    /* padding: 0.5rem; */
-    /* border-radius: var(--radius-sm); */
-    /* font-weight: 700; */
+    color: #0e5e54;
+    /* Darker shade of teal/secondary */
     margin-top: 1rem;
     display: block;
-    /* Ensure it takes full width if needed */
     width: 100%;
+    font-weight: 700;
 }
 
 .hero h1 {
@@ -865,12 +862,16 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.75rem;
-    color: white;
-    text-decoration: none;
+    /* Center the icon */
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
     z-index: 999;
     transition: all 0.3s ease;
+    text-decoration: none;
+    /* Remove underline */
+    font-size: 1.8rem;
+    /* Adjust icon size */
+    color: white;
+    /* Ensure icon is white */
 }
 
 .whatsapp-float:hover {
@@ -878,49 +879,53 @@ footer {
     box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
 }
 
-/* ===== MOBILE MENU ===== */
+/* Remove old mobile menu styles */
+.menu-toggle {
+    display: none;
+}
+
 .mobile-menu {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--light);
-    z-index: 999;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-}
-
-.mobile-menu.active {
-    display: flex;
-}
-
-.mobile-menu a {
-    color: var(--text-dark);
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-.mobile-menu .close-menu {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text-dark);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+
+    /* Mobile Header & Nav */
     header {
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 0;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 0.8rem;
+        /* More space between logo and links */
+        align-items: center;
     }
 
     .nav-links {
+        display: flex;
+        /* Ensure it's visible */
+        gap: 0.8rem;
+        width: 100%;
+        overflow-x: auto;
+        padding: 0.25rem 1rem 0.75rem;
+        /* Padding for scroll and touch targets */
+        justify-content: center;
+        /* Center items */
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    /* Center if content fits */
+    .nav-links::after {
+        content: '';
+        flex: 0 0 1rem;
+        /* Spacer at end */
+    }
+
+    /* Custom Scrollbar hidden */
+    .nav-links::-webkit-scrollbar {
         display: none;
     }
 
