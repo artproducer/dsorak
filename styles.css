@@ -1172,7 +1172,26 @@ footer {
 
     /* Custom Combo Mobile */
     .platform-checkboxes {
-        grid-template-columns: 1fr;
-        /* 1 Column on Mobile */
+        grid-template-columns: 1fr !important;
+        /* Force 1 Column on Mobile */
     }
-}
+
+    .nav-links {
+        display: flex;
+        gap: 0.5rem;
+        /* Reduced gap */
+        width: 100%;
+        overflow-x: auto;
+        padding: 0.5rem;
+        /* Reduced padding */
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+        /* Slightly smaller font */
+        padding: 0.4rem 0.8rem;
+        /* Compact padding */
+    }
