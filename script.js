@@ -1,3 +1,9 @@
+// ===== MOBILE MENU TOGGLE =====
+function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
+}
+
 // ===== FAQ ACCORDION =====
 function toggleFaq(element) {
     const faqItem = element.parentElement;
