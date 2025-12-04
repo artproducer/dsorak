@@ -1278,3 +1278,20 @@ footer {
         padding: 0.4rem 0.8rem;
         /* Compact padding */
     }
+}
+
+.visitor-counter {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.visitor-counter span {
+    color: var(--primary);
+    font-weight: 700;
+}
