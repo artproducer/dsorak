@@ -263,4 +263,20 @@ document.addEventListener('DOMContentLoaded', function () {
             btnUltimate: !!btnUltimate
         });
     }
+
+    // Check for hash on load to open FAQ
+    if (window.location.hash === '#faq-reseller') {
+        const faqItem = document.getElementById('faq-reseller');
+        if (faqItem) {
+            const question = faqItem.querySelector('.faq-question');
+            if (question) {
+                // Small delay to ensure scroll happens first
+                setTimeout(() => {
+                    toggleFaq(question);
+                    // Scroll into view again just in case
+                    faqItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
+            }
+        }
+    }
 });

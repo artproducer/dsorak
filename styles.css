@@ -790,7 +790,8 @@ section {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px;
+    max-height: 1000px;
+    /* Increased to allow longer content */
 }
 
 .faq-answer-content {
@@ -1192,7 +1193,42 @@ footer {
     display: none;
 }
 
+/* Promo Banner */
+.promo-banner {
+    background: var(--gradient-1);
+    color: white;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.promo-banner a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.promo-banner a:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
 @media (max-width: 768px) {
+    .promo-banner {
+        font-size: 0.8rem;
+        /* Smaller font on mobile */
+        padding: 0.5rem;
+        line-height: 1.4;
+        /* Better line height for wrapping */
+    }
+
+    .promo-banner p {
+        margin: 0;
+        /* Remove default margins */
+    }
+
     .carousel-container {
         max-width: 320px;
     }
