@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!count) {
             // Start at a realistic number if no data exists
-            count = 15420;
+            count = 100;
         } else {
             count = parseInt(count);
         }
@@ -300,5 +300,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Display with formatting
         counterElement.textContent = count.toLocaleString('es-CO');
+    }
+    // Scroll Buttons Logic (Section by Section)
+    const scrollUpBtn = document.getElementById('scroll-up');
+    const scrollDownBtn = document.getElementById('scroll-down');
+
+    // Define sections in order
+    const getSections = () => {
+        // Get all main sections plus header and footer
+        const sections = Array.from(document.querySelectorAll('header, section, footer'));
+        return sections.filter(section => section.offsetHeight > 0); // Only visible sections
+    };
+
+    const getCurrentSectionIndex = (sections) => {
+        const scrollPosition = window.scrollY + (window.innerHeight / 3); // Offset to determine "current"
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+            if (sections[i].offsetTop <= scrollPosition) {
+                return i;
+            }
+        }
+        return 0;
+    };
+
+    if (scrollUpBtn && scrollDownBtn) {
+        scrollUpBtn.addEventListener('click', () => {
+            const sections = getSections();
+            const currentIndex = getCurrentSectionIndex(sections);
+            const prevIndex = Math.max(0, currentIndex - 1);
+            
+            sections[prevIndex].scrollIntoView({ behavior: 'smooth' });
+        });
+
+        scrollDownBtn.addEventListener('click', () => {
+            const sections = getSections();
+            const currentIndex = getCurrentSectionIndex(sections);
+            const nextIndex = Math.min(sections.length - 1, currentIndex + 1);
+            
+            sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
+        });
     }
 });
