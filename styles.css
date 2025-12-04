@@ -435,10 +435,10 @@ nav {
     color: var(--primary);
 }
 
-/* ===== SECTIONS ===== */
+/* ===== SECTIONS =====
 #plataformas {
     padding-top: 120px;
-}
+} */
 
 section {
     padding: 5rem 2rem;
@@ -448,13 +448,15 @@ section {
 
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    /* Reduced from 3rem */
 }
 
 .section-header h2 {
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
+    /* Reduced from 0.75rem */
     color: var(--text-dark);
 }
 
