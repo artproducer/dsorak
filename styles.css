@@ -686,6 +686,26 @@ section {
     justify-content: center;
 }
 
+/* Combo Personalizado - Precio y botón en línea */
+.combo-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.combo-price-row .combo-price {
+    margin-bottom: 0;
+}
+
+.btn-compact {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    width: auto;
+}
+
 /* ===== REFERENCIAS SECTION ===== */
 .referencias-grid {
     display: grid;
