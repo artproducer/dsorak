@@ -604,14 +604,18 @@ section {
 .combo-card.featured::before {
     content: '⭐ MÁS POPULAR';
     position: absolute;
-    top: 15px;
-    right: -35px;
+    top: 30px;
+    right: -45px;
     background: var(--gradient-1);
     color: white;
-    padding: 0.4rem 2.5rem;
-    font-size: 0.7rem;
+    padding: 0.5rem 0;
+    width: 200px;
+    text-align: center;
+    font-size: 0.8rem;
     font-weight: 700;
     transform: rotate(45deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
 .combo-card:hover {
