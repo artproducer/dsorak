@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const getCurrentSectionIndex = (sections) => {
         const scrollPosition = window.scrollY + (window.innerHeight / 3); // Offset to determine "current"
-        
+
         for (let i = sections.length - 1; i >= 0; i--) {
             if (sections[i].offsetTop <= scrollPosition) {
                 return i;
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const sections = getSections();
             const currentIndex = getCurrentSectionIndex(sections);
             const prevIndex = Math.max(0, currentIndex - 1);
-            
+
             sections[prevIndex].scrollIntoView({ behavior: 'smooth' });
         });
 
@@ -336,8 +336,39 @@ document.addEventListener('DOMContentLoaded', function () {
             const sections = getSections();
             const currentIndex = getCurrentSectionIndex(sections);
             const nextIndex = Math.min(sections.length - 1, currentIndex + 1);
-            
+
             sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    // ===== DARK MODE LOGIC =====
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Check for saved user preference
+    const currentTheme = localStorage.getItem('theme');
+
+    // Check for system preference
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (currentTheme === 'dark' || (!currentTheme && systemPrefersDark)) {
+        body.classList.add('dark-mode');
+        if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            let theme = 'light';
+            if (body.classList.contains('dark-mode')) {
+                theme = 'dark';
+                themeToggleBtn.textContent = '☀️';
+            } else {
+                themeToggleBtn.textContent = '🌙';
+            }
+
+            localStorage.setItem('theme', theme);
         });
     }
 });
