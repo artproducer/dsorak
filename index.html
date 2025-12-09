@@ -416,49 +416,25 @@
             <p>Ahorra más combinando tus plataformas favoritas</p>
         </div>
         <div class="combos-grid">
-            <!-- Combo Starter -->
-            <div class="combo-card">
-                <h3 class="combo-name">Combo Starter</h3>
-                <p class="combo-tagline">Perfecto para empezar</p>
-                <div class="combo-price-row">
-                    <div class="combo-price">
-                        <span class="amount">$20.000</span>
-                        <span class="period">/mes</span>
-                    </div>
-                    <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Starter"
-                        class="btn btn-primary btn-compact" target="_blank">Comprar</a>
-                </div>
-                <div class="combo-savings">💰 Ahorro de $3.000</div>
-                <ul class="combo-includes">
-                    <li>Netflix</li>
-                    <li>Prime Video</li>
-                </ul>
-            </div>
-
-            <!-- Combo Premium -->
-            <div class="combo-card">
-                <h3 class="combo-name">Combo Premium</h3>
-                <p class="combo-tagline">Todo en uno</p>
-                <div class="combo-price-row">
-                    <div class="combo-price">
-                        <span class="amount">$34.000</span>
-                        <span class="period">/mes</span>
-                    </div>
-                    <a href="https://wa.me/573058588651?text=Hola!%20Quiero%20el%20Combo%20Premium"
-                        class="btn btn-primary btn-compact" target="_blank">Comprar</a>
-                </div>
-                <div class="combo-savings">💰 Ahorro de $11.000</div>
-                <ul class="combo-includes">
-                    <li>Netflix</li>
-                    <li>Disney+ Premium</li>
-                    <li>HBO Max</li>
-                    <li>Prime Video</li>
-                </ul>
-            </div>
             <!-- Combo Ultimate (Customizable) -->
             <div id="comboscustom" class="combo-card combo-ultimate featured">
                 <h3 class="combo-name">Combo Personalizado</h3>
-                <p class="combo-tagline">El más popular ⭐</p>
+                <p class="combo-tagline">El más popular ⭐ - ¡Arma tu plan ideal!</p>
+
+                <div class="combo-suggestions-container">
+                    <p class="suggestions-label">⚡ Sugerencias rápidas:</p>
+                    <div class="suggestion-buttons">
+                        <button type="button" class="btn-suggestion" data-combo="starter">
+                            <span class="suggestion-name">Starter</span>
+                            <span class="suggestion-desc">Netflix + Prime</span>
+                        </button>
+                        <button type="button" class="btn-suggestion" data-combo="premium">
+                            <span class="suggestion-name">Premium</span>
+                            <span class="suggestion-desc">4 Pantallas Top</span>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="combo-price-row">
                     <div class="combo-price">
                         <span class="amount" id="ultimate-price">$16.000</span>
@@ -469,79 +445,133 @@
                 </div>
                 <div class="combo-savings">💰 Ahorro de $5.000 aplicado</div>
                 <div class="custom-combo-selector">
-                    <p class="selector-instruction">Selecciona aquí tus plataformas:</p>
+                    <p class="selector-instruction">O selecciona manualmente:</p>
                     <div class="platform-checkboxes">
                         <label class="platform-option">
                             <input type="checkbox" data-price="16000" data-name="Netflix" checked>
-                            <span class="checkmark">Netflix ($16k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/netflix.png" alt="Netflix" class="platform-mini-logo">
+                                <span class="platform-name-text">Netflix ($16k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="10000" data-name="Disney+ Premium">
-                            <span class="checkmark">Disney+ Premium ($10k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
+                                <span class="platform-name-text">Disney+ Prem ($10k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="6000" data-name="Disney+ Standard">
-                            <span class="checkmark">Disney+ Standard ($6k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
+                                <span class="platform-name-text">Disney+ Std ($6k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="8000" data-name="HBO Max">
-                            <span class="checkmark">HBO Max ($8k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/hbo-max.png" alt="HBO" class="platform-mini-logo">
+                                <span class="platform-name-text">HBO Max ($8k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="8000" data-name="Prime Video">
-                            <span class="checkmark">Prime Video ($8k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/prime-video.png" alt="Prime" class="platform-mini-logo">
+                                <span class="platform-name-text">Prime Video ($8k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="8000" data-name="Spotify">
-                            <span class="checkmark">Spotify ($8k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/spotify.png" alt="Spotify" class="platform-mini-logo">
+                                <span class="platform-name-text">Spotify ($8k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="7000" data-name="YouTube Premium">
-                            <span class="checkmark">YouTube ($7k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/youtube-premium.png" alt="YouTube" class="platform-mini-logo">
+                                <span class="platform-name-text">YouTube ($7k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="7000" data-name="Paramount+">
-                            <span class="checkmark">Paramount+ ($7k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/paramount-plus.png" alt="Paramount" class="platform-mini-logo">
+                                <span class="platform-name-text">Paramount+ ($7k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="7000" data-name="Crunchyroll">
-                            <span class="checkmark">Crunchyroll ($7k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/crunchyroll.png" alt="Crunchyroll" class="platform-mini-logo">
+                                <span class="platform-name-text">Crunchyroll ($7k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="8000" data-name="Apple TV+">
-                            <span class="checkmark">Apple TV+ ($8k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
+                                <span class="platform-name-text">Apple TV+ ($8k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="10000" data-name="IPTV Premium">
-                            <span class="checkmark">IPTV ($10k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/iptv.png" alt="IPTV" class="platform-mini-logo">
+                                <span class="platform-name-text">IPTV ($10k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="8000" data-name="Plex">
-                            <span class="checkmark">Plex ($8k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/plex.png" alt="Plex" class="platform-mini-logo">
+                                <span class="platform-name-text">Plex ($8k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="8000" data-name="Canva Pro">
-                            <span class="checkmark">Canva ($8k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/canva.png" alt="Canva" class="platform-mini-logo">
+                                <span class="platform-name-text">Canva ($8k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="10000" data-name="Gemini AI Pro">
-                            <span class="checkmark">Gemini AI ($10k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/gemini.png" alt="Gemini" class="platform-mini-logo">
+                                <span class="platform-name-text">Gemini AI ($10k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="10000" data-name="ChatGPT Plus">
-                            <span class="checkmark">ChatGPT ($10k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/chatgpt.png" alt="ChatGPT" class="platform-mini-logo">
+                                <span class="platform-name-text">ChatGPT ($10k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="7000" data-name="VIX Premium">
-                            <span class="checkmark">VIX ($7k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/vix.png" alt="VIX" class="platform-mini-logo">
+                                <span class="platform-name-text">VIX ($7k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="8000" data-name="Viki Rakuten">
-                            <span class="checkmark">Viki ($8k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/viki.png" alt="Viki" class="platform-mini-logo">
+                                <span class="platform-name-text">Viki ($8k)</span>
+                            </span>
                         </label>
                         <label class="platform-option">
                             <input type="checkbox" data-price="30000" data-name="Microsoft Office">
-                            <span class="checkmark">Office ($30k)</span>
+                            <span class="checkmark">
+                                <img src="assets/images/office.png" alt="Office" class="platform-mini-logo">
+                                <span class="platform-name-text">Office ($30k)</span>
+                            </span>
                         </label>
                     </div>
                 </div>
@@ -739,10 +769,10 @@
     </div>
 
     <!-- WhatsApp Float Button -->
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar modo oscuro/claro">
-        🌙
-    </button>
+    <a href="https://wa.me/573058588651?text=Hola%20DSORAK!%20Podrías%20indicarme%20los%20medios%20de%20pago%20disponibles?"
+        class="whatsapp-float" target="_blank">
+        💬
+    </a>
 
     <script src="script.js"></script>
 </body>

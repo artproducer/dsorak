@@ -20,27 +20,6 @@
     --radius-lg: 24px;
 }
 
-/* Dark Mode Variables */
-body.dark-mode {
-    --primary: #4dade3;
-    /* Lighter blue for dark mode */
-    --primary-dark: #74c0fc;
-    --secondary: #2EC4B6;
-    --light: #1e1e1e;
-    /* Dark background for cards */
-    --light-gray: #121212;
-    /* Very dark background for body */
-    --medium-gray: #2d2d2d;
-    --dark-gray: #aaa;
-    --text-dark: #f0f0f0;
-    --text-muted: #b0b0b0;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-    /* Deeper blue gradient for dark mode, less "pale" */
-    --gradient-1: linear-gradient(135deg, #1aa3e8 0%, #29b6f6 100%);
-}
-
 /* ===== RESET ===== */
 * {
     margin: 0;
@@ -113,11 +92,6 @@ header {
     transition: all 0.3s ease;
 }
 
-body.dark-mode header {
-    background: rgba(30, 30, 30, 0.95);
-    border-bottom: 1px solid var(--medium-gray);
-}
-
 header.scrolled {
     padding: 0.75rem 2rem;
     box-shadow: var(--shadow-md);
@@ -171,23 +145,14 @@ nav {
 }
 
 .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
+    display: none;
 }
 
 .nav-links a:hover {
     color: var(--primary);
 }
 
-.nav-links a:hover::after {
-    width: 100%;
-}
+
 
 .menu-toggle {
     display: none;
@@ -283,12 +248,21 @@ nav {
 
 .platform-checkboxes {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 Columns on Desktop */
-    gap: 1rem;
-    /* Increased gap from 0.5rem */
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
     padding-right: 5px;
-    /* Add a little padding */
+}
+
+@media (min-width: 600px) {
+    .platform-checkboxes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .platform-checkboxes {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* Custom Scrollbar for checkboxes */
@@ -306,7 +280,6 @@ nav {
     cursor: pointer;
     user-select: none;
     display: block;
-    /* Full width */
 }
 
 .platform-option input {
@@ -319,34 +292,44 @@ nav {
 
 .checkmark {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
     padding: 0.6rem 0.8rem;
-    /* Reduced horizontal padding slightly */
     background-color: white;
     border: 1px solid var(--medium-gray);
     border-radius: var(--radius-sm);
     font-size: 0.8rem;
-    /* Slightly smaller font to fit single line */
     color: var(--text-dark);
     transition: all 0.2s ease;
+}
+
+.platform-mini-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.platform-name-text {
+    flex: 1;
     white-space: nowrap;
-    /* Prevent wrapping */
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .platform-option:hover .checkmark {
     border-color: var(--primary);
-    background-color: #fff5f5;
+    background-color: #f0f7ff;
 }
 
 .platform-option input:checked~.checkmark {
-    background-color: var(--secondary);
-    border-color: var(--secondary);
+    background-color: var(--primary);
+    border-color: var(--primary);
     color: white;
     font-weight: 600;
-    box-shadow: 0 2px 5px rgba(46, 196, 182, 0.3);
+    box-shadow: 0 4px 10px rgba(22, 101, 175, 0.3);
 }
 
 .platform-option input:checked~.checkmark::after {
@@ -357,10 +340,11 @@ nav {
     width: 20px;
     height: 20px;
     background: white;
-    color: var(--secondary);
+    color: var(--primary);
     border-radius: 50%;
     font-size: 0.7rem;
     font-weight: 700;
+    flex-shrink: 0;
 }
 
 /* Improve Savings Visibility - Reverted to standard style but kept margin */
@@ -602,14 +586,10 @@ section {
 }
 
 .combos-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.3fr;
-    /* Make the 3rd column (Ultimate) wider */
-    gap: 2rem;
-    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
     margin: 0 auto;
-    align-items: start;
-    /* Align to top so heights don't stretch weirdly if content differs */
 }
 
 .combo-card {
@@ -750,6 +730,68 @@ section {
     white-space: nowrap;
     width: auto;
     flex-shrink: 0;
+}
+
+/* ===== SUGGESTION BUTTONS ===== */
+.combo-suggestions-container {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px dashed var(--primary);
+}
+
+.suggestions-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.suggestion-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+.btn-suggestion {
+    background: white;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.btn-suggestion:hover {
+    border-color: var(--primary);
+    background: #f0f7ff;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.btn-suggestion.active {
+    border-color: var(--primary);
+    background: #e3f2fd;
+    box-shadow: 0 0 0 2px rgba(22, 101, 175, 0.2);
+}
+
+.suggestion-name {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.95rem;
+}
+
+.suggestion-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 /* ===== REFERENCIAS SECTION ===== */
@@ -1384,110 +1426,4 @@ footer {
     transform: scale(1.1);
     /* Scale button, don't rotate it */
     border-color: var(--primary);
-}
-
-/* Dark Mode Toggle Button */
-.theme-toggle-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: var(--text-dark);
-    color: var(--light);
-    /* Invert colors for high contrast icon */
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 22px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-}
-
-body.dark-mode .theme-toggle-btn {
-    background-color: #f0f0f0;
-    color: #121212;
-}
-
-.theme-toggle-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Specific Dark Mode overrides for elements that might need it */
-body.dark-mode .hero {
-    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
-}
-
-body.dark-mode .hero::before {
-    background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
-}
-
-body.dark-mode .platform-card,
-body.dark-mode .combo-card,
-body.dark-mode .referencia-card,
-body.dark-mode .faq-item {
-    border-color: var(--medium-gray);
-}
-
-body.dark-mode .platform-icon {
-    background: #2d2d2d;
-}
-
-body.dark-mode .nav-links a {
-    background: var(--light);
-    border-color: var(--medium-gray);
-    color: var(--text-dark);
-}
-
-body.dark-mode .nav-links a:hover {
-    color: white;
-    /* creating contrast on hover */
-    border-color: transparent;
-}
-
-body.dark-mode .custom-combo-selector {
-    background: rgba(45, 45, 45, 0.5);
-}
-
-body.dark-mode .platform-option:hover .checkmark {
-    background-color: #2a2a2a;
-    border-color: var(--primary);
-}
-
-body.dark-mode .checkmark {
-    background-color: var(--light);
-    border-color: var(--medium-gray);
-    color: var(--text-dark);
-}
-
-body.dark-mode .mobile-menu {
-    background: var(--light);
-    border-left: 1px solid var(--medium-gray);
-}
-
-body.dark-mode .hero-badge {
-    background: var(--light);
-    border-color: var(--medium-gray);
-}
-
-body.dark-mode .mobile-menu a {
-    background: #2d2d2d;
-    border-color: var(--medium-gray);
-    color: var(--text-dark);
-}
-
-body.dark-mode .combo-savings {
-    background: rgba(46, 196, 182, 0.1);
-    color: #2EC4B6;
-    /* Revert to secondary color (teal) but keep it visible */
-    font-weight: 600;
 }

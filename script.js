@@ -248,7 +248,64 @@ document.addEventListener('DOMContentLoaded', function () {
             // Construct the final URL
             btnUltimate.href = `https://wa.me/573058588651?text=${encodedMessage}`;
             console.log('Combo updated:', finalPrice, btnUltimate.href);
+
+            // Sync Suggestion Buttons
+            const COMBO_DEFINITIONS = {
+                'starter': ['Netflix', 'Prime Video'],
+                'premium': ['Netflix', 'Disney+ Premium', 'HBO Max', 'Prime Video']
+            };
+
+            const suggestionBtns = document.querySelectorAll('.btn-suggestion');
+
+            suggestionBtns.forEach(btn => {
+                const comboKey = btn.dataset.combo;
+                const targetApps = COMBO_DEFINITIONS[comboKey];
+
+                if (targetApps) {
+                    // Check if perfect match (exact arrays, order doesn't matter)
+                    const isMatch = targetApps.length === selectedNames.length &&
+                        targetApps.every(name => selectedNames.includes(name));
+
+                    if (isMatch) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                }
+            });
         }
+
+        // Suggestions Logic
+        // Suggestions Click Logic
+        const suggestionBtns = document.querySelectorAll('.btn-suggestion');
+        const COMBO_DEFINITIONS = {
+            'starter': ['Netflix', 'Prime Video'],
+            'premium': ['Netflix', 'Disney+ Premium', 'HBO Max', 'Prime Video']
+        };
+
+        suggestionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const combo = btn.dataset.combo;
+                const targets = COMBO_DEFINITIONS[combo];
+
+                if (targets) {
+                    // Reset all first
+                    checkboxes.forEach(cb => cb.checked = false);
+
+                    // Select targets
+                    checkboxes.forEach(cb => {
+                        if (targets.includes(cb.dataset.name)) cb.checked = true;
+                    });
+
+                    // Update UI (Calculation + Visual Sync)
+                    updateCombo();
+
+                    // Visual feedback animation
+                    btn.style.transform = 'scale(0.95)';
+                    setTimeout(() => btn.style.transform = '', 150);
+                }
+            });
+        });
 
         checkboxes.forEach(cb => {
             cb.addEventListener('change', updateCombo);
@@ -338,37 +395,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const nextIndex = Math.min(sections.length - 1, currentIndex + 1);
 
             sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
-        });
-    }
-
-    // ===== DARK MODE LOGIC =====
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Check for saved user preference
-    const currentTheme = localStorage.getItem('theme');
-
-    // Check for system preference
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (currentTheme === 'dark' || (!currentTheme && systemPrefersDark)) {
-        body.classList.add('dark-mode');
-        if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
-    }
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-
-            let theme = 'light';
-            if (body.classList.contains('dark-mode')) {
-                theme = 'dark';
-                themeToggleBtn.textContent = '☀️';
-            } else {
-                themeToggleBtn.textContent = '🌙';
-            }
-
-            localStorage.setItem('theme', theme);
         });
     }
 });
