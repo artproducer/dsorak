@@ -1452,7 +1452,10 @@ footer {
 }
 
 .payment-icon {
-    display: none;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    flex-shrink: 0;
 }
 
 .payment-text {
@@ -1466,8 +1469,8 @@ footer {
 }
 
 .payment-number {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: #fff;
+    color: #1665af;
     font-weight: 700;
     font-size: 0.95rem;
     padding: 0.35rem 0.9rem;
