@@ -4,6 +4,41 @@ function toggleMenu() {
     menu.classList.toggle('active');
 }
 
+// ===== COPY PAYMENT NUMBER =====
+function copyPaymentNumber() {
+    const paymentNumber = document.getElementById('paymentNumber').textContent;
+    const copyBtn = document.querySelector('.btn-copy');
+    const copyIcon = document.getElementById('copyIcon');
+
+    navigator.clipboard.writeText(paymentNumber).then(() => {
+        // Visual feedback
+        copyBtn.classList.add('copied');
+        copyIcon.textContent = '¡Copiado!';
+
+        // Reset after 2 seconds
+        setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyIcon.textContent = 'Copiar';
+        }, 2000);
+    }).catch(err => {
+        console.error('Error al copiar:', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = paymentNumber;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        copyBtn.classList.add('copied');
+        copyIcon.textContent = '¡Copiado!';
+        setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyIcon.textContent = 'Copiar';
+        }, 2000);
+    });
+}
+
 // ===== FAQ ACCORDION =====
 function toggleFaq(element) {
     const faqItem = element.parentElement;
