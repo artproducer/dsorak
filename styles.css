@@ -1515,7 +1515,7 @@ footer {
 /* Scroll Buttons */
 .scroll-buttons {
     position: fixed;
-    bottom: 100px;
+    bottom: 30px;
     /* Above WhatsApp button */
     right: 24px;
     /* Centered relative to 55px WhatsApp button (25px + 5px offset) */

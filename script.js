@@ -131,21 +131,11 @@ function initQuantitySelectors() {
                 // For YouTube, show per account/month implied, or just the calculated unit price. 
                 // Using standard per-month-per-profile equivalent for consistency unless specific text requested.
                 // Request: "/perfil" general, "/cuenta" for YouTube.
-                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'Crunchyroll Mega Fan'];
                 const unitType = platformsWithAccount.includes(platform) ? 'cuenta' : 'perfil';
-                // Calculate display price per unit (total / profiles) to show the cost for that specific unit per duration?
-                // The original code calculated "pricePerScreen" as final / profiles / months.
-                // Let's keep it simple: Show the price per unit based on current selection?
-                // Actually, static HTML shows "$X/perfil". 
-                // If I select 2 months, should it say "$Cost/perfil" where Cost is the 2-month cost? 
-                // Or cost per month? Usually subscription sites show Cost Per Month.
-                // The request says "2 months of youtube be 12mil". 
-                // If I select 2 months, 1 profile. Total 12000.
-                // Should the text say "$6.000/cuenta" (per month)? Or "$12.000/cuenta"?
-                // The static text "$7.000/cuenta" implies price corresponding to the selection (1 month).
                 // I will show the TOTAL price per unit (profile/account) for the SELECTED duration.
 
-                const pricePerProf = Math.round(finalPrice / profiles);
+                const pricePerProf = Math.round(finalPrice / profiles / months);
 
                 // If standard logic divides by months to show monthly rate:
                 // Original: Math.round(finalPrice / profiles / months) -> Monthly rate.
