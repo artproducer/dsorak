@@ -64,23 +64,7 @@
     <!-- Hero Section Removed -->
 
 
-    <!-- Payment Info Banner -->
-    <div class="payment-banner">
-        <div class="payment-content">
-            <span class="payment-label">
-                <svg class="payment-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                    <line x1="1" y1="10" x2="23" y2="10"></line>
-                </svg>
-                Daviplata • Nequi • Llave:
-            </span>
-            <span class="payment-number" id="paymentNumber">3005965404</span>
-            <button class="btn-copy" onclick="copyPaymentNumber()" title="Copiar número">
-                <span id="copyIcon">Copiar</span>
-            </button>
-        </div>
-    </div>
+    <!-- Payment Info Banner Removed -->
 
 
 
@@ -89,6 +73,20 @@
         <div class="section-header">
             <h2>🎬 Nuestras Plataformas</h2>
             <p>Elige tu plataforma favorita y comienza a disfrutar hoy mismo</p>
+            <div class="payment-info-card">
+                <span class="payment-label">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    Daviplata • Nequi • Llave:
+                </span>
+                <span class="payment-number">3005965404</span>
+                <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
+                    <span>Copiar</span>
+                </button>
+            </div>
         </div>
         <div class="platforms-grid">
             <!-- Netflix -->
@@ -871,13 +869,26 @@
         <div class="section-header">
             <h2>🎁 Combos Especiales</h2>
             <p>Ahorra más combinando tus plataformas favoritas</p>
+            <div class="payment-info-card">
+                <span class="payment-label">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    Daviplata • Nequi • Llave:
+                </span>
+                <span class="payment-number">3005965404</span>
+                <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
+                    <span>Copiar</span>
+                </button>
+            </div>
         </div>
         <div class="combos-grid">
             <!-- Combo Ultimate (Customizable) -->
             <div id="comboscustom" class="platform-card platform-card-v2 combo-ultimate featured">
                 <div class="price-corner">
                     <span class="price-amount" id="ultimate-price">$16.000</span>
-                    <span class="price-per-unit">Combo Personalizado</span>
                 </div>
                 <div class="card-top-row">
                     <div class="platform-icon">
@@ -906,7 +917,17 @@
                             </button>
                         </div>
                     </div>
-
+                    <div class="card-bottom" style="margin-top: 1rem;">
+                        <div class="platform-footer-row">
+                            <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                                </svg> Garantía</span>
+                            <a href="javascript:void(0)" id="btn-ultimate" class="btn btn-danger btn-buy btn-compact"
+                                target="_blank">Comprar</a>
+                        </div>
+                    </div>
                     <div class="custom-combo-selector">
                         <p class="selector-instruction">Selecciona manualmente:</p>
                         <div class="platform-checkboxes">
@@ -1041,27 +1062,28 @@
                             </label>
                         </div>
                     </div>
-
-                    <div class="card-bottom" style="margin-top: 1rem;">
-                        <div class="platform-footer-row">
-                            <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path
-                                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-                                </svg> Garantía</span>
-                            <a href="javascript:void(0)" id="btn-ultimate" class="btn btn-danger btn-buy btn-compact"
-                                target="_blank">Comprar</a>
-                        </div>
-                    </div>
                 </div>
             </div>
     </section>
 
-    <!-- Capturas Section -->
     <section id="capturas">
         <div class="section-header">
             <h2>📸 Galería de Clientes</h2>
             <p>Evidencia real de nuestros servicios entregados</p>
+            <div class="payment-info-card">
+                <span class="payment-label">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    Daviplata • Nequi • Llave:
+                </span>
+                <span class="payment-number">3005965404</span>
+                <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
+                    <span>Copiar</span>
+                </button>
+            </div>
         </div>
         <div class="carousel-container">
             <div class="carousel-track-container">
@@ -1123,11 +1145,24 @@
     <!-- Testimonios Section Removed -->
 
 
-    <!-- FAQ Section -->
     <section id="faq">
         <div class="section-header">
             <h2>❓ Preguntas Frecuentes</h2>
             <p>Resolvemos tus dudas más comunes</p>
+            <div class="payment-info-card">
+                <span class="payment-label">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    Daviplata • Nequi • Llave:
+                </span>
+                <span class="payment-number">3005965404</span>
+                <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
+                    <span>Copiar</span>
+                </button>
+            </div>
         </div>
         <div class="faq-container">
             <div class="faq-item">

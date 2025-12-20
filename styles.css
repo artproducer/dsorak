@@ -1328,6 +1328,68 @@ footer {
     color: var(--text-dark);
 }
 
+/* ===== PAYMENT INFO CARD ===== */
+.payment-info-card {
+    background: var(--gradient-2);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    margin: 1.5rem auto 2rem;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    box-shadow: var(--shadow-md);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.payment-info-card .payment-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.payment-info-card .payment-number {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.payment-info-card .btn-copy {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.payment-info-card .btn-copy:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.payment-info-card .btn-copy.copied {
+    background: #2ecc71;
+    border-color: #2ecc71;
+}
+
+@media (max-width: 600px) {
+    .payment-info-card {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
 

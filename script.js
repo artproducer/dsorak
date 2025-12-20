@@ -5,38 +5,35 @@ function toggleMenu() {
 }
 
 // ===== COPY PAYMENT NUMBER =====
-function copyPaymentNumber() {
-    const paymentNumber = document.getElementById('paymentNumber').textContent;
-    const copyBtn = document.querySelector('.btn-copy');
-    const copyIcon = document.getElementById('copyIcon');
+function copyPaymentNumber(btnElement) {
+    // Find the number span relative to the button (sibling or within the same container)
+    // If passed element is not valid, try to fall back to global ID only if necessary or just return
+    if (!btnElement) return;
 
-    navigator.clipboard.writeText(paymentNumber).then(() => {
-        // Visual feedback
-        copyBtn.classList.add('copied');
-        copyIcon.textContent = '¡Copiado!';
+    const container = btnElement.closest('.payment-info-card') || btnElement.closest('.payment-content');
+    const numberElement = container ? (container.querySelector('.payment-number') || container.querySelector('#paymentNumber')) : document.getElementById('paymentNumber');
 
-        // Reset after 2 seconds
-        setTimeout(() => {
-            copyBtn.classList.remove('copied');
-            copyIcon.textContent = 'Copiar';
-        }, 2000);
-    }).catch(err => {
-        console.error('Error al copiar:', err);
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = paymentNumber;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
+    if (!numberElement) return;
 
-        copyBtn.classList.add('copied');
-        copyIcon.textContent = '¡Copiado!';
-        setTimeout(() => {
-            copyBtn.classList.remove('copied');
-            copyIcon.textContent = 'Copiar';
-        }, 2000);
-    });
+    const paymentNumber = numberElement.innerText;
+
+    // Copy to clipboard
+    const textArea = document.createElement('textarea');
+    textArea.value = paymentNumber;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+
+    // Visual feedback
+    const originalText = btnElement.innerHTML;
+    btnElement.classList.add('copied');
+    btnElement.innerHTML = '<span id="copyIcon">¡Copiado!</span>';
+
+    setTimeout(() => {
+        btnElement.classList.remove('copied');
+        btnElement.innerHTML = '<span id="copyIcon">Copiar</span>';
+    }, 2000);
 }
 
 // ===== FAQ ACCORDION =====
