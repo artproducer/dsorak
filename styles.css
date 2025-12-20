@@ -211,6 +211,54 @@ nav {
     animation: fadeInUp 1s ease-out;
 }
 
+/* Hero Background Icons */
+.hero-bg-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 16px;
+    filter: grayscale(80%) blur(0.5px);
+    animation: floatIcon 6s ease-in-out infinite;
+}
+
+.bg-icon:nth-child(odd) {
+    animation-delay: -3s;
+}
+
+.bg-icon:nth-child(3n) {
+    animation-delay: -1.5s;
+}
+
+@keyframes floatIcon {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
 .hero-stats {
     display: flex;
     justify-content: center;
