@@ -55,6 +55,73 @@ function toggleFaq(element) {
     }
 }
 
+// ===== QUANTITY SELECTOR FOR PLATFORMS =====
+function initQuantitySelectors() {
+    const platformCards = document.querySelectorAll('.platform-card[data-platform]');
+
+    platformCards.forEach(card => {
+        const minusBtn = card.querySelector('.qty-minus');
+        const plusBtn = card.querySelector('.qty-plus');
+        const qtyValue = card.querySelector('.qty-value');
+        const qtyDiscount = card.querySelector('.qty-discount');
+        const btn1m = card.querySelector('.btn-1m');
+
+        if (!minusBtn || !plusBtn || !qtyValue || !btn1m) return;
+
+        const platform = card.getAttribute('data-platform');
+        const basePrice = parseInt(card.getAttribute('data-price-1m'));
+        const MAX_QTY = 3;
+
+        function updateQuantity(qty) {
+            qty = Math.max(1, Math.min(MAX_QTY, qty));
+            qtyValue.textContent = qty;
+
+            // Calculate discount
+            let discount = 0;
+            if (qty === 2) discount = 3000;
+            else if (qty >= 3) discount = 6000;
+
+            // Calculate final price
+            const totalBase = basePrice * qty;
+            const finalPrice = totalBase - discount;
+
+            // Update discount display
+            if (discount > 0) {
+                qtyDiscount.textContent = `-$${discount.toLocaleString('es-CO')}`;
+            } else {
+                qtyDiscount.textContent = '';
+            }
+
+            // Update button text and href
+            const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
+            btn1m.textContent = `1 Mes (x${qty}) - ${priceText}`;
+
+            const message = `Quiero comprar ${platform} 1 Mes (${qty} perfiles) - Precio: ${priceText}`;
+            btn1m.href = `https://wa.me/573058588651?text=${encodeURIComponent(message)}`;
+
+            // Update button states
+            minusBtn.disabled = qty <= 1;
+            plusBtn.disabled = qty >= MAX_QTY;
+        }
+
+        minusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const current = parseInt(qtyValue.textContent);
+            updateQuantity(current - 1);
+        });
+
+        plusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const current = parseInt(qtyValue.textContent);
+            updateQuantity(current + 1);
+        });
+
+        // Initialize
+        updateQuantity(1);
+    });
+}
+
+
 // ===== HEADER & BANNER SCROLL EFFECT =====
 let lastScrollTop = 0;
 let scrollTimeout;
@@ -478,10 +545,13 @@ function closeLightbox() {
     }
 }
 
-// Add click events to carousel images
+// Add click events to carousel images and initialize quantity selectors
 document.addEventListener('DOMContentLoaded', function () {
     const carouselImages = document.querySelectorAll('.carousel-slide img');
     carouselImages.forEach(img => {
         img.addEventListener('click', () => openLightbox(img));
     });
+
+    // Initialize quantity selectors for platform cards
+    initQuantitySelectors();
 });
