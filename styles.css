@@ -414,12 +414,13 @@ nav {
 
 /* Improve Savings Visibility - Reverted to standard style but kept margin */
 .combo-ultimate .combo-savings {
+    font-size: 0.6rem;
+    font-weight: 600;
     color: #0e5e54;
-    /* Darker shade of teal/secondary */
-    margin-top: 1rem;
-    display: block;
-    width: 100%;
-    font-weight: 700;
+    background: rgba(46, 196, 182, 0.15);
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    white-space: nowrap;
 }
 
 .hero h1 {
@@ -560,8 +561,14 @@ section {
 /* ===== PLATFORMS GRID ===== */
 .platforms-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .platforms-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .platform-card {
@@ -574,12 +581,160 @@ section {
     align-items: flex-start;
     gap: 1rem;
     border: 1px solid var(--medium-gray);
+    position: relative;
 }
 
 .platform-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
     border-color: var(--primary);
+}
+
+/* ===== PLATFORM CARD V2 (Full Width Bottom) ===== */
+.platform-card-v2 {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+}
+
+.card-top-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.card-bottom {
+    width: 100%;
+}
+
+.selectors-row-full {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.selectors-row-full .quantity-selector {
+    flex: 0 1 auto;
+}
+
+/* ===== PLATFORM FOOTER FULL ===== */
+.platform-footer-full {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.platform-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* ===== PRICE CORNER ===== */
+.price-corner {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.price-amount {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.1;
+}
+
+.price-per-unit {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #888;
+}
+
+/* ===== PLATFORM HEADER ROW ===== */
+.platform-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.15rem;
+}
+
+/* ===== SELECTION BADGE ===== */
+.selection-badge {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #0c5460;
+    background: #d1ecf1;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    border: 1px solid #bee5eb;
+    white-space: nowrap;
+}
+
+/* ===== PLATFORM LEFT (Icon + Mini Desc) ===== */
+.platform-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    min-width: 70px;
+}
+
+.platform-mini-desc {
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.2;
+    max-width: 70px;
+}
+
+/* ===== PLATFORM FOOTER ===== */
+.platform-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    gap: 1rem;
+}
+
+.guarantee-badge {
+    font-size: 0.7rem;
+    color: var(--secondary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+/* ===== BUY BUTTON ===== */
+.btn-danger {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(22, 101, 175, 0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(22, 101, 175, 0.4);
+}
+
+.btn-compact {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
 }
 
 .platform-icon {
@@ -719,8 +874,10 @@ section {
 .platform-actions {
     display: flex;
     flex-direction: row;
-    gap: 0.25rem;
+    gap: 0.75rem;
     width: 100%;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .platform-card .btn {
@@ -753,113 +910,18 @@ section {
     margin: 0 auto;
 }
 
-.combo-card {
-    background: var(--light-gray);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    border: 2px solid var(--medium-gray);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
+/* Combo Personalizado - Modern Icon Stack */
+.combo-icon-stack {
+    font-size: 2rem;
 }
 
-.combo-card.featured {
-    border-color: var(--primary);
-    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 159, 28, 0.05) 100%);
-}
-
-
-.combo-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.combo-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: var(--text-dark);
-}
-
-.combo-tagline {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
-}
-
-.combo-price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.combo-price .amount {
-    font-size: 2.5rem;
-    font-weight: 700;
-    background: var(--gradient-1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.combo-price .period {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-.combo-includes {
-    list-style: none;
-    margin-bottom: 1.5rem;
-}
-
-.combo-includes li {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--medium-gray);
-    font-size: 0.95rem;
-}
-
-.combo-includes li::before {
-    content: '✓';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    background: var(--secondary);
-    color: white;
-    border-radius: 50%;
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.combo-savings {
-    background: rgba(46, 196, 182, 0.15);
-    padding: 0.6rem;
-    border-radius: var(--radius-sm);
-    text-align: center;
-    margin-bottom: 1.25rem;
-    color: #0e5e54;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.combo-card .btn {
+.combo-body-content {
     width: 100%;
-    justify-content: center;
+    margin-top: 0.5rem;
 }
 
-/* Combo Personalizado - Precio y botón en línea */
-.combo-price-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-}
+
+
 
 .combo-price-row .combo-price {
     margin-bottom: 0;

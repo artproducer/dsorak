@@ -61,33 +61,8 @@
         <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg-icons">
-            <img src="assets/images/netflix.png" alt="" class="bg-icon">
-            <img src="assets/images/disney-plus.png" alt="" class="bg-icon">
-            <img src="assets/images/hbo-max.png" alt="" class="bg-icon">
-            <img src="assets/images/prime-video.png" alt="" class="bg-icon">
-            <img src="assets/images/spotify.png" alt="" class="bg-icon">
-            <img src="assets/images/youtube-premium.png" alt="" class="bg-icon">
-            <img src="assets/images/crunchyroll.png" alt="" class="bg-icon">
-            <img src="assets/images/paramount-plus.png" alt="" class="bg-icon">
-        </div>
-        <div class="hero-content">
-            <div class="hero-badge">Ofertas Exclusivas 2025</div>
-            <h1>Las mejores plataformas de <span class="gradient-text">Streaming</span> en un solo lugar</h1>
-            <p>Disfruta de tus películas, series y deportes favoritos con cuentas 100% garantizadas y soporte inmediato.
-            </p>
-            <div class="hero-stats">
-                <span class="stat-item">⭐ 800+ clientes satisfechos</span>
-                <span class="stat-item">⚡ Entrega inmediata</span>
-            </div>
-            <div class="hero-buttons">
-                <a href="#plataformas" class="btn btn-primary">Ver Catálogo</a>
-                <a href="#combos" class="btn btn-secondary">Planes Combo</a>
-            </div>
-        </div>
-    </section>
+    <!-- Hero Section Removed -->
+
 
     <!-- Payment Info Banner -->
     <div class="payment-banner">
@@ -117,127 +92,175 @@
         </div>
         <div class="platforms-grid">
             <!-- Netflix -->
-            <div class="platform-card" data-platform="Netflix" data-price-1m="16000">
-                <div class="platform-icon">
-                    <img src="assets/images/netflix.png" alt="Netflix">
+            <div class="platform-card platform-card-v2" data-platform="Netflix" data-price-1m="16000">
+                <div class="price-corner">
+                    <span class="price-amount">$16.000</span>
+                    <span class="price-per-unit">$16.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Netflix</h3>
-                    <p class="platform-desc">Series, películas y documentales en 4K UHD</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/netflix.png" alt="Netflix">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Netflix</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Series, películas y documentales</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $16.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- Disney+ Premium -->
-            <div class="platform-card" data-platform="Disney+ Premium" data-price-1m="10000">
-                <div class="platform-icon">
-                    <img src="assets/images/disney-plus.png" alt="Disney+ Premium">
+            <div class="platform-card platform-card-v2" data-platform="Disney+ Premium" data-price-1m="10000">
+                <div class="price-corner">
+                    <span class="price-amount">$10.000</span>
+                    <span class="price-per-unit">$10.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Disney+ Premium</h3>
-                    <p class="platform-desc">Sin anuncios, 7 ESPN y eventos exclusivos</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/disney-plus.png" alt="Disney+ Premium">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Disney+ Premium</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Sin anuncios, 4K UHD, 7 ESPN y eventos exclusivos</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $10.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
             <!-- YouTube Premium -->
-            <div class="platform-card" data-platform="YouTube Premium" data-price-1m="7000">
-                <div class="platform-icon">
-                    <img src="assets/images/youtube-premium.png" alt="YouTube Premium">
+            <div class="platform-card platform-card-v2" data-platform="YouTube Premium" data-price-1m="7000">
+                <div class="price-corner">
+                    <span class="price-amount">$7.000</span>
+                    <span class="price-per-unit">$7.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">YouTube Premium</h3>
-                    <p class="platform-desc">Sin anuncios + YouTube Music incluido</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/youtube-premium.png" alt="YouTube Premium">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">YouTube Premium</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Sin anuncios + YouTube Music incluido</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $7.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- Disney+ Standard -->
-            <div class="platform-card" data-platform="Disney+ Estándar" data-price-1m="6000">
-                <div class="platform-icon">
-                    <img src="assets/images/disney-plus.png" alt="Disney+ Standard">
+            <div class="platform-card platform-card-v2" data-platform="Disney+ Estándar" data-price-1m="6000">
+                <div class="price-corner">
+                    <span class="price-amount">$6.000</span>
+                    <span class="price-per-unit">$6.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Disney+ Estándar</h3>
-                    <p class="platform-desc">Con anuncios y 3 canales de ESPN</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/disney-plus.png" alt="Disney+ Standard">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Disney+ Estándar</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Con anuncios y 3 canales de ESPN</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $6.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -245,430 +268,598 @@
 
 
             <!-- HBO Max -->
-            <div class="platform-card" data-platform="HBO Max" data-price-1m="8000">
-                <div class="platform-icon">
-                    <img src="assets/images/hbo-max.png" alt="HBO Max">
+            <div class="platform-card platform-card-v2" data-platform="HBO Max" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">HBO Max</h3>
-                    <p class="platform-desc">Series exclusivas y películas de Warner</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/hbo-max.png" alt="HBO Max">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">HBO Max</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Series exclusivas y películas de Warner</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $8.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
             <!-- Prime Video -->
-            <div class="platform-card" data-platform="Prime Video" data-price-1m="8000">
-                <div class="platform-icon">
-                    <img src="assets/images/prime-video.png" alt="Prime Video">
+            <div class="platform-card platform-card-v2" data-platform="Prime Video" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Prime Video</h3>
-                    <p class="platform-desc">Contenido exclusivo de Amazon en 4K</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/prime-video.png" alt="Prime Video">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Prime Video</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Contenido exclusivo de Amazon en 4K</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $8.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- Crunchyroll -->
-            <div class="platform-card" data-platform="Crunchyroll" data-price-1m="7000">
-                <div class="platform-icon">
-                    <img src="assets/images/crunchyroll.png" alt="Crunchyroll">
+            <div class="platform-card platform-card-v2" data-platform="Crunchyroll" data-price-1m="7000">
+                <div class="price-corner">
+                    <span class="price-amount">$7.000</span>
+                    <span class="price-per-unit">$7.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Crunchyroll</h3>
-                    <p class="platform-desc">El mejor anime del mundo sin publicidad</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/crunchyroll.png" alt="Crunchyroll">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Crunchyroll</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">El mejor anime del mundo sin publicidad</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $7.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- Spotify -->
-            <div class="platform-card" data-platform="Spotify Premium" data-price-1m="8000">
-                <div class="platform-icon">
-                    <img src="assets/images/spotify.png" alt="Spotify">
+            <div class="platform-card platform-card-v2" data-platform="Spotify Premium" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Spotify Premium</h3>
-                    <p class="platform-desc">Música sin anuncios y descarga offline</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/spotify.png" alt="Spotify">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Spotify Premium</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Música sin anuncios y descarga offline</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $8.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- Paramount+ -->
-            <div class="platform-card" data-platform="Paramount+" data-price-1m="7000">
-                <div class="platform-icon">
-                    <img src="assets/images/paramount-plus.png" alt="Paramount+">
+            <div class="platform-card platform-card-v2" data-platform="Paramount+" data-price-1m="7000">
+                <div class="price-corner">
+                    <span class="price-amount">$7.000</span>
+                    <span class="price-per-unit">$7.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Paramount+</h3>
-                    <p class="platform-desc">Series, películas y deportes en vivo</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/paramount-plus.png" alt="Paramount+">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Paramount+</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Series, películas y deportes en vivo</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $7.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- Apple TV+ -->
-            <div class="platform-card" data-platform="Apple TV+" data-price-1m="8000">
-                <div class="platform-icon">
-                    <img src="assets/images/apple-tv.png" alt="Apple TV+">
+            <div class="platform-card platform-card-v2" data-platform="Apple TV+" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Apple TV+</h3>
-                    <p class="platform-desc">Contenido original Apple en 4K Dolby</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/apple-tv.png" alt="Apple TV+">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Apple TV+</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Contenido original Apple en 4K Dolby</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $8.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- IPTV Premium -->
-            <div class="platform-card" data-platform="IPTV Premium" data-price-1m="10000">
-                <div class="platform-icon">
-                    <img src="assets/images/iptv.png" alt="IPTV Premium">
+            <div class="platform-card platform-card-v2" data-platform="IPTV Premium" data-price-1m="10000">
+                <div class="price-corner">
+                    <span class="price-amount">$10.000</span>
+                    <span class="price-per-unit">$10.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">IPTV Premium</h3>
-                    <p class="platform-desc">Canales en vivo de todo el mundo</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/iptv.png" alt="IPTV Premium">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">IPTV Premium</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Canales en vivo de todo el mundo</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $10.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
             <!-- Plex -->
-            <div class="platform-card" data-platform="Plex" data-price-1m="8000">
-                <div class="platform-icon">
-                    <img src="assets/images/plex.png" alt="Plex">
+            <div class="platform-card platform-card-v2" data-platform="Plex" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Plex</h3>
-                    <p class="platform-desc">Contenido multimedia y streaming</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/plex.png" alt="Plex">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Plex</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Contenido multimedia y streaming</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $8.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
             <!-- Canva Pro -->
-            <div class="platform-card" data-platform="Canva Pro" data-price-1m="8000">
-                <div class="platform-icon">
-                    <img src="assets/images/canva.png" alt="Canva Pro">
+            <div class="platform-card platform-card-v2" data-platform="Canva Pro" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Canva Pro</h3>
-                    <p class="platform-desc">Diseño gráfico profesional premium</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/canva.png" alt="Canva Pro">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Canva Pro</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Diseño gráfico profesional premium</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $8.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
             <!-- Gemini AI Pro -->
-            <div class="platform-card" data-platform="Gemini AI Pro" data-price-1m="10000">
-                <div class="platform-icon">
-                    <img src="assets/images/gemini.png" alt="Gemini AI Pro">
+            <div class="platform-card platform-card-v2" data-platform="Gemini AI Pro" data-price-1m="10000">
+                <div class="price-corner">
+                    <span class="price-amount">$10.000</span>
+                    <span class="price-per-unit">$10.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Gemini AI Pro</h3>
-                    <p class="platform-desc">Modelo de IA más capaz y general</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/gemini.png" alt="Gemini AI Pro">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Gemini AI Pro</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Modelo de IA más capaz y general</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $10.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
             <!-- ChatGPT Plus -->
-            <div class="platform-card" data-platform="ChatGPT Plus" data-price-1m="10000">
-                <div class="platform-icon">
-                    <img src="assets/images/chatgpt.png" alt="ChatGPT Plus">
+            <div class="platform-card platform-card-v2" data-platform="ChatGPT Plus" data-price-1m="10000">
+                <div class="price-corner">
+                    <span class="price-amount">$10.000</span>
+                    <span class="price-per-unit">$10.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">ChatGPT Plus</h3>
-                    <p class="platform-desc">IA avanzada con GPT-5.1 y más</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/chatgpt.png" alt="ChatGPT Plus">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">ChatGPT Plus</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">IA avanzada con GPT-5.1 y más</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $10.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
 
             <!-- VIX Premium -->
-            <div class="platform-card" data-platform="VIX Premium" data-price-1m="7000">
-                <div class="platform-icon">
-                    <img src="assets/images/vix.png" alt="VIX Premium">
+            <div class="platform-card platform-card-v2" data-platform="VIX Premium" data-price-1m="7000">
+                <div class="price-corner">
+                    <span class="price-amount">$7.000</span>
+                    <span class="price-per-unit">$7.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">VIX Premium</h3>
-                    <p class="platform-desc">Series, películas y deportes en español</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/vix.png" alt="VIX Premium">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">VIX Premium</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">Series, películas y deportes en español</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $7.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
             <!-- Viki Rakuten -->
-            <div class="platform-card" data-platform="Viki Rakuten" data-price-1m="8000">
-                <div class="platform-icon">
-                    <img src="assets/images/viki.png" alt="Viki Rakuten">
+            <div class="platform-card platform-card-v2" data-platform="Viki Rakuten" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/pantalla</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Viki Rakuten</h3>
-                    <p class="platform-desc">El mejor contenido asiático y K-dramas</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="selectors-row">
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/viki.png" alt="Viki Rakuten">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Viki Rakuten</h3>
+                            <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        </div>
+                        <p class="platform-desc">El mejor contenido asiático y K-dramas</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
                         <div class="quantity-selector">
-                            <span class="qty-label">Meses:</span>
+                            <span class="qty-label">Meses</span>
                             <button class="qty-btn month-minus">−</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
-                            <span class="qty-label">Perfiles:</span>
+                            <span class="qty-label">Perfiles</span>
                             <button class="qty-btn qty-minus">−</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
-                        <span class="qty-discount"></span>
                     </div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="#" class="btn btn-primary btn-buy" target="_blank">1 Mes - $8.000</a>
-                        </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
 
             <!-- Microsoft Office -->
-            <div class="platform-card">
-                <div class="platform-icon">
-                    <img src="assets/images/office.png" alt="Microsoft Office">
+            <div class="platform-card platform-card-v2" data-platform="Microsoft Office">
+                <div class="price-corner">
+                    <span class="price-amount">$30.000</span>
+                    <span class="price-per-unit">Pago único</span>
                 </div>
-                <div class="platform-info">
-                    <h3 class="platform-name">Microsoft Office (Instalación Incluida)</h3>
-                    <p class="platform-desc">Licencia original de por vida</p>
-                    <div class="platform-guarantee">✓ Garantía incluida</div>
-                    <div class="platform-bottom">
-                        <div class="platform-actions">
-                            <a href="https://wa.me/573058588651?text=Quiero%20comprar%20Microsoft%20Office%20Vitalicia%20-%20Precio:%20$30.000"
-                                class="btn btn-primary" target="_blank">Pago único - $30.000</a>
-                        </div>
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/office.png" alt="Microsoft Office">
+                    </div>
+                    <div class="platform-info">
+                        <h3 class="platform-name">Microsoft Office</h3>
+                        <p class="platform-desc">Licencia original de por vida • Instalación incluida</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
+                    </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <a href="https://wa.me/573058588651?text=Quiero%20comprar%20Microsoft%20Office%20Vitalicia%20-%20Precio:%20$30.000"
+                            class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -683,166 +874,187 @@
         </div>
         <div class="combos-grid">
             <!-- Combo Ultimate (Customizable) -->
-            <div id="comboscustom" class="combo-card combo-ultimate featured">
-                <h3 class="combo-name">Combo Personalizado</h3>
-                <p class="combo-tagline">¡Arma tu plan ideal!</p>
-
-                <div class="combo-suggestions-container">
-                    <p class="suggestions-label">⚡ Sugerencias rápidas:</p>
-                    <div class="suggestion-buttons">
-                        <button type="button" class="btn-suggestion" data-combo="starter">
-                            <span class="suggestion-name">Starter</span>
-                            <span class="suggestion-desc">Netflix + Prime</span>
-                        </button>
-                        <button type="button" class="btn-suggestion" data-combo="premium">
-                            <span class="suggestion-name">Premium</span>
-                            <span class="suggestion-desc">4 Pantallas Top</span>
-                        </button>
+            <div id="comboscustom" class="platform-card platform-card-v2 combo-ultimate featured">
+                <div class="price-corner">
+                    <span class="price-amount" id="ultimate-price">$16.000</span>
+                    <span class="price-per-unit">Combo Personalizado</span>
+                </div>
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <div class="combo-icon-stack">🎁</div>
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Combo Personalizado</h3>
+                            <span class="combo-savings">💰 Selecciona 2+ para descuento</span>
+                        </div>
+                        <p class="platform-desc">¡Arma tu plan ideal combinando tus servicios favoritos!</p>
                     </div>
                 </div>
+                <div class="combo-body-content">
 
-                <div class="combo-price-row">
-                    <div class="combo-price">
-                        <span class="amount" id="ultimate-price">$16.000</span>
-                        <span class="period">/mes</span>
+                    <div class="combo-suggestions-container">
+                        <p class="suggestions-label">⚡ Sugerencias rápidas:</p>
+                        <div class="suggestion-buttons">
+                            <button type="button" class="btn-suggestion" data-combo="starter">
+                                <span class="suggestion-name">Starter</span>
+                                <span class="suggestion-desc">Netflix + Prime</span>
+                            </button>
+                            <button type="button" class="btn-suggestion" data-combo="premium">
+                                <span class="suggestion-name">Premium</span>
+                                <span class="suggestion-desc">4 Pantallas Top</span>
+                            </button>
+                        </div>
                     </div>
-                    <a href="javascript:void(0)" id="btn-ultimate" class="btn btn-primary btn-compact"
-                        target="_blank">Comprar</a>
-                </div>
-                <div class="combo-savings">💰 Ahorro de $5.000 aplicado</div>
-                <div class="custom-combo-selector">
-                    <p class="selector-instruction">O selecciona manualmente:</p>
-                    <div class="platform-checkboxes">
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="16000" data-name="Netflix" checked>
-                            <span class="checkmark">
-                                <img src="assets/images/netflix.png" alt="Netflix" class="platform-mini-logo">
-                                <span class="platform-name-text">Netflix ($16k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="10000" data-name="Disney+ Premium">
-                            <span class="checkmark">
-                                <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
-                                <span class="platform-name-text">Disney+ Prem ($10k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="6000" data-name="Disney+ Standard">
-                            <span class="checkmark">
-                                <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
-                                <span class="platform-name-text">Disney+ Std ($6k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="8000" data-name="HBO Max">
-                            <span class="checkmark">
-                                <img src="assets/images/hbo-max.png" alt="HBO" class="platform-mini-logo">
-                                <span class="platform-name-text">HBO Max ($8k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="8000" data-name="Prime Video">
-                            <span class="checkmark">
-                                <img src="assets/images/prime-video.png" alt="Prime" class="platform-mini-logo">
-                                <span class="platform-name-text">Prime Video ($8k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="8000" data-name="Spotify">
-                            <span class="checkmark">
-                                <img src="assets/images/spotify.png" alt="Spotify" class="platform-mini-logo">
-                                <span class="platform-name-text">Spotify ($8k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="7000" data-name="YouTube Premium">
-                            <span class="checkmark">
-                                <img src="assets/images/youtube-premium.png" alt="YouTube" class="platform-mini-logo">
-                                <span class="platform-name-text">YouTube ($7k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="7000" data-name="Paramount+">
-                            <span class="checkmark">
-                                <img src="assets/images/paramount-plus.png" alt="Paramount" class="platform-mini-logo">
-                                <span class="platform-name-text">Paramount+ ($7k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="7000" data-name="Crunchyroll">
-                            <span class="checkmark">
-                                <img src="assets/images/crunchyroll.png" alt="Crunchyroll" class="platform-mini-logo">
-                                <span class="platform-name-text">Crunchyroll ($7k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="8000" data-name="Apple TV+">
-                            <span class="checkmark">
-                                <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
-                                <span class="platform-name-text">Apple TV+ ($8k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="10000" data-name="IPTV Premium">
-                            <span class="checkmark">
-                                <img src="assets/images/iptv.png" alt="IPTV" class="platform-mini-logo">
-                                <span class="platform-name-text">IPTV ($10k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="8000" data-name="Plex">
-                            <span class="checkmark">
-                                <img src="assets/images/plex.png" alt="Plex" class="platform-mini-logo">
-                                <span class="platform-name-text">Plex ($8k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="8000" data-name="Canva Pro">
-                            <span class="checkmark">
-                                <img src="assets/images/canva.png" alt="Canva" class="platform-mini-logo">
-                                <span class="platform-name-text">Canva ($8k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="10000" data-name="Gemini AI Pro">
-                            <span class="checkmark">
-                                <img src="assets/images/gemini.png" alt="Gemini" class="platform-mini-logo">
-                                <span class="platform-name-text">Gemini AI ($10k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="10000" data-name="ChatGPT Plus">
-                            <span class="checkmark">
-                                <img src="assets/images/chatgpt.png" alt="ChatGPT" class="platform-mini-logo">
-                                <span class="platform-name-text">ChatGPT ($10k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="7000" data-name="VIX Premium">
-                            <span class="checkmark">
-                                <img src="assets/images/vix.png" alt="VIX" class="platform-mini-logo">
-                                <span class="platform-name-text">VIX ($7k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="8000" data-name="Viki Rakuten">
-                            <span class="checkmark">
-                                <img src="assets/images/viki.png" alt="Viki" class="platform-mini-logo">
-                                <span class="platform-name-text">Viki ($8k)</span>
-                            </span>
-                        </label>
-                        <label class="platform-option">
-                            <input type="checkbox" data-price="30000" data-name="Microsoft Office">
-                            <span class="checkmark">
-                                <img src="assets/images/office.png" alt="Office" class="platform-mini-logo">
-                                <span class="platform-name-text">Office ($30k)</span>
-                            </span>
-                        </label>
+
+                    <div class="custom-combo-selector">
+                        <p class="selector-instruction">Selecciona manualmente:</p>
+                        <div class="platform-checkboxes">
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="16000" data-name="Netflix" checked>
+                                <span class="checkmark">
+                                    <img src="assets/images/netflix.png" alt="Netflix" class="platform-mini-logo">
+                                    <span class="platform-name-text">Netflix ($16k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="10000" data-name="Disney+ Premium">
+                                <span class="checkmark">
+                                    <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
+                                    <span class="platform-name-text">Disney+ Prem ($10k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="6000" data-name="Disney+ Standard">
+                                <span class="checkmark">
+                                    <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
+                                    <span class="platform-name-text">Disney+ Std ($6k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="8000" data-name="HBO Max">
+                                <span class="checkmark">
+                                    <img src="assets/images/hbo-max.png" alt="HBO" class="platform-mini-logo">
+                                    <span class="platform-name-text">HBO Max ($8k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="8000" data-name="Prime Video">
+                                <span class="checkmark">
+                                    <img src="assets/images/prime-video.png" alt="Prime" class="platform-mini-logo">
+                                    <span class="platform-name-text">Prime Video ($8k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="8000" data-name="Spotify">
+                                <span class="checkmark">
+                                    <img src="assets/images/spotify.png" alt="Spotify" class="platform-mini-logo">
+                                    <span class="platform-name-text">Spotify ($8k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="7000" data-name="YouTube Premium">
+                                <span class="checkmark">
+                                    <img src="assets/images/youtube-premium.png" alt="YouTube"
+                                        class="platform-mini-logo">
+                                    <span class="platform-name-text">YouTube ($7k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="7000" data-name="Paramount+">
+                                <span class="checkmark">
+                                    <img src="assets/images/paramount-plus.png" alt="Paramount"
+                                        class="platform-mini-logo">
+                                    <span class="platform-name-text">Paramount+ ($7k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="7000" data-name="Crunchyroll">
+                                <span class="checkmark">
+                                    <img src="assets/images/crunchyroll.png" alt="Crunchyroll"
+                                        class="platform-mini-logo">
+                                    <span class="platform-name-text">Crunchyroll ($7k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="8000" data-name="Apple TV+">
+                                <span class="checkmark">
+                                    <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
+                                    <span class="platform-name-text">Apple TV+ ($8k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="10000" data-name="IPTV Premium">
+                                <span class="checkmark">
+                                    <img src="assets/images/iptv.png" alt="IPTV" class="platform-mini-logo">
+                                    <span class="platform-name-text">IPTV ($10k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="8000" data-name="Plex">
+                                <span class="checkmark">
+                                    <img src="assets/images/plex.png" alt="Plex" class="platform-mini-logo">
+                                    <span class="platform-name-text">Plex ($8k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="8000" data-name="Canva Pro">
+                                <span class="checkmark">
+                                    <img src="assets/images/canva.png" alt="Canva" class="platform-mini-logo">
+                                    <span class="platform-name-text">Canva ($8k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="10000" data-name="Gemini AI Pro">
+                                <span class="checkmark">
+                                    <img src="assets/images/gemini.png" alt="Gemini" class="platform-mini-logo">
+                                    <span class="platform-name-text">Gemini AI ($10k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="10000" data-name="ChatGPT Plus">
+                                <span class="checkmark">
+                                    <img src="assets/images/chatgpt.png" alt="ChatGPT" class="platform-mini-logo">
+                                    <span class="platform-name-text">ChatGPT ($10k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="7000" data-name="VIX Premium">
+                                <span class="checkmark">
+                                    <img src="assets/images/vix.png" alt="VIX" class="platform-mini-logo">
+                                    <span class="platform-name-text">VIX ($7k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="8000" data-name="Viki Rakuten">
+                                <span class="checkmark">
+                                    <img src="assets/images/viki.png" alt="Viki" class="platform-mini-logo">
+                                    <span class="platform-name-text">Viki ($8k)</span>
+                                </span>
+                            </label>
+                            <label class="platform-option">
+                                <input type="checkbox" data-price="30000" data-name="Microsoft Office">
+                                <span class="checkmark">
+                                    <img src="assets/images/office.png" alt="Office" class="platform-mini-logo">
+                                    <span class="platform-name-text">Office ($30k)</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="card-bottom" style="margin-top: 1rem;">
+                        <div class="platform-footer-row">
+                            <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                                </svg> Garantía</span>
+                            <a href="javascript:void(0)" id="btn-ultimate" class="btn btn-danger btn-buy btn-compact"
+                                target="_blank">Comprar</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- Capturas Section -->
@@ -908,42 +1120,8 @@
         </div>
     </section>
 
-    <!-- Testimonios Section -->
-    <section id="testimonios">
-        <div class="section-header">
-            <h2>⭐ Lo que dicen nuestros clientes</h2>
-            <p>Experiencias reales de personas que ya disfrutan de su contenido favorito</p>
-        </div>
-        <div class="testimonios-grid">
-            <div class="testimonio-card">
-                <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonio-text">"Excelente servicio, la cuenta de Netflix funciona perfecto y la entrega fue
-                    súper rápida. 100% recomendado."</p>
-                <div class="testimonio-author">
-                    <span class="author-name">Carlos M.</span>
-                    <span class="author-verify">✓ Cliente Verificado</span>
-                </div>
-            </div>
-            <div class="testimonio-card">
-                <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonio-text">"He comprado varios combos y nunca he tenido problemas. El soporte por
-                    WhatsApp es muy atento."</p>
-                <div class="testimonio-author">
-                    <span class="author-name">Andrea R.</span>
-                    <span class="author-verify">✓ Cliente Verificado</span>
-                </div>
-            </div>
-            <div class="testimonio-card">
-                <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonio-text">"La garantía es real. Tuve un inconveniente con mi cuenta y me la repusieron
-                    en menos de 10 minutos."</p>
-                <div class="testimonio-author">
-                    <span class="author-name">Juan P.</span>
-                    <span class="author-verify">✓ Cliente Verificado</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Testimonios Section Removed -->
+
 
     <!-- FAQ Section -->
     <section id="faq">

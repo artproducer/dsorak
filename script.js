@@ -71,7 +71,9 @@ function initQuantitySelectors() {
         const profileValue = card.querySelector('.qty-value:not(.month-value)');
 
         // Display elements
-        const discountDisplay = card.querySelector('.qty-discount');
+        const priceAmount = card.querySelector('.price-amount');
+        const pricePerUnit = card.querySelector('.price-per-unit');
+        const selectionBadge = card.querySelector('.selection-badge');
         const buyBtn = card.querySelector('.btn-buy');
 
         if (!profileMinus || !profilePlus || !profileValue || !buyBtn) return;
@@ -97,26 +99,36 @@ function initQuantitySelectors() {
             // Calculate discounts
             const profileDiscount = calculateDiscount(profiles);
             const monthDiscount = calculateDiscount(months);
-            const totalDiscount = profileDiscount + monthDiscount;
+            // Calculate total discount (scale profile discount by months, and month discount by profiles)
+            const totalDiscount = (profileDiscount * months) + (monthDiscount * profiles);
 
             // Calculate final price
             const totalBase = basePrice * profiles * months;
             const finalPrice = totalBase - totalDiscount;
 
-            // Update discount display
-            if (discountDisplay) {
-                discountDisplay.textContent = totalDiscount > 0
-                    ? `-$${totalDiscount.toLocaleString('es-CO')}`
-                    : '';
+            // Calculate price per screen (per profile per month)
+            const pricePerScreen = Math.round(finalPrice / profiles / months);
+
+            // Update price display
+            if (priceAmount) {
+                priceAmount.textContent = `$${finalPrice.toLocaleString('es-CO')}`;
             }
 
-            // Update button text
-            const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
-            const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
-            const profilesText = profiles > 1 ? `x${profiles}` : '';
-            buyBtn.textContent = `${monthsText}${profilesText ? ` (${profilesText})` : ''} - ${priceText}`;
+            // Update price per unit
+            if (pricePerUnit) {
+                pricePerUnit.textContent = `$${pricePerScreen.toLocaleString('es-CO')}/pantalla`;
+            }
+
+            // Update selection badge with months and profiles
+            if (selectionBadge) {
+                const monthsText = months === 1 ? '1 Mes' : `${months} Meses`;
+                const profilesText = profiles === 1 ? '1 Perfil' : `${profiles} Perfiles`;
+                selectionBadge.textContent = `${monthsText} • ${profilesText}`;
+            }
 
             // Update WhatsApp link
+            const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
+            const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
             const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} perfiles)` : ''} - Precio: ${priceText}`;
             buyBtn.href = `https://wa.me/573058588651?text=${encodeURIComponent(message)}`;
 
