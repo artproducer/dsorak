@@ -501,8 +501,8 @@ section {
 .price-amount {
     font-size: 1.3rem;
     font-weight: 800;
-    color: white;
-    background: var(--primary);
+    color: #1a5276;
+    background: #d4edfc;
     padding: 0.3rem 0.6rem;
     border-radius: 12px;
     line-height: 1.1;
