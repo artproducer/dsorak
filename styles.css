@@ -613,6 +613,8 @@ section {
     gap: 1rem;
     width: 100%;
     margin-bottom: 0.75rem;
+    align-items: center;
+    /* Center badge vertically with selectors */
 }
 
 .selectors-row-full .quantity-selector {
@@ -1329,19 +1331,22 @@ footer {
 }
 
 /* ===== PAYMENT INFO CARD ===== */
+/* ===== PAYMENT INFO CARD ===== */
 .payment-info-card {
-    background: var(--gradient-2);
-    padding: 1rem 1.5rem;
+    background: #1e293b;
+    /* Darker background for contrast */
+    padding: 1.25rem 2rem;
     border-radius: var(--radius-md);
     margin: 1.5rem auto 2rem;
-    max-width: 500px;
+    max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     color: white;
     box-shadow: var(--shadow-md);
     animation: fadeIn 0.5s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .payment-info-card .payment-label {
@@ -1349,26 +1354,43 @@ footer {
     align-items: center;
     gap: 0.5rem;
     font-weight: 500;
+    font-size: 1.1rem;
+    /* Increased size */
+    opacity: 0.9;
+}
+
+
+.payment-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Tighter gap between number and button */
 }
 
 .payment-info-card .payment-number {
-    font-weight: 700;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: #d18f00;
+    /* User preferred gold color */
+    line-height: 1;
 }
 
 .payment-info-card .btn-copy {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 0.4rem 0.8rem;
-    border-radius: 4px;
+    /* Slightly smaller padding to fit better */
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    font-weight: 500;
+    height: fit-content;
 }
 
 .payment-info-card .btn-copy:hover {
