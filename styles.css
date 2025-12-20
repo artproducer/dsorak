@@ -501,7 +501,10 @@ section {
 .price-amount {
     font-size: 1.3rem;
     font-weight: 800;
-    color: var(--primary);
+    color: white;
+    background: var(--primary);
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
     line-height: 1.1;
 }
 
@@ -690,7 +693,6 @@ section {
     height: 22px;
     border: none;
     border-radius: 50%;
-    background: var(--primary);
     color: white;
     font-size: 0.9rem;
     font-weight: 700;
@@ -701,20 +703,38 @@ section {
     transition: all 0.2s ease;
 }
 
-.qty-btn:hover {
-    background: var(--primary-dark);
+/* Increase buttons - Bright Green */
+.qty-plus,
+.month-plus {
+    background: #2ecc71;
+}
+
+.qty-plus:hover,
+.month-plus:hover {
+    transform: scale(1.1);
+}
+
+/* Decrease buttons - Bright Red */
+.qty-minus,
+.month-minus {
+    background: #e74c3c;
+}
+
+.qty-minus:hover,
+.month-minus:hover {
     transform: scale(1.1);
 }
 
 .qty-btn:disabled {
-    background: var(--medium-gray);
+    background: var(--medium-gray) !important;
     cursor: not-allowed;
     transform: none;
 }
 
 .qty-value {
     font-weight: 700;
-    color: var(--primary);
+    color: #28a745;
+    /* Green to match buttons */
     min-width: 16px;
     text-align: center;
 }
