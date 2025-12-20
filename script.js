@@ -99,11 +99,26 @@ function initQuantitySelectors() {
             // Calculate total discount (scale profile discount by months, and month discount by profiles)
             const totalDiscount = (profileDiscount * months) + (monthDiscount * profiles);
 
-            // Calculate final price
-            const totalBase = basePrice * profiles * months;
-            const finalPrice = totalBase - totalDiscount;
 
-            // Calculate price per screen (per profile per month)
+            // Calculate final price
+            let finalPrice;
+            if (platform === 'YouTube Premium') {
+                // Custom pricing for YouTube
+                let pricePerOne = 7000;
+                if (months === 2) pricePerOne = 12000;
+                if (months === 3) pricePerOne = 16000;
+
+                finalPrice = pricePerOne * profiles;
+            } else {
+                // Standard pricing for other platforms
+                const totalBase = basePrice * profiles * months;
+                const finalPriceStd = totalBase - totalDiscount;
+                finalPrice = finalPriceStd;
+            }
+
+            // Calculate price per screen (per profile per month-unit)
+            // For display purposes, we just want the total / profiles usually, or just total.
+            // But preserving logic:
             const pricePerScreen = Math.round(finalPrice / profiles / months);
 
             // Update price display
@@ -113,7 +128,42 @@ function initQuantitySelectors() {
 
             // Update price per unit
             if (pricePerUnit) {
-                pricePerUnit.textContent = `$${pricePerScreen.toLocaleString('es-CO')}/pantalla`;
+                // For YouTube, show per account/month implied, or just the calculated unit price. 
+                // Using standard per-month-per-profile equivalent for consistency unless specific text requested.
+                // Request: "/perfil" general, "/cuenta" for YouTube.
+                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+                const unitType = platformsWithAccount.includes(platform) ? 'cuenta' : 'perfil';
+                // Calculate display price per unit (total / profiles) to show the cost for that specific unit per duration?
+                // The original code calculated "pricePerScreen" as final / profiles / months.
+                // Let's keep it simple: Show the price per unit based on current selection?
+                // Actually, static HTML shows "$X/perfil". 
+                // If I select 2 months, should it say "$Cost/perfil" where Cost is the 2-month cost? 
+                // Or cost per month? Usually subscription sites show Cost Per Month.
+                // The request says "2 months of youtube be 12mil". 
+                // If I select 2 months, 1 profile. Total 12000.
+                // Should the text say "$6.000/cuenta" (per month)? Or "$12.000/cuenta"?
+                // The static text "$7.000/cuenta" implies price corresponding to the selection (1 month).
+                // I will show the TOTAL price per unit (profile/account) for the SELECTED duration.
+
+                const pricePerProf = Math.round(finalPrice / profiles);
+
+                // If standard logic divides by months to show monthly rate:
+                // Original: Math.round(finalPrice / profiles / months) -> Monthly rate.
+                // Let's stick to showing the total price per unit for the selected duration? 
+                // Or the monthly rate?
+                // "2 months youtube worth 12mil" -> Total 12k.
+                // If display says "$12.000/cuenta", that matches the total.
+                // If display says "$6.000/cuenta", that matches monthly.
+                // Given the static text is "$7.000" for 1 month, it's ambiguous.
+                // But "$16.000/pantalla" for Netflix (1m) is the monthly rate.
+                // I will show the price for the selected total duration per profile.
+
+                // Wait, if I change month to 3, and price is 16000.
+                // If I show "$16.000/cuenta", user knows that's the price they pay.
+                // If I show "$5.333/cuenta", they might be confused if they expect the total.
+                // I'll display the `pricePerProf` (Total / Profiles).
+
+                pricePerUnit.textContent = `$${pricePerProf.toLocaleString('es-CO')}/${unitType}`;
             }
 
             // Update selection badge with months and profiles
