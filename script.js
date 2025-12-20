@@ -60,66 +60,102 @@ function initQuantitySelectors() {
     const platformCards = document.querySelectorAll('.platform-card[data-platform]');
 
     platformCards.forEach(card => {
-        const minusBtn = card.querySelector('.qty-minus');
-        const plusBtn = card.querySelector('.qty-plus');
-        const qtyValue = card.querySelector('.qty-value');
-        const qtyDiscount = card.querySelector('.qty-discount');
-        const btn1m = card.querySelector('.btn-1m');
+        // Month selectors (first)
+        const monthMinus = card.querySelector('.month-minus');
+        const monthPlus = card.querySelector('.month-plus');
+        const monthValue = card.querySelector('.month-value');
 
-        if (!minusBtn || !plusBtn || !qtyValue || !btn1m) return;
+        // Profile selectors (find qty-value that is NOT month-value)
+        const profileMinus = card.querySelector('.qty-minus');
+        const profilePlus = card.querySelector('.qty-plus');
+        const profileValue = card.querySelector('.qty-value:not(.month-value)');
+
+        // Display elements
+        const discountDisplay = card.querySelector('.qty-discount');
+        const buyBtn = card.querySelector('.btn-buy');
+
+        if (!profileMinus || !profilePlus || !profileValue || !buyBtn) return;
 
         const platform = card.getAttribute('data-platform');
         const basePrice = parseInt(card.getAttribute('data-price-1m'));
         const MAX_QTY = 3;
+        const MAX_MONTHS = 3;
 
-        function updateQuantity(qty) {
-            qty = Math.max(1, Math.min(MAX_QTY, qty));
-            qtyValue.textContent = qty;
+        let profiles = 1;
+        let months = 1;
 
-            // Calculate discount
-            let discount = 0;
-            if (qty === 2) discount = 3000;
-            else if (qty >= 3) discount = 6000;
-
-            // Calculate final price
-            const totalBase = basePrice * qty;
-            const finalPrice = totalBase - discount;
-
-            // Update discount display
-            if (discount > 0) {
-                qtyDiscount.textContent = `-$${discount.toLocaleString('es-CO')}`;
-            } else {
-                qtyDiscount.textContent = '';
-            }
-
-            // Update button text and href
-            const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
-            btn1m.textContent = `1 Mes (x${qty}) - ${priceText}`;
-
-            const message = `Quiero comprar ${platform} 1 Mes (${qty} perfiles) - Precio: ${priceText}`;
-            btn1m.href = `https://wa.me/573058588651?text=${encodeURIComponent(message)}`;
-
-            // Update button states
-            minusBtn.disabled = qty <= 1;
-            plusBtn.disabled = qty >= MAX_QTY;
+        function calculateDiscount(qty) {
+            if (qty === 2) return 3000;
+            if (qty >= 3) return 6000;
+            return 0;
         }
 
-        minusBtn.addEventListener('click', (e) => {
+        function update() {
+            profileValue.textContent = profiles;
+            if (monthValue) monthValue.textContent = months;
+
+            // Calculate discounts
+            const profileDiscount = calculateDiscount(profiles);
+            const monthDiscount = calculateDiscount(months);
+            const totalDiscount = profileDiscount + monthDiscount;
+
+            // Calculate final price
+            const totalBase = basePrice * profiles * months;
+            const finalPrice = totalBase - totalDiscount;
+
+            // Update discount display
+            if (discountDisplay) {
+                discountDisplay.textContent = totalDiscount > 0
+                    ? `-$${totalDiscount.toLocaleString('es-CO')}`
+                    : '';
+            }
+
+            // Update button text
+            const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
+            const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
+            const profilesText = profiles > 1 ? `x${profiles}` : '';
+            buyBtn.textContent = `${monthsText}${profilesText ? ` (${profilesText})` : ''} - ${priceText}`;
+
+            // Update WhatsApp link
+            const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} perfiles)` : ''} - Precio: ${priceText}`;
+            buyBtn.href = `https://wa.me/573058588651?text=${encodeURIComponent(message)}`;
+
+            // Update button states
+            profileMinus.disabled = profiles <= 1;
+            profilePlus.disabled = profiles >= MAX_QTY;
+            if (monthMinus) monthMinus.disabled = months <= 1;
+            if (monthPlus) monthPlus.disabled = months >= MAX_MONTHS;
+        }
+
+        // Profile event listeners
+        profileMinus.addEventListener('click', (e) => {
             e.preventDefault();
-            const current = parseInt(qtyValue.textContent);
-            updateQuantity(current - 1);
+            if (profiles > 1) { profiles--; update(); }
         });
 
-        plusBtn.addEventListener('click', (e) => {
+        profilePlus.addEventListener('click', (e) => {
             e.preventDefault();
-            const current = parseInt(qtyValue.textContent);
-            updateQuantity(current + 1);
+            if (profiles < MAX_QTY) { profiles++; update(); }
         });
+
+        // Month event listeners
+        if (monthMinus && monthPlus) {
+            monthMinus.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (months > 1) { months--; update(); }
+            });
+
+            monthPlus.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (months < MAX_MONTHS) { months++; update(); }
+            });
+        }
 
         // Initialize
-        updateQuantity(1);
+        update();
     });
 }
+
 
 
 // ===== HEADER & BANNER SCROLL EFFECT =====
