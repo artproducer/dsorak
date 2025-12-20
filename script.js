@@ -559,27 +559,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Visitor Counter Logic (Simulated)
-    const counterElement = document.getElementById('visit-count');
-    if (counterElement) {
-        let count = localStorage.getItem('page_visits');
 
-        if (!count) {
-            // Start at a realistic number if no data exists
-            count = 100;
-        } else {
-            count = parseInt(count);
-        }
-
-        // Increment
-        count++;
-
-        // Save
-        localStorage.setItem('page_visits', count);
-
-        // Display with formatting
-        counterElement.textContent = count.toLocaleString('es-CO');
-    }
     // Scroll Buttons Logic (Section by Section)
     const scrollUpBtn = document.getElementById('scroll-up');
     const scrollDownBtn = document.getElementById('scroll-down');
