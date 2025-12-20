@@ -1257,6 +1257,12 @@ footer {
     box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
 }
 
+.whatsapp-float.hidden {
+    transform: translateY(150%);
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Remove old mobile menu styles */
 .menu-toggle {
     display: none;

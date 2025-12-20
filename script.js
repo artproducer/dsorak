@@ -618,6 +618,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
             sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
         });
+
+        // Hide buttons while scrolling
+        let isScrolling;
+        const scrollButtonsContainer = document.querySelector('.scroll-buttons');
+        const whatsappFloat = document.querySelector('.whatsapp-float');
+
+        window.addEventListener('scroll', () => {
+            // Add class to hide buttons
+            if (scrollButtonsContainer) {
+                scrollButtonsContainer.classList.add('hidden');
+            }
+            if (whatsappFloat) {
+                whatsappFloat.classList.add('hidden');
+            }
+
+            // Clear previous timeout
+            window.clearTimeout(isScrolling);
+
+            // Set a timeout to run after scrolling ends
+            isScrolling = setTimeout(() => {
+                if (scrollButtonsContainer) {
+                    scrollButtonsContainer.classList.remove('hidden');
+                }
+                if (whatsappFloat) {
+                    whatsappFloat.classList.remove('hidden');
+                }
+            }, 1000); // 1.0 second delay
+        });
     }
 });
 
