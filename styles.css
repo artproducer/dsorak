@@ -374,15 +374,17 @@ nav {
     color: white;
 }
 
-/* ===== SECTIONS =====
+/* ===== SECTIONS ===== */
 #plataformas {
-    padding-top: 120px;
-} */
+    padding-top: 200px;
+}
 
 section {
-    padding: 5rem 2rem;
+    padding: 3rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    scroll-margin-top: 80px;
+    /* Account for fixed header when using anchor links */
 }
 
 .section-header {
@@ -394,7 +396,7 @@ section {
 .section-header h2 {
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 700;
-    margin-top: 4rem;
+    margin-top: 1rem;
     margin-bottom: 0.25rem;
     /* Reduced from 0.75rem */
     color: var(--text-dark);
@@ -622,6 +624,8 @@ section {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-dark);
+    padding-right: 5rem;
+    /* Prevent overlap with price-corner */
 }
 
 .badge {
