@@ -55,14 +55,39 @@ function toggleFaq(element) {
     }
 }
 
-// ===== HEADER SCROLL EFFECT =====
+// ===== HEADER & BANNER SCROLL EFFECT =====
+let lastScrollTop = 0;
+let scrollTimeout;
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
-    if (window.scrollY > 50) {
+    const paymentBanner = document.querySelector('.payment-banner');
+    const scrollButtons = document.querySelector('.scroll-buttons');
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Header scrolled effect
+    if (scrollTop > 50) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
     }
+
+    // Payment Banner & Scroll Buttons collapsible logic
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // Scrolling DOWN
+        paymentBanner.classList.add('hidden');
+        if (scrollButtons) scrollButtons.classList.add('hidden');
+    } else {
+        // Scrolling UP
+        paymentBanner.classList.remove('hidden');
+        if (scrollButtons) scrollButtons.classList.remove('hidden');
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+
+    // Show buttons again when scrolling stops
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function () {
+        if (scrollButtons) scrollButtons.classList.remove('hidden');
+    }, 1000);
 });
 
 // ===== SMOOTH SCROLL FOR NAVIGATION =====
@@ -275,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update WhatsApp Link
             // Ensure no extra spaces in the URL construction
-            const message = `Hola! Quiero armar mi Combo Personalizado con: ${selectedNames.join(', ')}. Precio Total: $${finalPrice.toLocaleString('es-CO')}`;
+            const message = `Quiero mi Combo Personalizado: ${selectedNames.join(', ')}. Precio: $${finalPrice.toLocaleString('es-CO')}`;
 
             // Use encodeURIComponent to handle all special characters and spaces
             const encodedMessage = encodeURIComponent(message);
@@ -432,4 +457,31 @@ document.addEventListener('DOMContentLoaded', function () {
             sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
         });
     }
+});
+
+// ===== LIGHTBOX LOGIC =====
+function openLightbox(imgElement) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (lightbox && lightboxImg) {
+        lightboxImg.src = imgElement.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    }
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scroll
+    }
+}
+
+// Add click events to carousel images
+document.addEventListener('DOMContentLoaded', function () {
+    const carouselImages = document.querySelectorAll('.carousel-slide img');
+    carouselImages.forEach(img => {
+        img.addEventListener('click', () => openLightbox(img));
+    });
 });
