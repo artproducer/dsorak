@@ -1655,11 +1655,11 @@ footer {
 
 .payment-label {
     font-weight: 800;
-    color: #1665af;
+    color: #003a92;
     text-transform: uppercase;
     font-size: 0.75rem;
     padding: 0.25rem 0.6rem;
-    background: #fff;
+    background: #ffffff;
     border-radius: 4px;
     white-space: nowrap;
 }
