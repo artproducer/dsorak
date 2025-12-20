@@ -80,6 +80,17 @@ function initQuantitySelectors() {
         const MAX_QTY = 3;
         const MAX_MONTHS = 3;
 
+        // Change "Perfiles" label to "Cuentas" for account-based platforms
+        const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+        if (platformsWithAccount.includes(platform)) {
+            const qtyLabels = card.querySelectorAll('.qty-label');
+            qtyLabels.forEach(label => {
+                if (label.textContent === 'Perfiles') {
+                    label.textContent = 'Cuentas';
+                }
+            });
+        }
+
         let profiles = 1;
         let months = 1;
 
@@ -131,7 +142,7 @@ function initQuantitySelectors() {
                 // For YouTube, show per account/month implied, or just the calculated unit price. 
                 // Using standard per-month-per-profile equivalent for consistency unless specific text requested.
                 // Request: "/perfil" general, "/cuenta" for YouTube.
-                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'Crunchyroll Mega Fan'];
+                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
                 const unitType = platformsWithAccount.includes(platform) ? 'cuenta' : 'perfil';
                 // I will show the TOTAL price per unit (profile/account) for the SELECTED duration.
 
@@ -159,14 +170,18 @@ function initQuantitySelectors() {
             // Update selection badge with months and profiles
             if (selectionBadge) {
                 const monthsText = months === 1 ? '1 Mes' : `${months} Meses`;
-                const profilesText = profiles === 1 ? '1 Perfil' : `${profiles} Perfiles`;
-                selectionBadge.textContent = `${monthsText} • ${profilesText}`;
+                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+                const isAccountBased = platformsWithAccount.includes(platform);
+                const unitLabel = isAccountBased ? (profiles === 1 ? 'Cuenta' : 'Cuentas') : (profiles === 1 ? 'Perfil' : 'Perfiles');
+                selectionBadge.textContent = `${monthsText} • ${profiles} ${unitLabel}`;
             }
 
             // Update WhatsApp link
             const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
             const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
-            const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} perfiles)` : ''} - Precio: ${priceText}`;
+            const platformsWithAccountMsg = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+            const unitText = platformsWithAccountMsg.includes(platform) ? 'cuentas' : 'perfiles';
+            const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} ${unitText})` : ''} - Precio: ${priceText}`;
             buyBtn.href = `https://wa.me/573058588651?text=${encodeURIComponent(message)}`;
 
             // Update button states

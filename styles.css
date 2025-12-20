@@ -651,6 +651,9 @@ section {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-right: 4rem;
+    /* Prevent overlap with price corner */
+    max-width: 400px;
 }
 
 .platform-guarantee {
