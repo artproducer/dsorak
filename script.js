@@ -137,34 +137,33 @@ function initQuantitySelectors() {
                 priceAmount.textContent = `$${finalPrice.toLocaleString('es-CO')}`;
             }
 
-            // Update price per unit
+            // Update price per unit with dynamic label
             if (pricePerUnit) {
-                // For YouTube, show per account/month implied, or just the calculated unit price. 
-                // Using standard per-month-per-profile equivalent for consistency unless specific text requested.
-                // Request: "/perfil" general, "/cuenta" for YouTube.
                 const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
-                const unitType = platformsWithAccount.includes(platform) ? 'cuenta' : 'perfil';
-                // I will show the TOTAL price per unit (profile/account) for the SELECTED duration.
+                const isAccountBased = platformsWithAccount.includes(platform);
+                const unitName = isAccountBased ? 'cuenta' : 'perfil';
 
-                const pricePerProf = Math.round(finalPrice / profiles / months);
+                let priceValue, unitLabel;
 
-                // If standard logic divides by months to show monthly rate:
-                // Original: Math.round(finalPrice / profiles / months) -> Monthly rate.
-                // Let's stick to showing the total price per unit for the selected duration? 
-                // Or the monthly rate?
-                // "2 months youtube worth 12mil" -> Total 12k.
-                // If display says "$12.000/cuenta", that matches the total.
-                // If display says "$6.000/cuenta", that matches monthly.
-                // Given the static text is "$7.000" for 1 month, it's ambiguous.
-                // But "$16.000/pantalla" for Netflix (1m) is the monthly rate.
-                // I will show the price for the selected total duration per profile.
+                if (months > 1 && profiles > 1) {
+                    // Both increased: show price per month per profile
+                    priceValue = Math.round(finalPrice / profiles / months);
+                    unitLabel = `mes por ${unitName}`;
+                } else if (months > 1) {
+                    // Only months increased: show price per month
+                    priceValue = Math.round(finalPrice / months);
+                    unitLabel = 'mes';
+                } else if (profiles > 1) {
+                    // Only profiles increased: show price per profile
+                    priceValue = Math.round(finalPrice / profiles);
+                    unitLabel = unitName;
+                } else {
+                    // Default: 1 month, 1 profile
+                    priceValue = finalPrice;
+                    unitLabel = unitName;
+                }
 
-                // Wait, if I change month to 3, and price is 16000.
-                // If I show "$16.000/cuenta", user knows that's the price they pay.
-                // If I show "$5.333/cuenta", they might be confused if they expect the total.
-                // I'll display the `pricePerProf` (Total / Profiles).
-
-                pricePerUnit.textContent = `$${pricePerProf.toLocaleString('es-CO')}/${unitType}`;
+                pricePerUnit.textContent = `$${priceValue.toLocaleString('es-CO')}/${unitLabel}`;
             }
 
             // Update selection badge with months and profiles
