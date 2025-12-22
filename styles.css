@@ -651,7 +651,7 @@ section {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 6rem;
+    padding-right: 6.5rem;
     /* Prevent overlap with price corner */
     max-width: 700px;
 }
