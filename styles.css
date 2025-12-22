@@ -129,6 +129,34 @@ nav {
     background-clip: text;
 }
 
+/* Christmas decoration */
+.christmas-logo {
+    position: relative;
+}
+
+.santa-hat {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: -12px;
+    right: -5px;
+    transform: rotate(15deg);
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.4));
+    animation: hatBounce 2s ease-in-out infinite;
+}
+
+@keyframes hatBounce {
+
+    0%,
+    100% {
+        transform: rotate(15deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(15deg) translateY(-3px);
+    }
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -479,7 +507,7 @@ section {
     transform: translateX(-50%);
     width: 28px;
     height: 28px;
-    color: #3498db;
+    color: #d4a600;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     animation: cursorMove 3s ease-in-out forwards;
     pointer-events: none;
@@ -882,7 +910,7 @@ section {
 #combos {
     background: var(--light);
     max-width: 100%;
-    padding: 5rem 2rem;
+    padding: 2rem 2rem;
 }
 
 #combos>* {
@@ -1685,11 +1713,13 @@ footer {
     /* Ensure buttons are centered in the container */
 }
 
+/* Disabled - scroll buttons always visible
 .scroll-buttons.hidden {
     transform: translateX(100%);
     opacity: 0;
     pointer-events: none;
 }
+*/
 
 .scroll-btn {
     width: 45px;
