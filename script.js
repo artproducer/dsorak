@@ -148,7 +148,7 @@ function initQuantitySelectors() {
                 if (months > 1 && profiles > 1) {
                     // Both increased: show price per month per profile
                     priceValue = Math.round(finalPrice / profiles / months);
-                    unitLabel = `mes por ${unitName}`;
+                    unitLabel = `mes x ${unitName}`;
                 } else if (months > 1) {
                     // Only months increased: show price per month
                     priceValue = Math.round(finalPrice / months);
