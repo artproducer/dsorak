@@ -34,15 +34,16 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="#" class="logo christmas-logo"
+            <a href="#" class="logo newyear-logo"
                 onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
                 <span class="streaming-text">Streaming</span>
                 <span class="brand-text">DSORAK</span>
-                <svg class="santa-hat" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M52 28c0-12-16-24-28-20C16 10 8 20 8 28c0 4 2 8 6 10h36c4-2 6-6 6-10z" fill="#c41e3a" />
-                    <ellipse cx="56" cy="16" rx="6" ry="6" fill="white" />
-                    <path d="M4 38c0 4 56 4 56 0s-8-4-28-4S4 34 4 38z" fill="white" />
-                </svg>
+                <span class="newyear-badge">
+                    <svg class="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                    </svg>
+                    2026
+                </span>
             </a>
             <ul class="nav-links">
                 <li><a href="#plataformas">🎬 Plataformas</a></li>
@@ -107,22 +108,22 @@
             </div>
         </div>
         <div class="platforms-grid">
-            <!-- Netflix -->
-            <div class="platform-card platform-card-v2" data-platform="Netflix" data-price-1m="16000">
+            <!-- Disney+ Premium -->
+            <div class="platform-card platform-card-v2" data-platform="Disney+ Premium" data-price-1m="8000">
                 <div class="price-corner">
-                    <span class="price-amount">$16.000</span>
-                    <span class="price-per-unit">$16.000/perfil</span>
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/perfil</span>
                 </div>
                 <div class="card-top-row">
                     <div class="platform-icon">
-                        <img src="assets/images/netflix.png" alt="Netflix">
+                        <img src="assets/images/disney-plus.png" alt="Disney+ Premium">
                     </div>
                     <div class="platform-info">
                         <div class="platform-header-row">
-                            <h3 class="platform-name">Netflix</h3>
+                            <h3 class="platform-name">Disney+ Premium</h3>
 
                         </div>
-                        <p class="platform-desc">Series, películas y documentales</p>
+                        <p class="platform-desc">Sin anuncios, 4K UHD, 7 ESPN y eventos exclusivos</p>
                     </div>
                 </div>
                 <div class="card-bottom">
@@ -151,22 +152,22 @@
                     </div>
                 </div>
             </div>
-            <!-- Disney+ Premium -->
-            <div class="platform-card platform-card-v2" data-platform="Disney+ Premium" data-price-1m="10000">
+            <!-- Netflix -->
+            <div class="platform-card platform-card-v2" data-platform="Netflix" data-price-1m="16000">
                 <div class="price-corner">
-                    <span class="price-amount">$10.000</span>
-                    <span class="price-per-unit">$10.000/perfil</span>
+                    <span class="price-amount">$16.000</span>
+                    <span class="price-per-unit">$16.000/perfil</span>
                 </div>
                 <div class="card-top-row">
                     <div class="platform-icon">
-                        <img src="assets/images/disney-plus.png" alt="Disney+ Premium">
+                        <img src="assets/images/netflix.png" alt="Netflix">
                     </div>
                     <div class="platform-info">
                         <div class="platform-header-row">
-                            <h3 class="platform-name">Disney+ Premium</h3>
+                            <h3 class="platform-name">Netflix</h3>
 
                         </div>
-                        <p class="platform-desc">Sin anuncios, 4K UHD, 7 ESPN y eventos exclusivos</p>
+                        <p class="platform-desc">Series, películas y documentales</p>
                     </div>
                 </div>
                 <div class="card-bottom">
@@ -241,10 +242,10 @@
                 </div>
             </div>
             <!-- Disney+ Standard -->
-            <div class="platform-card platform-card-v2" data-platform="Disney+ Estándar" data-price-1m="6000">
+            <div class="platform-card platform-card-v2" data-platform="Disney+ Estándar" data-price-1m="5000">
                 <div class="price-corner">
-                    <span class="price-amount">$6.000</span>
-                    <span class="price-per-unit">$6.000/perfil</span>
+                    <span class="price-amount">$5.000</span>
+                    <span class="price-per-unit">$5.000/perfil</span>
                 </div>
                 <div class="card-top-row">
                     <div class="platform-icon">
@@ -392,6 +393,50 @@
 
                         </div>
                         <p class="platform-desc">El mejor anime del mundo sin publicidad</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
+                        <div class="quantity-selector">
+                            <span class="qty-label">Meses</span>
+                            <button class="qty-btn month-minus">−</button>
+                            <span class="qty-value month-value">1</span>
+                            <button class="qty-btn month-plus">+</button>
+                        </div>
+                        <div class="quantity-selector">
+                            <span class="qty-label">Perfiles</span>
+                            <button class="qty-btn qty-minus">−</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn qty-plus">+</button>
+                        </div>
+                    </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- VIX Premium -->
+            <div class="platform-card platform-card-v2" data-platform="VIX Premium" data-price-1m="7000">
+                <div class="price-corner">
+                    <span class="price-amount">$7.000</span>
+                    <span class="price-per-unit">$7.000/perfil</span>
+                </div>
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/vix.png" alt="VIX Premium">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">VIX Premium</h3>
+
+                        </div>
+                        <p class="platform-desc">Series, películas y deportes en español</p>
                     </div>
                 </div>
                 <div class="card-bottom">
@@ -777,50 +822,7 @@
             </div>
 
 
-            <!-- VIX Premium -->
-            <div class="platform-card platform-card-v2" data-platform="VIX Premium" data-price-1m="7000">
-                <div class="price-corner">
-                    <span class="price-amount">$7.000</span>
-                    <span class="price-per-unit">$7.000/perfil</span>
-                </div>
-                <div class="card-top-row">
-                    <div class="platform-icon">
-                        <img src="assets/images/vix.png" alt="VIX Premium">
-                    </div>
-                    <div class="platform-info">
-                        <div class="platform-header-row">
-                            <h3 class="platform-name">VIX Premium</h3>
 
-                        </div>
-                        <p class="platform-desc">Series, películas y deportes en español</p>
-                    </div>
-                </div>
-                <div class="card-bottom">
-                    <div class="selectors-row-full">
-                        <div class="quantity-selector">
-                            <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
-                            <span class="qty-value month-value">1</span>
-                            <button class="qty-btn month-plus">+</button>
-                        </div>
-                        <div class="quantity-selector">
-                            <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
-                            <span class="qty-value">1</span>
-                            <button class="qty-btn qty-plus">+</button>
-                        </div>
-                    </div>
-                    <div class="platform-footer-row">
-                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-                            </svg> Garantía</span>
-                        <span class="selection-badge">1 Mes • 1 Perfil</span>
-                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
-                    </div>
-                </div>
-            </div>
 
             <!-- Viki Rakuten -->
             <div class="platform-card platform-card-v2" data-platform="Viki Rakuten" data-price-1m="8000">
@@ -962,17 +964,17 @@
                                 </span>
                             </label>
                             <label class="platform-option">
-                                <input type="checkbox" data-price="10000" data-name="Disney+ Premium">
+                                <input type="checkbox" data-price="8000" data-name="Disney+ Premium">
                                 <span class="checkmark">
                                     <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
-                                    <span class="platform-name-text">Disney+ Prem ($10k)</span>
+                                    <span class="platform-name-text">Disney+ Prem ($8k)</span>
                                 </span>
                             </label>
                             <label class="platform-option">
-                                <input type="checkbox" data-price="6000" data-name="Disney+ Standard">
+                                <input type="checkbox" data-price="5000" data-name="Disney+ Standard">
                                 <span class="checkmark">
                                     <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
-                                    <span class="platform-name-text">Disney+ Std ($6k)</span>
+                                    <span class="platform-name-text">Disney+ Std ($5k)</span>
                                 </span>
                             </label>
                             <label class="platform-option">
