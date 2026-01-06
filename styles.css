@@ -304,59 +304,6 @@ nav {
     background-clip: text;
 }
 
-/* New Year decoration */
-.newyear-logo {
-    position: relative;
-}
-
-.newyear-badge {
-    position: absolute;
-    top: -14px;
-    right: -12px;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B35 100%);
-    color: #fff;
-    font-size: 0.65rem;
-    font-weight: 800;
-    padding: 4px 8px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(255, 165, 0, 0.5);
-    animation: badgePulse 2s ease-in-out infinite;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.sparkle-icon {
-    width: 10px;
-    height: 10px;
-    animation: sparkleRotate 3s linear infinite;
-}
-
-@keyframes badgePulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        box-shadow: 0 3px 10px rgba(255, 165, 0, 0.5);
-    }
-
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 4px 15px rgba(255, 165, 0, 0.7);
-    }
-}
-
-@keyframes sparkleRotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -973,19 +920,6 @@ section {
     /* Prevent overlap with price-corner */
 }
 
-.badge {
-    padding: 0.2rem 0.5rem;
-    border-radius: 5px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.badge-popular {
-    background: #FFD700;
-    color: #000;
-}
-
 .platform-desc {
     color: var(--text-muted);
     font-size: 0.8rem;
@@ -1158,126 +1092,6 @@ section {
     width: auto;
     flex-shrink: 0;
 }
-
-/* ===== SUGGESTION BUTTONS ===== */
-.combo-suggestions-container {
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: var(--radius-md);
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px dashed var(--primary);
-}
-
-.suggestions-label {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 0.8rem;
-    color: var(--primary-dark);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.suggestion-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-}
-
-.btn-suggestion {
-    background: white;
-    border: 1px solid var(--medium-gray);
-    border-radius: var(--radius-sm);
-    padding: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
-
-.btn-suggestion:hover {
-    border-color: var(--primary);
-    background: #f0f7ff;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.btn-suggestion.active {
-    border-color: var(--primary);
-    background: #e3f2fd;
-    box-shadow: 0 0 0 2px rgba(22, 101, 175, 0.2);
-}
-
-.suggestion-name {
-    font-weight: 700;
-    color: var(--primary);
-    font-size: 0.95rem;
-}
-
-.suggestion-desc {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
-
-/* ===== REFERENCIAS SECTION ===== */
-.referencias-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
-}
-
-.referencia-card {
-    background: var(--light);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--medium-gray);
-    transition: all 0.3s ease;
-}
-
-.referencia-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-}
-
-.referencia-placeholder {
-    width: 100%;
-    height: 100px;
-    background: var(--light-gray);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.referencia-content {
-    text-align: center;
-}
-
-.referencia-stars {
-    color: #2997ff;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.referencia-text {
-    color: var(--text-muted);
-    font-style: italic;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.referencia-author {
-    color: var(--text-dark);
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-
 
 /* ===== FAQ SECTION ===== */
 .faq-container {

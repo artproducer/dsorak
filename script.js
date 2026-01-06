@@ -222,12 +222,11 @@ function initQuantitySelectors() {
 
 
 
-// ===== HEADER & BANNER SCROLL EFFECT =====
+// ===== HEADER SCROLL EFFECT =====
 let lastScrollTop = 0;
 let scrollTimeout;
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
-    const paymentBanner = document.querySelector('.payment-banner');
     const scrollButtons = document.querySelector('.scroll-buttons');
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -238,14 +237,12 @@ window.addEventListener('scroll', function () {
         header.classList.remove('scrolled');
     }
 
-    // Payment Banner & Scroll Buttons collapsible logic
+    // Scroll Buttons collapsible logic
     if (scrollTop > lastScrollTop && scrollTop > 100) {
         // Scrolling DOWN
-        paymentBanner.classList.add('hidden');
         if (scrollButtons) scrollButtons.classList.add('hidden');
     } else {
         // Scrolling UP
-        paymentBanner.classList.remove('hidden');
         if (scrollButtons) scrollButtons.classList.remove('hidden');
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
@@ -296,7 +293,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe all cards when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.platform-card, .combo-card, .referencia-card').forEach(card => {
+    document.querySelectorAll('.platform-card, .referencia-card').forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
         card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -474,65 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Construct the final URL
             btnUltimate.href = `https://wa.me/573058588651?text=${encodedMessage}`;
-            console.log('Combo updated:', finalPrice, btnUltimate.href);
-
-            // Sync Suggestion Buttons
-            const COMBO_DEFINITIONS = {
-                'starter': ['Netflix', 'Prime Video'],
-                'premium': ['Netflix', 'Disney+ Premium', 'HBO Max', 'Prime Video']
-            };
-
-            const suggestionBtns = document.querySelectorAll('.btn-suggestion');
-
-            suggestionBtns.forEach(btn => {
-                const comboKey = btn.dataset.combo;
-                const targetApps = COMBO_DEFINITIONS[comboKey];
-
-                if (targetApps) {
-                    // Check if perfect match (exact arrays, order doesn't matter)
-                    const isMatch = targetApps.length === selectedNames.length &&
-                        targetApps.every(name => selectedNames.includes(name));
-
-                    if (isMatch) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                }
-            });
         }
-
-        // Suggestions Logic
-        // Suggestions Click Logic
-        const suggestionBtns = document.querySelectorAll('.btn-suggestion');
-        const COMBO_DEFINITIONS = {
-            'starter': ['Netflix', 'Prime Video'],
-            'premium': ['Netflix', 'Disney+ Premium', 'HBO Max', 'Prime Video']
-        };
-
-        suggestionBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const combo = btn.dataset.combo;
-                const targets = COMBO_DEFINITIONS[combo];
-
-                if (targets) {
-                    // Reset all first
-                    checkboxes.forEach(cb => cb.checked = false);
-
-                    // Select targets
-                    checkboxes.forEach(cb => {
-                        if (targets.includes(cb.dataset.name)) cb.checked = true;
-                    });
-
-                    // Update UI (Calculation + Visual Sync)
-                    updateCombo();
-
-                    // Visual feedback animation
-                    btn.style.transform = 'scale(0.95)';
-                    setTimeout(() => btn.style.transform = '', 150);
-                }
-            });
-        });
 
         checkboxes.forEach(cb => {
             cb.addEventListener('change', updateCombo);
