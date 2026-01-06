@@ -596,6 +596,8 @@ section {
     gap: 1rem;
     border: 1px solid var(--medium-gray);
     position: relative;
+    min-width: 0;
+    /* Allow grid to control width, prevent content from expanding */
 }
 
 .platform-card:hover {
@@ -609,6 +611,8 @@ section {
     flex-direction: column;
     gap: 0.5rem;
     padding-bottom: 0.75rem;
+    height: 100%;
+    /* Ensure cards in same row have equal height */
 }
 
 .card-top-row {

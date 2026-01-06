@@ -1,0 +1,5 @@
+# Dependencies
+node_modules/
+
+# Package lock (optional - some prefer to commit it)
+package-lock.json

@@ -1,0 +1,13 @@
+{
+    "name": "dsorak",
+    "version": "1.0.0",
+    "description": "Plataformas de streaming",
+    "scripts": {
+        "minify": "terser script.js -o script.min.js --compress --mangle",
+        "minify:watch": "npx nodemon --watch script.js --exec \"npm run minify\"",
+        "build": "npm run minify"
+    },
+    "devDependencies": {
+        "terser": "^5.31.0"
+    }
+}

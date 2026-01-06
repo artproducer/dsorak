@@ -17,23 +17,24 @@ function copyPaymentNumber(btnElement) {
 
     const paymentNumber = numberElement.innerText;
 
-    // Copy to clipboard
-    const textArea = document.createElement('textarea');
-    textArea.value = paymentNumber;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
+    // Copy to clipboard using modern API
+    navigator.clipboard.writeText(paymentNumber).then(() => {
+        // Visual feedback on success
+        btnElement.classList.add('copied');
+        btnElement.innerHTML = '<span id="copyIcon">¡Copiado!</span>';
 
-    // Visual feedback
-    const originalText = btnElement.innerHTML;
-    btnElement.classList.add('copied');
-    btnElement.innerHTML = '<span id="copyIcon">¡Copiado!</span>';
-
-    setTimeout(() => {
-        btnElement.classList.remove('copied');
-        btnElement.innerHTML = '<span id="copyIcon">Copiar</span>';
-    }, 2000);
+        setTimeout(() => {
+            btnElement.classList.remove('copied');
+            btnElement.innerHTML = '<span id="copyIcon">Copiar</span>';
+        }, 2000);
+    }).catch(err => {
+        // Fallback for older browsers or if clipboard API fails
+        console.error('Error al copiar:', err);
+        btnElement.innerHTML = '<span id="copyIcon">Error</span>';
+        setTimeout(() => {
+            btnElement.innerHTML = '<span id="copyIcon">Copiar</span>';
+        }, 2000);
+    });
 }
 
 // ===== FAQ ACCORDION =====
@@ -450,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (count === 2) discount = 3000;
             else if (count === 3) discount = 5000;
             else if (count === 4) discount = 7000;
-            else if (count >= 5) discount = 12000;
+            else if (count >= 5) discount = 10000;
 
             let finalPrice = total > 0 ? total - discount : 0;
             if (finalPrice < 0) finalPrice = 0;

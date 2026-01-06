@@ -1,0 +1,72 @@
+{
+    "discounts": {
+        "profiles": {
+            "2": 3000,
+            "3+": 6000
+        },
+        "combo": {
+            "2": 3000,
+            "3": 5000,
+            "4": 7000,
+            "5+": 10000
+        }
+    },
+    "platforms": {
+        "netflix": {
+            "name": "Netflix",
+            "pricePerMonth": 6000
+        },
+        "disney_premium": {
+            "name": "Disney+ Premium",
+            "pricePerMonth": 8000
+        },
+        "disney_standard": {
+            "name": "Disney+ Estándar",
+            "pricePerMonth": 5000
+        },
+        "hbo_max": {
+            "name": "HBO Max",
+            "pricePerMonth": 5000
+        },
+        "prime_video": {
+            "name": "Prime Video",
+            "pricePerMonth": 5000
+        },
+        "paramount": {
+            "name": "Paramount+",
+            "pricePerMonth": 4000
+        },
+        "crunchyroll": {
+            "name": "Crunchyroll",
+            "pricePerMonth": 4000
+        },
+        "vix_premium": {
+            "name": "ViX Premium",
+            "pricePerMonth": 4000
+        },
+        "spotify": {
+            "name": "Spotify",
+            "pricePerMonth": 4000
+        },
+        "youtube_premium": {
+            "name": "YouTube Premium",
+            "pricing": {
+                "1_month": 7000,
+                "2_months": 12000,
+                "3_months": 16000
+            }
+        },
+        "canva_pro": {
+            "name": "Canva Pro",
+            "pricePerMonth": 4000
+        },
+        "gemini_ai": {
+            "name": "Gemini AI Pro",
+            "pricePerMonth": 8000
+        }
+    },
+    "metadata": {
+        "currency": "COP",
+        "lastUpdated": "2026-01-05"
+    }
+}
