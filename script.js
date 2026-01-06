@@ -96,7 +96,7 @@ function initQuantitySelectors() {
         let months = 1;
 
         function calculateDiscount(qty) {
-            if (qty === 2) return 3000;
+            if (qty === 2) return 2000;
             if (qty >= 3) return 6000;
             return 0;
         }
@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const count = selectedNames.length;
             let discount = 0;
 
-            if (count === 2) discount = 3000;
+            if (count === 2) discount = 2000;
             else if (count === 3) discount = 5000;
             else if (count === 4) discount = 7000;
             else if (count >= 5) discount = 10000;
