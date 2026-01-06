@@ -63,14 +63,6 @@
         <a href="#capturas" onclick="toggleMenu()">📸 Referencias</a>
         <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
     </div>
-
-    <!-- Hero Section Removed -->
-
-
-    <!-- Payment Info Banner Removed -->
-
-
-
     <!-- Plataformas Section -->
     <section id="plataformas">
         <div class="section-header">
@@ -149,8 +141,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Netflix -->
-            <div class="platform-card platform-card-v2" data-platform="Netflix" data-price-1m="16000">
+            <!-- Netflix (DISABLED) -->
+            <div class="platform-card platform-card-v2 platform-disabled" data-platform="Netflix" data-price-1m="16000">
                 <div class="price-corner">
                     <span class="price-amount">$16.000</span>
                     <span class="price-per-unit">$16.000/perfil</span>
@@ -165,6 +157,7 @@
 
                         </div>
                         <p class="platform-desc">Series, películas y documentales</p>
+                        <span class="disabled-badge">🚫 No disponible temporalmente</span>
                     </div>
                 </div>
                 <div class="card-bottom">
@@ -189,7 +182,7 @@
                                     d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
                             </svg> Garantía</span>
                         <span class="selection-badge">1 Mes • 1 Perfil</span>
-                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
+                        <span class="btn btn-disabled btn-compact">No disponible</span>
                     </div>
                 </div>
             </div>
@@ -953,11 +946,11 @@
                     <div class="custom-combo-selector">
                         <p class="selector-instruction">Selecciona manualmente:</p>
                         <div class="platform-checkboxes">
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="16000" data-name="Netflix" checked>
+                            <label class="platform-option platform-option-disabled">
+                                <input type="checkbox" data-price="16000" data-name="Netflix" disabled>
                                 <span class="checkmark">
                                     <img src="assets/images/netflix.png" alt="Netflix" class="platform-mini-logo">
-                                    <span class="platform-name-text">Netflix ($16k)</span>
+                                    <span class="platform-name-text">Netflix (No disponible)</span>
                                 </span>
                             </label>
                             <label class="platform-option">
@@ -1191,7 +1184,10 @@
                 <div class="faq-answer">
                     <div class="faq-answer-content">
                         ¡Sí! Todas nuestras cuentas tienen garantía por el tiempo contratado. Si tienes algún problema,
-                        te lo solucionamos lo mas pronto posible.
+                        te lo solucionamos lo mas pronto posible. En caso de que no sea posible resolver el
+                        inconveniente con la misma plataforma, <strong>podrás elegir otra plataforma disponible</strong>
+                        como reemplazo. ¡Tu satisfacción es nuestra prioridad! <br><br>
+                        <em>Nota: No realizamos reembolsos de dinero, únicamente reemplazos de plataforma.</em>
                     </div>
                 </div>
             </div>
