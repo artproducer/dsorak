@@ -609,8 +609,8 @@ section {
 
 /* Botón CREAR COMBO - Estilo Píldora Pequeña */
 .btn-crear-combo {
-    background: #0a0f1d !important;
-    /* Mismo color que tarjeta de pagos */
+    background: #0d4f5c !important;
+    /* Cian oscuro */
     color: #ffffff !important;
     border: none !important;
     padding: 0.9rem 2.2rem !important;
@@ -1393,8 +1393,8 @@ footer {
 /* ===== PAYMENT INFO CARD ===== */
 /* ===== PAYMENT INFO CARD ===== */
 .payment-info-card {
-    background: #0d4f5c;
-    /* Cian oscuro */
+    background: #0a0f1d;
+    /* Azul profundo */
     /* Suavizado (menos oscuro que el anterior) */
     padding: 0.75rem 2.5rem;
     border-radius: var(--radius-md);
