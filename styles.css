@@ -840,10 +840,11 @@ section {
     font-weight: 700;
     color: var(--secondary);
     /* Color unificado con Garantía */
-    background: rgba(46, 196, 182, 0.05);
-    /* Fondo suave de var(--secondary) */
+    background: rgba(46, 196, 182, 0.12);
+    /* Fondo más fuerte (antes 0.05) */
     padding: 0 0.8rem !important;
-    border: 1px dashed rgba(46, 196, 182, 0.3) !important;
+    border: 1.5px solid rgba(46, 196, 182, 0.4) !important;
+    /* Borde sólido y más grueso */
     white-space: nowrap;
 }
 
@@ -1392,8 +1393,8 @@ footer {
 /* ===== PAYMENT INFO CARD ===== */
 /* ===== PAYMENT INFO CARD ===== */
 .payment-info-card {
-    background: #1e293b;
-    /* Darker background for contrast */
+    background: #01030e;
+    /* Color ultra-oscuro estilo HBO Max */
     padding: 0.75rem 2.5rem;
     border-radius: var(--radius-md);
     margin: 0.5rem auto 1rem;
@@ -1403,9 +1404,9 @@ footer {
     align-items: center;
     gap: 1rem;
     color: white;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.5s ease-out;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
 }
 
