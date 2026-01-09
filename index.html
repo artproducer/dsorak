@@ -44,7 +44,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#plataformas">🎬 Plataformas</a></li>
-                <li><a href="#combos">🎁 Combos</a></li>
+                <li><a href="javascript:void(0)" onclick="openComboModal()">🎁 Combos</a></li>
                 <li><a href="#capturas">📸 Referencias</a></li>
                 <li><a href="#faq">? FAQ</a></li>
             </ul>
@@ -60,7 +60,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <span class="close-menu" onclick="toggleMenu()">?</span>
         <a href="#plataformas" onclick="toggleMenu()">🎬 Plataformas</a>
-        <a href="#combos" onclick="toggleMenu()">🎁 Combos</a>
+        <a href="javascript:void(0)" onclick="openComboModal(); toggleMenu()">🎁 Combos</a>
         <a href="#capturas" onclick="toggleMenu()">📸 Referencias</a>
         <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
     </div>
@@ -111,8 +111,7 @@
                             <h3 class="platform-name">Disney+ Premium</h3>
 
                         </div>
-                        <p class="platform-desc">Sin anuncios, Deportes en VIVO, Marvel, Hulu, Pixar, NatGeo, ESPN y
-                            eventos exclusivos</p>
+                        <p class="platform-desc">Sin anuncios, Deportes en VIVO, Marvel, Hulu, Pixar, NatGeo, ESPN.</p>
                     </div>
                 </div>
                 <div class="card-bottom">
@@ -963,7 +962,7 @@
                         </div>
                         <div class="platform-info">
                             <div class="platform-header-row">
-                                <h3 class="platform-name">Combo Personalizado</h3>
+                                <h3 class="platform-name">Mi Combo</h3>
                             </div>
                             <span class="combo-savings">💰 Selecciona 2+ para descuento</span>
                         </div>
@@ -1277,7 +1276,7 @@
                 <h4>Enlaces Rápidos</h4>
                 <ul>
                     <li><a href="#plataformas">Plataformas</a></li>
-                    <li><a href="#combos">Combos</a></li>
+                    <li><a href="javascript:void(0)" onclick="openComboModal()">Combos</a></li>
                     <li><a href="#capturas">Referencias</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
