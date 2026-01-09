@@ -1328,6 +1328,19 @@ footer {
     box-shadow: var(--shadow-md);
     animation: fadeIn 0.5s ease-out;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    /* Indicar clic-to-copy */
+    transition: all 0.3s ease;
+}
+
+.payment-info-card:hover {
+    background: #2d3748;
+    transform: translateY(-2px);
+}
+
+.payment-info-card.copied {
+    border-color: #2ecc71 !important;
+    background: #064e3b !important;
 }
 
 .payment-info-card .payment-label {
@@ -2019,8 +2032,9 @@ footer {
     width: 95%;
     max-height: 90vh;
     overflow-y: auto;
+    overflow-x: hidden;
+    /* Eliminar scroll horizontal */
     padding: 2.5rem 2rem;
-    /* Aumentado padding superior */
     position: relative;
     animation: modalSlideIn 0.3s ease-out;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);

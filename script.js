@@ -37,13 +37,11 @@ document.addEventListener('keydown', function (e) {
 });
 
 // ===== COPY PAYMENT NUMBER =====
-function copyPaymentNumber(btnElement) {
-    // Find the number span relative to the button (sibling or within the same container)
-    // If passed element is not valid, try to fall back to global ID only if necessary or just return
-    if (!btnElement) return;
+function copyPaymentNumber(element) {
+    if (!element) return;
 
-    const container = btnElement.closest('.payment-info-card') || btnElement.closest('.payment-content');
-    const numberElement = container ? (container.querySelector('.payment-number') || container.querySelector('#paymentNumber')) : document.getElementById('paymentNumber');
+    const container = element.classList.contains('payment-info-card') ? element : element.closest('.payment-info-card');
+    const numberElement = container ? container.querySelector('.payment-number') : document.getElementById('paymentNumber');
 
     if (!numberElement) return;
 
@@ -52,20 +50,20 @@ function copyPaymentNumber(btnElement) {
     // Copy to clipboard using modern API
     navigator.clipboard.writeText(paymentNumber).then(() => {
         // Visual feedback on success
-        btnElement.classList.add('copied');
-        btnElement.innerHTML = '<span id="copyIcon">¡Copiado!</span>';
+        container.classList.add('copied');
+        const feedbackEl = container.querySelector('.payment-number') || container;
+        const originalText = feedbackEl.innerText;
 
-        setTimeout(() => {
-            btnElement.classList.remove('copied');
-            btnElement.innerHTML = '<span id="copyIcon">Copiar</span>';
-        }, 2000);
+        // Show temporary feedback text
+        if (container.querySelector('.payment-number')) {
+            feedbackEl.innerText = '¡Número Copiado!';
+            setTimeout(() => {
+                feedbackEl.innerText = paymentNumber;
+                container.classList.remove('copied');
+            }, 2000);
+        }
     }).catch(err => {
-        // Fallback for older browsers or if clipboard API fails
         console.error('Error al copiar:', err);
-        btnElement.innerHTML = '<span id="copyIcon">Error</span>';
-        setTimeout(() => {
-            btnElement.innerHTML = '<span id="copyIcon">Copiar</span>';
-        }, 2000);
     });
 }
 
