@@ -2043,6 +2043,11 @@ footer {
     border-radius: 20px;
 }
 
+/* Ocultar flechas de scroll que sobresalen */
+.combo-modal-content::-webkit-scrollbar-button {
+    display: none;
+}
+
 @keyframes modalSlideIn {
     from {
         opacity: 0;
