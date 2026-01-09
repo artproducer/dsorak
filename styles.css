@@ -838,7 +838,8 @@ section {
 .combo-ultimate .combo-savings {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--secondary);
+    color: #0d4f5c;
+    /* Cian oscuro */
     /* Color unificado con Garantía */
     background: rgba(46, 196, 182, 0.12);
     /* Fondo más fuerte (antes 0.05) */
