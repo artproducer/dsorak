@@ -592,84 +592,65 @@ section {
     }
 }
 
-/* Pointer hand animation for mobile */
-@keyframes cursorMove {
-    0% {
-        left: 25%;
-        opacity: 0;
-        transform: translateX(-50%) translateY(0);
-    }
-
-    8% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-
-    15% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-
-    22% {
-        transform: translateX(-50%) translateY(0);
-    }
-
-    45% {
-        left: 25%;
-        opacity: 1;
-    }
-
-    55% {
-        left: 75%;
-        opacity: 1;
-    }
-
-    62% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-
-    70% {
-        transform: translateX(-50%) translateY(0);
-    }
-
-    90% {
-        left: 75%;
-        opacity: 1;
-    }
-
-    100% {
-        left: 75%;
-        opacity: 0;
-    }
-}
-
-.section-nav-buttons {
+/* Botón CREAR COMBO Premium */
+.btn-crear-combo {
+    background: linear-gradient(135deg, #166fc2 0%, #2EC4B6 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 1rem 2.5rem !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 8px 25px rgba(22, 111, 194, 0.4) !important;
     position: relative;
+    overflow: hidden;
 }
 
-.click-hint {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    transform: translateX(-50%);
-    width: 28px;
-    height: 28px;
-    color: #d4a600;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    animation: cursorMove 3s ease-in-out forwards;
-    pointer-events: none;
-    z-index: 10;
+.btn-crear-combo:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 0 12px 35px rgba(22, 111, 194, 0.5) !important;
 }
 
-.click-hint svg {
-    width: 100%;
-    height: 100%;
+.arrow-anim {
+    display: inline-block;
+    animation: arrowMove 1.5s infinite;
 }
 
-@media (max-width: 768px) {
-    .click-hint {
-        display: block;
+.arrow-anim.reverse {
+    animation-direction: reverse;
+    display: inline-block;
+    transform: rotate(180deg);
+}
+
+@keyframes arrowMove {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        opacity: 1;
     }
+
+    50% {
+        transform: translateX(5px);
+        opacity: 0.5;
+    }
+}
+
+@keyframes arrowMoveReverse {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(180deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateX(-5px) rotate(180deg);
+        opacity: 0.5;
+    }
+}
+
+.btn-crear-combo .arrow-anim.reverse {
+    animation: arrowMoveReverse 1.5s infinite;
 }
 
 .section-nav-btn {
