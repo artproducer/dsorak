@@ -609,8 +609,8 @@ section {
 
 /* Botón CREAR COMBO - Estilo Píldora Pequeña */
 .btn-crear-combo {
-    background: #334155 !important;
-    /* Gris slate oscuro - elegante */
+    background: #2ecc71 !important;
+    /* Verde de los selectores */
     color: #ffffff !important;
     border: none !important;
     padding: 0.9rem 2.2rem !important;
@@ -618,15 +618,15 @@ section {
     font-weight: 700 !important;
     letter-spacing: 0.5px !important;
     border-radius: 50px !important;
-    box-shadow: 0 4px 15px rgba(51, 65, 85, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.35) !important;
     cursor: pointer;
     transition: all 0.3s ease !important;
 }
 
 .btn-crear-combo:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 18px rgba(51, 65, 85, 0.4) !important;
-    background: #475569 !important;
+    box-shadow: 0 6px 18px rgba(46, 204, 113, 0.45) !important;
+    background: #27ae60 !important;
 }
 
 .arrow-anim {
