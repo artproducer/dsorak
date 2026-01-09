@@ -76,16 +76,6 @@ function copyPaymentNumber(element) {
         const numberEl = container.querySelector('.payment-number');
         const btnCopy = container.querySelector('.btn-copy');
 
-        // Update number text temporarily
-        if (numberEl) {
-            const originalNumber = numberEl.innerText;
-            numberEl.innerText = '¡Copiado!';
-            setTimeout(() => {
-                numberEl.innerText = originalNumber;
-                container.classList.remove('copied');
-            }, 2000);
-        }
-
         // Update button state
         if (btnCopy) {
             btnCopy.classList.add('copied');
@@ -94,6 +84,7 @@ function copyPaymentNumber(element) {
             setTimeout(() => {
                 btnCopy.innerHTML = originalBtnHtml;
                 btnCopy.classList.remove('copied');
+                container.classList.remove('copied');
             }, 2000);
         }
     }).catch(err => {
