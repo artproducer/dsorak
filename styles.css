@@ -833,7 +833,7 @@ section {
     font-size: 0.85rem;
     font-weight: 700;
     color: #28a745;
-    /* Color verde restaurado */
+    /* Color verde de Garantía */
     background: rgba(40, 167, 69, 0.05);
     /* Fondo verde suave */
     padding: 0.4rem 0.8rem;
@@ -1145,8 +1145,10 @@ section {
 }
 
 .combo-card .btn.btn-compact {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    /* Padding aumentado también */
+    font-size: 1rem;
+    /* Fuente más grande */
     white-space: nowrap;
     width: auto;
     flex-shrink: 0;

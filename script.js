@@ -29,7 +29,7 @@ function openComboModal() {
                         top: 0,
                         behavior: 'smooth'
                     });
-                }, 1500); // Retorno más pausado
+                }, 600); // Retorno más ágil
             }, 800); // Esperar un poco más para que la transición del modal sea fluida
         }
     }
