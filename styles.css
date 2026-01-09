@@ -609,30 +609,24 @@ section {
 
 /* Botón CREAR COMBO - Estilo Píldora Pequeña */
 .btn-crear-combo {
-    background: #1e293b !important;
-    color: #cbd5e1 !important;
-    /* Plateado claro */
-    border: 2px solid #94a3b8 !important;
-    padding: 0.6rem 1.8rem !important;
-    /* Más pequeño */
-    font-size: 0.95rem !important;
-    /* Fuente reducida */
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 0.9rem 2.2rem !important;
+    /* Un poco más grande para destacar */
+    font-size: 1.1rem !important;
     font-weight: 700 !important;
-    letter-spacing: 1px !important;
+    letter-spacing: 0.5px !important;
     border-radius: 50px !important;
-    /* Bordes muy redondeados (pill) */
-    box-shadow: 0 8px 20px rgba(30, 41, 59, 0.3) !important;
+    box-shadow: 0 8px 25px rgba(22, 101, 175, 0.4) !important;
     cursor: pointer;
     transition: all 0.3s ease !important;
 }
 
 .btn-crear-combo:hover {
-    background: #2a3a52 !important;
-    /* Un poco más claro al hover */
-    color: #ffffff !important;
-    border-color: #cbd5e1 !important;
-    transform: scale(1.05) !important;
-    box-shadow: 0 10px 25px rgba(30, 41, 59, 0.4) !important;
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 12px 30px rgba(22, 101, 175, 0.5) !important;
+    filter: brightness(1.1);
 }
 
 .arrow-anim {
@@ -844,10 +838,12 @@ section {
 .combo-ultimate .combo-savings {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #28a745;
-    background: rgba(40, 167, 69, 0.05);
+    color: var(--secondary);
+    /* Color unificado con Garantía */
+    background: rgba(46, 196, 182, 0.05);
+    /* Fondo suave de var(--secondary) */
     padding: 0 0.8rem !important;
-    border: 1px dashed rgba(40, 167, 69, 0.3) !important;
+    border: 1px dashed rgba(46, 196, 182, 0.3) !important;
     white-space: nowrap;
 }
 
