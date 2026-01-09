@@ -4,6 +4,38 @@ function toggleMenu() {
     menu.classList.toggle('active');
 }
 
+// ===== COMBO MODAL =====
+function openComboModal() {
+    const modal = document.getElementById('combo-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+}
+
+function closeComboModal() {
+    const modal = document.getElementById('combo-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+}
+
+// Close modal when clicking outside content
+document.addEventListener('click', function (e) {
+    const modal = document.getElementById('combo-modal');
+    if (e.target === modal) {
+        closeComboModal();
+    }
+});
+
+// Close modal with ESC key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeComboModal();
+    }
+});
+
 // ===== COPY PAYMENT NUMBER =====
 function copyPaymentNumber(btnElement) {
     // Find the number span relative to the button (sibling or within the same container)

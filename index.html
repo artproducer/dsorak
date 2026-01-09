@@ -46,7 +46,7 @@
                 <li><a href="#plataformas">🎬 Plataformas</a></li>
                 <li><a href="#combos">🎁 Combos</a></li>
                 <li><a href="#capturas">📸 Referencias</a></li>
-                <li><a href="#faq">❓ FAQ</a></li>
+                <li><a href="#faq">? FAQ</a></li>
             </ul>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
@@ -58,7 +58,7 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <span class="close-menu" onclick="toggleMenu()">✕</span>
+        <span class="close-menu" onclick="toggleMenu()">?</span>
         <a href="#plataformas" onclick="toggleMenu()">🎬 Plataformas</a>
         <a href="#combos" onclick="toggleMenu()">🎁 Combos</a>
         <a href="#capturas" onclick="toggleMenu()">📸 Referencias</a>
@@ -68,7 +68,7 @@
     <section id="plataformas">
         <div class="section-header">
             <div class="section-nav-buttons">
-                <a href="#combos" class="section-nav-btn">🎁 Combos</a>
+                <button onclick="openComboModal()" class="section-nav-btn">🎁 Armar mi combo</button>
                 <div class="click-hint">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path
@@ -119,13 +119,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -163,13 +163,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -208,13 +208,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -252,13 +252,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -299,13 +299,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -344,13 +344,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -388,13 +388,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -432,13 +432,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -476,13 +476,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -520,13 +520,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -564,13 +564,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -608,13 +608,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -652,13 +652,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -697,13 +697,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -742,13 +742,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -787,13 +787,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -831,7 +831,7 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Cuentas</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -870,13 +870,13 @@
                     <div class="selectors-row-full">
                         <div class="quantity-selector">
                             <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">−</button>
+                            <button class="qty-btn month-minus">-</button>
                             <span class="qty-value month-value">1</span>
                             <button class="qty-btn month-plus">+</button>
                         </div>
                         <div class="quantity-selector">
                             <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">−</button>
+                            <button class="qty-btn qty-minus">-</button>
                             <span class="qty-value">1</span>
                             <button class="qty-btn qty-plus">+</button>
                         </div>
@@ -927,200 +927,207 @@
     </section>
 
     <!-- Combos Section -->
-    <section id="combos">
-        <div class="section-header">
-            <h2>🎁 Combos Especiales</h2>
-            <p>Ahorra más combinando tus plataformas favoritas</p>
-            <div class="payment-info-card">
-                <span class="payment-label">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                        <line x1="1" y1="10" x2="23" y2="10"></line>
-                    </svg>
-                    Daviplata • Nequi • Llave:
-                </span>
-                <div class="payment-group">
-                    <span class="payment-number">3005965404</span>
-                    <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
-                        <span>Copiar</span>
-                    </button>
+    <!-- Combo Modal -->
+    <div id="combo-modal" class="combo-modal">
+        <div class="combo-modal-content">
+            <button class="combo-modal-close" onclick="closeComboModal()">&times;</button>
+            <div class="section-header">
+                <h2>🎁 Arma tu Combo</h2>
+                <p>Ahorra más combinando tus plataformas favoritas</p>
+                <div class="payment-info-card">
+                    <span class="payment-label">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                        Daviplata • Nequi • Llave:
+                    </span>
+                    <div class="payment-group">
+                        <span class="payment-number">3005965404</span>
+                        <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
+                            <span>Copiar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="combos-grid">
+                <!-- Combo Ultimate (Customizable) -->
+                <div id="comboscustom" class="platform-card platform-card-v2 combo-ultimate featured">
+                    <div class="price-corner">
+                        <span class="price-amount" id="ultimate-price">$16.000</span>
+                    </div>
+                    <div class="card-top-row">
+                        <div class="platform-icon">
+                            <div class="combo-icon-stack">🎁</div>
+                        </div>
+                        <div class="platform-info">
+                            <div class="platform-header-row">
+                                <h3 class="platform-name">Combo Personalizado</h3>
+                            </div>
+                            <span class="combo-savings">💰 Selecciona 2+ para descuento</span>
+                        </div>
+                    </div>
+                    <div class="combo-body-content">
+                        <div class="card-bottom" style="margin-top: 1rem;">
+                            <div class="platform-footer-row">
+                                <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                                    </svg> Garantía</span>
+                                <a href="javascript:void(0)" id="btn-ultimate"
+                                    class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="custom-combo-selector">
+                            <p class="selector-instruction">Selecciona manualmente:</p>
+                            <div class="platform-checkboxes">
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="16000" data-name="Netflix">
+                                    <span class="checkmark">
+                                        <img src="assets/images/netflix.png" alt="Netflix" class="platform-mini-logo">
+                                        <span class="platform-name-text">Netflix ($16k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="Disney+ Premium">
+                                    <span class="checkmark">
+                                        <img src="assets/images/disney-plus.png" alt="Disney+"
+                                            class="platform-mini-logo">
+                                        <span class="platform-name-text">Disney+ Prem ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="HBO Max">
+                                    <span class="checkmark">
+                                        <img src="assets/images/hbo-max.png" alt="HBO" class="platform-mini-logo">
+                                        <span class="platform-name-text">HBO Max ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="Prime Video">
+                                    <span class="checkmark">
+                                        <img src="assets/images/prime-video.png" alt="Prime" class="platform-mini-logo">
+                                        <span class="platform-name-text">Prime Video ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="Spotify">
+                                    <span class="checkmark">
+                                        <img src="assets/images/spotify.png" alt="Spotify" class="platform-mini-logo">
+                                        <span class="platform-name-text">Spotify ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="5000" data-name="Disney+ Standard">
+                                    <span class="checkmark">
+                                        <img src="assets/images/disney-plus.png" alt="Disney+"
+                                            class="platform-mini-logo">
+                                        <span class="platform-name-text">Disney+ Std ($5k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="7000" data-name="YouTube Premium">
+                                    <span class="checkmark">
+                                        <img src="assets/images/youtube-premium.png" alt="YouTube"
+                                            class="platform-mini-logo">
+                                        <span class="platform-name-text">YouTube ($7k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="7000" data-name="Paramount+">
+                                    <span class="checkmark">
+                                        <img src="assets/images/paramount-plus.png" alt="Paramount"
+                                            class="platform-mini-logo">
+                                        <span class="platform-name-text">Paramount+ ($7k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="7000" data-name="Crunchyroll">
+                                    <span class="checkmark">
+                                        <img src="assets/images/crunchyroll.png" alt="Crunchyroll"
+                                            class="platform-mini-logo">
+                                        <span class="platform-name-text">Crunchyroll ($7k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="Apple TV+">
+                                    <span class="checkmark">
+                                        <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
+                                        <span class="platform-name-text">Apple TV+ ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="10000" data-name="IPTV Premium">
+                                    <span class="checkmark">
+                                        <img src="assets/images/iptv.png" alt="IPTV" class="platform-mini-logo">
+                                        <span class="platform-name-text">IPTV ($10k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="Plex">
+                                    <span class="checkmark">
+                                        <img src="assets/images/plex.png" alt="Plex" class="platform-mini-logo">
+                                        <span class="platform-name-text">Plex ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="Canva Pro">
+                                    <span class="checkmark">
+                                        <img src="assets/images/canva.png" alt="Canva" class="platform-mini-logo">
+                                        <span class="platform-name-text">Canva ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="10000" data-name="Gemini AI Pro">
+                                    <span class="checkmark">
+                                        <img src="assets/images/gemini.png" alt="Gemini" class="platform-mini-logo">
+                                        <span class="platform-name-text">Gemini AI ($10k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="10000" data-name="ChatGPT Go">
+                                    <span class="checkmark">
+                                        <img src="assets/images/chatgpt.png" alt="ChatGPT" class="platform-mini-logo">
+                                        <span class="platform-name-text">ChatGPT ($10k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="7000" data-name="VIX Premium">
+                                    <span class="checkmark">
+                                        <img src="assets/images/vix.png" alt="VIX" class="platform-mini-logo">
+                                        <span class="platform-name-text">VIX ($7k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option platform-disabled">
+                                    <input type="checkbox" data-price="8000" data-name="Viki Rakuten">
+                                    <span class="checkmark">
+                                        <img src="assets/images/viki.png" alt="Viki" class="platform-mini-logo">
+                                        <span class="platform-name-text">Viki ($8k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="30000" data-name="Microsoft Office">
+                                    <span class="checkmark">
+                                        <img src="assets/images/office.png" alt="Office" class="platform-mini-logo">
+                                        <span class="platform-name-text">Office ($30k)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" data-price="15000" data-name="CapCut Pro">
+                                    <span class="checkmark">
+                                        <img src="assets/images/capcut.png" alt="CapCut" class="platform-mini-logo">
+                                        <span class="platform-name-text">CapCut Pro ($15k)</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="combos-grid">
-            <!-- Combo Ultimate (Customizable) -->
-            <div id="comboscustom" class="platform-card platform-card-v2 combo-ultimate featured">
-                <div class="price-corner">
-                    <span class="price-amount" id="ultimate-price">$16.000</span>
-                </div>
-                <div class="card-top-row">
-                    <div class="platform-icon">
-                        <div class="combo-icon-stack">🎁</div>
-                    </div>
-                    <div class="platform-info">
-                        <div class="platform-header-row">
-                            <h3 class="platform-name">Combo Personalizado</h3>
-                        </div>
-                        <span class="combo-savings">💰 Selecciona 2+ para descuento</span>
-                    </div>
-                </div>
-                <div class="combo-body-content">
-                    <div class="card-bottom" style="margin-top: 1rem;">
-                        <div class="platform-footer-row">
-                            <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path
-                                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-                                </svg> Garantía</span>
-                            <a href="javascript:void(0)" id="btn-ultimate" class="btn btn-danger btn-buy btn-compact"
-                                target="_blank">Comprar</a>
-                        </div>
-                    </div>
-                    <div class="custom-combo-selector">
-                        <p class="selector-instruction">Selecciona manualmente:</p>
-                        <div class="platform-checkboxes">
-                            <label class="platform-option">\r
-                                <input type="checkbox" data-price="16000" data-name="Netflix">\r
-                                <span class="checkmark">\r
-                                    <img src="assets/images/netflix.png" alt="Netflix" class="platform-mini-logo">\r
-                                    <span class="platform-name-text">Netflix ($16k)</span>\r
-                                </span>\r
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="8000" data-name="Disney+ Premium">
-                                <span class="checkmark">
-                                    <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
-                                    <span class="platform-name-text">Disney+ Prem ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="5000" data-name="Disney+ Standard">
-                                <span class="checkmark">
-                                    <img src="assets/images/disney-plus.png" alt="Disney+" class="platform-mini-logo">
-                                    <span class="platform-name-text">Disney+ Std ($5k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="8000" data-name="HBO Max">
-                                <span class="checkmark">
-                                    <img src="assets/images/hbo-max.png" alt="HBO" class="platform-mini-logo">
-                                    <span class="platform-name-text">HBO Max ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="8000" data-name="Prime Video">
-                                <span class="checkmark">
-                                    <img src="assets/images/prime-video.png" alt="Prime" class="platform-mini-logo">
-                                    <span class="platform-name-text">Prime Video ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="8000" data-name="Spotify">
-                                <span class="checkmark">
-                                    <img src="assets/images/spotify.png" alt="Spotify" class="platform-mini-logo">
-                                    <span class="platform-name-text">Spotify ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="7000" data-name="YouTube Premium">
-                                <span class="checkmark">
-                                    <img src="assets/images/youtube-premium.png" alt="YouTube"
-                                        class="platform-mini-logo">
-                                    <span class="platform-name-text">YouTube ($7k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="7000" data-name="Paramount+">
-                                <span class="checkmark">
-                                    <img src="assets/images/paramount-plus.png" alt="Paramount"
-                                        class="platform-mini-logo">
-                                    <span class="platform-name-text">Paramount+ ($7k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="7000" data-name="Crunchyroll">
-                                <span class="checkmark">
-                                    <img src="assets/images/crunchyroll.png" alt="Crunchyroll"
-                                        class="platform-mini-logo">
-                                    <span class="platform-name-text">Crunchyroll ($7k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="8000" data-name="Apple TV+">
-                                <span class="checkmark">
-                                    <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
-                                    <span class="platform-name-text">Apple TV+ ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="10000" data-name="IPTV Premium">
-                                <span class="checkmark">
-                                    <img src="assets/images/iptv.png" alt="IPTV" class="platform-mini-logo">
-                                    <span class="platform-name-text">IPTV ($10k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="8000" data-name="Plex">
-                                <span class="checkmark">
-                                    <img src="assets/images/plex.png" alt="Plex" class="platform-mini-logo">
-                                    <span class="platform-name-text">Plex ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="8000" data-name="Canva Pro">
-                                <span class="checkmark">
-                                    <img src="assets/images/canva.png" alt="Canva" class="platform-mini-logo">
-                                    <span class="platform-name-text">Canva ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="10000" data-name="Gemini AI Pro">
-                                <span class="checkmark">
-                                    <img src="assets/images/gemini.png" alt="Gemini" class="platform-mini-logo">
-                                    <span class="platform-name-text">Gemini AI ($10k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="10000" data-name="ChatGPT Go">
-                                <span class="checkmark">
-                                    <img src="assets/images/chatgpt.png" alt="ChatGPT" class="platform-mini-logo">
-                                    <span class="platform-name-text">ChatGPT ($10k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="7000" data-name="VIX Premium">
-                                <span class="checkmark">
-                                    <img src="assets/images/vix.png" alt="VIX" class="platform-mini-logo">
-                                    <span class="platform-name-text">VIX ($7k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option platform-disabled">
-                                <input type="checkbox" data-price="8000" data-name="Viki Rakuten">
-                                <span class="checkmark">
-                                    <img src="assets/images/viki.png" alt="Viki" class="platform-mini-logo">
-                                    <span class="platform-name-text">Viki ($8k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="30000" data-name="Microsoft Office">
-                                <span class="checkmark">
-                                    <img src="assets/images/office.png" alt="Office" class="platform-mini-logo">
-                                    <span class="platform-name-text">Office ($30k)</span>
-                                </span>
-                            </label>
-                            <label class="platform-option">
-                                <input type="checkbox" data-price="15000" data-name="CapCut Pro">
-                                <span class="checkmark">
-                                    <img src="assets/images/capcut.png" alt="CapCut" class="platform-mini-logo">
-                                    <span class="platform-name-text">CapCut Pro ($15k)</span>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </section>
+    </div>
 
     <section id="capturas">
         <div class="section-header">
@@ -1163,10 +1170,10 @@
                 </ul>
             </div>
             <button class="carousel-button carousel-button--left is-hidden">
-                ❮
+                ?
             </button>
             <button class="carousel-button carousel-button--right">
-                ❯
+                ?
             </button>
 
             <div class="carousel-nav">
@@ -1189,7 +1196,7 @@
 
     <section id="faq">
         <div class="section-header">
-            <h2>❓ Preguntas Frecuentes</h2>
+            <h2>? Preguntas Frecuentes</h2>
             <p>Resolvemos tus dudas más comunes</p>
         </div>
         <div class="faq-container">
@@ -1200,7 +1207,8 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        Una vez realices el pago, te enviamos las credenciales de acceso a tu WhatsApp en menos de 5
+                        Una vez realices el pago, te enviamos las credenciales de acceso a tu WhatsApp en
+                        menos de 5
                         minutos. Podrás acceder desde cualquier dispositivo compatible con la plataforma.
                     </div>
                 </div>
@@ -1212,8 +1220,8 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        Aceptamos Nequi, Daviplata, Dale, Llave, Binance,
-                        También aceptamos criptomonedas.
+                        Aceptamos Nequi, Daviplata, Dale, Movii y transferencias bancarias. También aceptamos
+                        criptomonedas (Binance Pay).
                     </div>
                 </div>
             </div>
@@ -1225,51 +1233,22 @@
                 <div class="faq-answer">
                     <div class="faq-answer-content">
                         ¡Sí! Todas nuestras cuentas tienen garantía por el tiempo contratado. Si tienes algún problema,
-                        te lo solucionamos lo mas pronto posible. En caso de que no sea posible resolver el
+                        te lo solucionamos lo más pronto posible. En caso de que no sea posible resolver el
                         inconveniente con la misma plataforma, <strong>podrás elegir otra plataforma disponible</strong>
-                        como reemplazo. ¡Tu satisfacción es nuestra prioridad! <br><br>
-                        <em>Nota: No realizamos reembolsos de dinero, únicamente reemplazos de plataforma.</em>
+                        como reemplazo.
                     </div>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>¿Puedo usar la cuenta en varios dispositivos?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Dependiendo del plan, puedes usar la cuenta en 1 o más dispositivos simultáneamente. Te
-                        indicamos las condiciones específicas al momento de la compra.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item" id="faq-reseller">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     <span>¿Puedo ser distribuidor y generar ingresos?</span>
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        ¡Por supuesto! 🚀 Ponemos a tu disposición <strong>cuentas completas y pantallas a precios
-                            mayoristas</strong> (más cómodos) para que puedas distribuir y <strong>generar tus propios
-                            ingresos</strong>. 💰
-                        <br><br>
-                        La única condición para mantener estos precios de proveedor es sostener un cierto volumen de
-                        ventas mensual. Sin embargo, entendemos que todo comienzo es un reto, por lo que <strong>somos
-                            muy flexibles</strong> con quienes están empezando. ¡Contáctanos y crece con nosotros! 🤝
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>¿Qué pasa si mi cuenta deja de funcionar?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Contáctanos inmediatamente por WhatsApp y te proporcionaremos una nueva cuenta sin costo
-                        adicional. Nuestro soporte está disponible 24/7.
+                        ¡Por supuesto! ✅ Ponemos a tu disposición <strong>cuentas completas y pantallas a precios de
+                            mayorista</strong> para que puedas revender y obtener excelentes márgenes de ganancias.
+                        ¡Contáctanos y crece con nosotros! 🤝
                     </div>
                 </div>
             </div>
@@ -1278,9 +1257,9 @@
 
     <!-- Promo Banner -->
     <div class="promo-banner">
-        <p>📢 ¿Quieres generar ingresos extra? <a
-                href="https://wa.me/573005965404?text=Quiero%20vender.%20Solicito%20precios%20para%20distribuidores%20y%20condiciones."
-                target="_blank">¡También quiero vender!</a></p>
+        <p>💼 ¿Quieres generar ingresos extra? <a
+                href="https://wa.me/573005965404?text=Quiero%20mismo%20ser%20distribuidor" target="_blank">¡Conviértete
+                en distribuidor hoy mismo!</a></p>
     </div>
 
     <!-- Footer -->
@@ -1291,7 +1270,8 @@
                     <span class="streaming-text">Streaming</span>
                     <span class="brand-text">DSORAK</span>
                 </a>
-                <p>Tu tienda de confianza para streaming premium. Entretenimiento sin límites a precios increíbles.</p>
+                <p>Tu tienda de confianza para streaming premium. Entretenimiento sin límites a precios
+                    increíbles.</p>
             </div>
             <div class="footer-links">
                 <h4>Enlaces Rápidos</h4>
@@ -1305,9 +1285,9 @@
             <div class="footer-links">
                 <h4>Contacto</h4>
                 <ul>
-                    <li><a href="https://wa.me/573005965404" target="_blank">📱 +57 300 596 5404</a></li>
-                    <li><a href="#">📍 Colombia</a></li>
-                    <li><a href="#">⏰ Soporte 24/7</a></li>
+                    <li><a href="https://wa.me/573005965404" target="_blank">📞 +57 300 596 5404</a></li>
+                    <li><a href="#">🇨🇴 Colombia</a></li>
+                    <li><a href="#">💬 Soporte 24/7</a></li>
                 </ul>
             </div>
         </div>
@@ -1334,7 +1314,7 @@
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
-    <script src="script.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
