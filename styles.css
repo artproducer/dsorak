@@ -397,6 +397,10 @@ nav {
     cursor: pointer;
     user-select: none;
     display: block;
+    width: 100%;
+    /* Asegurar que la etiqueta ocupe todo el ancho */
+    margin-bottom: 0.35rem;
+    /* Separación pequeña entre rows */
 }
 
 .platform-option input {
@@ -2107,6 +2111,9 @@ footer {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    /* Estirar hijos al 100% */
 }
 
 .combo-modal-content .combo-ultimate {
@@ -2115,6 +2122,8 @@ footer {
     max-height: 100%;
     margin-bottom: 0;
     overflow: hidden;
+    width: 100%;
+    max-width: none;
 }
 
 .combo-modal-content .card-top-row {
@@ -2134,18 +2143,25 @@ footer {
     flex-direction: column;
     overflow: hidden;
     margin-top: 0.5rem;
+    width: 100%;
+    align-items: stretch;
 }
 
 .platform-checkboxes {
     flex: 1;
     overflow-y: scroll !important;
     /* Forzar scrollbar visible */
-    padding: 0.5rem;
+    padding: 0.5rem 0.25rem;
+    /* Padding lateral mínimo */
     margin: 0.5rem 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
     /* Borde un poco más marcado */
     border-radius: var(--radius-md);
     background: rgba(0, 0, 0, 0.03);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     scrollbar-width: auto;
     /* Volver a auto para mejor visibilidad */
     scrollbar-color: var(--primary) #cbd5e1;
