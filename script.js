@@ -10,6 +10,28 @@ function openComboModal() {
     if (modal) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+        // Animación de "peek" scroll en la lista de plataformas
+        const scrollList = modal.querySelector('.platform-checkboxes');
+        if (scrollList) {
+            scrollList.scrollTop = 0; // Reset inicial
+
+            setTimeout(() => {
+                // Baja un poco
+                scrollList.scrollTo({
+                    top: 80,
+                    behavior: 'smooth'
+                });
+
+                // Vuelve al inicio tras un breve momento
+                setTimeout(() => {
+                    scrollList.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }, 600);
+            }, 500); // Esperar a que el modal termine de abrirse
+        }
     }
 }
 
