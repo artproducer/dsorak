@@ -2201,7 +2201,7 @@ footer {
 
 .combo-modal-content .card-bottom {
     flex-shrink: 0;
-    padding-top: 1rem;
+    padding-top: 0.25rem;
     background: var(--light);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
