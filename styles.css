@@ -829,6 +829,14 @@ section {
     padding: 0;
 }
 
+.combo-ultimate .price-corner span {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    /* Altura fija unificada */
+    border-radius: 12px;
+}
+
 .combo-ultimate .combo-savings {
     font-size: 0.85rem;
     font-weight: 700;
@@ -836,10 +844,17 @@ section {
     /* Color verde de Garantía */
     background: rgba(40, 167, 69, 0.05);
     /* Fondo verde suave */
-    padding: 0.4rem 0.8rem;
-    border-radius: 12px;
-    border: 1px dashed rgba(40, 167, 69, 0.2);
+    padding: 0 0.8rem;
+    /* Padding lateral ya que la altura es fija */
+    border: 1px dashed rgba(40, 167, 69, 0.3);
     white-space: nowrap;
+}
+
+.combo-ultimate .price-amount {
+    font-size: 1.4rem;
+    padding: 0 1rem;
+    line-height: 1;
+    /* Reset para centrado flex */
 }
 
 @media (max-width: 600px) {
