@@ -805,20 +805,19 @@ section {
 
 /* Specific adjustment for combo-ultimate in modal */
 .combo-ultimate {
-    padding-top: 3.5rem !important;
-    /* Espacio para el precio absoluto */
+    padding-top: 2.8rem !important;
+    /* Reducido de 3.5rem */
     padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
     border: none !important;
-    /* Quitar borde para ganar espacio horizontal */
     background: transparent !important;
-    /* Quitar fondo extra */
     box-shadow: none !important;
 }
 
 .combo-ultimate .price-corner {
     position: absolute;
-    top: 1rem;
+    top: 0.6rem;
+    /* Más arriba */
     left: 1rem;
     right: 1rem;
     display: flex !important;
@@ -1145,7 +1144,8 @@ section {
 
 .combo-body-content {
     width: 100%;
-    margin-top: 0.5rem;
+    margin-top: 0;
+    /* Eliminar margen */
 }
 
 
@@ -2166,7 +2166,8 @@ footer {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin-top: 0.5rem;
+    margin-top: 0;
+    /* Eliminar margen */
     width: 100%;
     align-items: stretch;
 }
@@ -2177,7 +2178,8 @@ footer {
     /* Forzar scrollbar visible */
     padding: 0.5rem 0.75rem;
     /* Padding lateral aumentado para dar aire a las tarjetas */
-    margin: 0.5rem 0;
+    margin: 0;
+    /* Eliminar margen */
     border: 1px solid rgba(0, 0, 0, 0.1);
     /* Borde un poco más marcado */
     border-radius: var(--radius-md);
@@ -2327,7 +2329,7 @@ footer {
 }
 
 .combo-modal .section-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .combo-modal .section-header h2 {
@@ -2335,7 +2337,7 @@ footer {
 }
 
 .combo-modal .combos-grid {
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 .combo-modal .platform-card {
