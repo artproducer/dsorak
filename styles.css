@@ -2137,18 +2137,24 @@ footer {
     }
 
     .payment-info-card {
-        padding: 0.8rem 1.5rem !important;
-        /* Padding lateral corregido para que el texto no pegue */
+        padding: 0.8rem 0.5rem !important;
+        /* Padding reducido para ganar espacio horizontal */
         width: 95% !important;
         margin: 0.5rem auto 1.25rem !important;
-        flex-direction: column !important;
-        gap: 0.5rem !important;
-        text-align: center !important;
+        flex-direction: row !important;
+        /* Forzar una sola línea */
+        flex-wrap: nowrap !important;
+        gap: 0.4rem !important;
+        /* Gap reducido */
+        justify-content: center !important;
+        font-size: 0.85rem !important;
+        /* Fuente un poco más pequeña si es necesario */
     }
 
     .payment-info-card .payment-label {
         margin-right: 0 !important;
-        justify-content: center !important;
+        font-size: 0.85rem !important;
+        white-space: nowrap !important;
     }
 
     .combo-modal-close {
