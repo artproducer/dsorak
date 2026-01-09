@@ -82,7 +82,7 @@ function initQuantitySelectors() {
         const MAX_MONTHS = 3;
 
         // Change "Perfiles" label to "Cuentas" for account-based platforms
-        const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+        const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro'];
         if (platformsWithAccount.includes(platform)) {
             const qtyLabels = card.querySelectorAll('.qty-label');
             qtyLabels.forEach(label => {
@@ -182,7 +182,7 @@ function initQuantitySelectors() {
             const platformsWithAccountMsg = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
             const unitText = platformsWithAccountMsg.includes(platform) ? 'cuentas' : 'perfiles';
             const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} ${unitText})` : ''} - Precio: ${priceText}`;
-            buyBtn.href = `https://wa.me/573058588651?text=${encodeURIComponent(message)}`;
+            buyBtn.href = `https://wa.me/573005965404?text=${encodeURIComponent(message)}`;
 
             // Update button states
             profileMinus.disabled = profiles <= 1;
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const encodedMessage = encodeURIComponent(message);
 
             // Construct the final URL
-            btnUltimate.href = `https://wa.me/573058588651?text=${encodedMessage}`;
+            btnUltimate.href = `https://wa.me/573005965404?text=${encodedMessage}`;
         }
 
         checkboxes.forEach(cb => {
