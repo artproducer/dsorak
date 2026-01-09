@@ -2110,16 +2110,20 @@ footer {
 
 @media (max-width: 768px) {
     .combo-modal-content {
-        padding: 1.5rem;
-        width: 98%;
-        max-height: 95vh;
+        padding: 1.5rem 1rem;
+        width: 92%;
+        /* Reducido para dar más margen lateral */
+        max-height: 85vh;
+        /* Reducido para dar más margen superior/inferior */
+        border-radius: 20px;
     }
 
     .combo-modal-close {
-        top: 0.5rem;
-        right: 0.5rem;
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 45px;
+        /* Un poco más grande para facilitar el toque */
+        height: 45px;
+        font-size: 1.8rem;
     }
 }
