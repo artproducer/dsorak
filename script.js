@@ -580,25 +580,40 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update savings text
             const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
             if (savingsDisplay) {
-                if (count < 2) {
-                    savingsDisplay.textContent = '❌ Selecciona 2 o más para descuento';
-                    savingsDisplay.classList.add('error-shake');
-                } else {
+                if (count >= 2) {
                     savingsDisplay.textContent = `💰 Ahorro de $${discount.toLocaleString('es-CO')} aplicado`;
+                    savingsDisplay.classList.remove('error-shake');
+                } else {
+                    savingsDisplay.textContent = 'Selecciona 2 o más para descuento';
                     savingsDisplay.classList.remove('error-shake');
                 }
             }
 
             // Update WhatsApp Link
-            // Ensure no extra spaces in the URL construction
-            const message = `Quiero mi Combo Personalizado: ${selectedNames.join(', ')}. Precio: $${finalPrice.toLocaleString('es-CO')}`;
-
-            // Use encodeURIComponent to handle all special characters and spaces
+            const message = `Quiero mi Combo de: ${selectedNames.join(', ')}. Precio: $${finalPrice.toLocaleString('es-CO')}`;
             const encodedMessage = encodeURIComponent(message);
-
-            // Construct the final URL
             btnUltimate.href = `https://wa.me/573005965404?text=${encodedMessage}`;
+
+            // Store count for validation
+            btnUltimate.dataset.selectedCount = count;
         }
+
+        btnUltimate.addEventListener('click', function (e) {
+            const count = parseInt(this.dataset.selectedCount || 0);
+            if (count < 2) {
+                e.preventDefault();
+                const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
+                if (savingsDisplay) {
+                    savingsDisplay.textContent = '❌ Selecciona 2 o más para continuar';
+                    savingsDisplay.classList.add('error-shake');
+
+                    // Remove class after animation to allow re-trigger
+                    setTimeout(() => {
+                        savingsDisplay.classList.remove('error-shake');
+                    }, 400);
+                }
+            }
+        });
 
         checkboxes.forEach(cb => {
             cb.addEventListener('change', updateCombo);
