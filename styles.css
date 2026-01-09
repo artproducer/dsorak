@@ -2037,6 +2037,29 @@ footer {
     }
 }
 
+.combo-savings.error-shake {
+    color: #ef4444 !important;
+    /* Rojo intenso */
+    animation: shake 0.4s ease-in-out;
+    font-weight: 700;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    75% {
+        transform: translateX(6px);
+    }
+}
+
 .combo-modal-close {
     position: absolute;
     top: 1.5rem;

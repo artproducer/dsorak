@@ -580,7 +580,13 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update savings text
             const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
             if (savingsDisplay) {
-                savingsDisplay.textContent = discount > 0 ? `💰 Ahorro de $${discount.toLocaleString('es-CO')} aplicado` : 'Selecciona 2 o más para descuento';
+                if (count < 2) {
+                    savingsDisplay.textContent = '❌ Selecciona 2 o más para descuento';
+                    savingsDisplay.classList.add('error-shake');
+                } else {
+                    savingsDisplay.textContent = `💰 Ahorro de $${discount.toLocaleString('es-CO')} aplicado`;
+                    savingsDisplay.classList.remove('error-shake');
+                }
             }
 
             // Update WhatsApp Link
