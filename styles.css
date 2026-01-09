@@ -592,33 +592,54 @@ section {
     }
 }
 
-/* Botón CREAR COMBO Premium */
+.crear-combo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    /* Espacio para las flechas fuera */
+    margin: 0.5rem 0;
+}
+
+/* Botón CREAR COMBO - Estilo Píldora Pequeña */
 .btn-crear-combo {
-    background: linear-gradient(135deg, #166fc2 0%, #2EC4B6 100%) !important;
-    color: white !important;
-    border: none !important;
-    padding: 1rem 2.5rem !important;
-    font-size: 1.1rem !important;
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    /* Plateado claro */
+    border: 2px solid #94a3b8 !important;
+    padding: 0.6rem 1.8rem !important;
+    /* Más pequeño */
+    font-size: 0.95rem !important;
+    /* Fuente reducida */
+    font-weight: 700 !important;
     letter-spacing: 1px !important;
-    box-shadow: 0 8px 25px rgba(22, 111, 194, 0.4) !important;
-    position: relative;
-    overflow: hidden;
+    border-radius: 50px !important;
+    /* Bordes muy redondeados (pill) */
+    box-shadow: 0 8px 20px rgba(30, 41, 59, 0.3) !important;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
 }
 
 .btn-crear-combo:hover {
-    transform: translateY(-4px) scale(1.02) !important;
-    box-shadow: 0 12px 35px rgba(22, 111, 194, 0.5) !important;
+    background: #2a3a52 !important;
+    /* Un poco más claro al hover */
+    color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 10px 25px rgba(30, 41, 59, 0.4) !important;
 }
 
 .arrow-anim {
+    color: #1e293b;
+    /* Color del fondo de la marca */
+    font-size: 1.5rem;
     display: inline-block;
-    animation: arrowMove 1.5s infinite;
+    animation: arrowMove 1.2s infinite ease-in-out;
 }
 
 .arrow-anim.reverse {
-    animation-direction: reverse;
-    display: inline-block;
     transform: rotate(180deg);
+    animation: arrowMoveReverse 1.2s infinite ease-in-out;
 }
 
 @keyframes arrowMove {
@@ -626,12 +647,10 @@ section {
     0%,
     100% {
         transform: translateX(0);
-        opacity: 1;
     }
 
     50% {
-        transform: translateX(5px);
-        opacity: 0.5;
+        transform: translateX(8px);
     }
 }
 
@@ -639,18 +658,12 @@ section {
 
     0%,
     100% {
-        transform: translateX(0) rotate(180deg);
-        opacity: 1;
+        transform: rotate(180deg) translateX(0);
     }
 
     50% {
-        transform: translateX(-5px) rotate(180deg);
-        opacity: 0.5;
+        transform: rotate(180deg) translateX(8px);
     }
-}
-
-.btn-crear-combo .arrow-anim.reverse {
-    animation: arrowMoveReverse 1.5s infinite;
 }
 
 .section-nav-btn {
@@ -2026,27 +2039,34 @@ footer {
 
 .combo-modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 60px;
+    /* Agrandado */
+    height: 60px;
+    /* Agrandado */
     border-radius: 50%;
-    border: none;
-    background: var(--light-gray);
-    color: var(--text-dark);
-    font-size: 1.5rem;
+    border: 3px solid var(--primary);
+    /* Borde más visible */
+    background: white;
+    color: var(--primary);
+    font-size: 2.5rem;
+    /* X más grande */
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .combo-modal-close:hover {
     background: #dc3545;
     color: white;
-    transform: rotate(90deg);
+    border-color: #dc3545;
+    transform: rotate(180deg) scale(1.1);
 }
 
 .combo-modal .section-header {
