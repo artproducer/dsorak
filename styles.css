@@ -817,13 +817,13 @@ section {
 .combo-ultimate .price-corner {
     position: absolute;
     top: 1rem;
+    left: 1rem;
     right: 1rem;
-    /* Restaurar a la derecha */
-    left: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    /* Ahorro a la izquierda, Precio a la derecha */
     width: auto;
     margin-bottom: 0;
     padding: 0;
@@ -832,11 +832,13 @@ section {
 .combo-ultimate .combo-savings {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--primary);
-    background: rgba(22, 101, 175, 0.05);
+    color: #28a745;
+    /* Color verde restaurado */
+    background: rgba(40, 167, 69, 0.05);
+    /* Fondo verde suave */
     padding: 0.4rem 0.8rem;
     border-radius: 12px;
-    border: 1px dashed rgba(22, 101, 175, 0.2);
+    border: 1px dashed rgba(40, 167, 69, 0.2);
     white-space: nowrap;
 }
 
@@ -846,13 +848,12 @@ section {
     }
 
     .combo-ultimate .price-corner {
-        flex-direction: column-reverse;
-        /* Precio arriba en móvil */
-        align-items: flex-end;
-        /* Alinear a la derecha en móvil */
-        gap: 0.5rem;
+        flex-direction: row;
+        /* Mantener una sola línea en móvil si cabe */
+        align-items: center;
+        justify-content: space-between;
         right: 0.75rem;
-        left: auto;
+        left: 0.75rem;
     }
 
     .combo-ultimate .combo-savings {
@@ -2171,6 +2172,20 @@ footer {
     scrollbar-width: auto;
     /* Volver a auto para mejor visibilidad */
     scrollbar-color: var(--primary) #cbd5e1;
+}
+
+@media (min-width: 769px) {
+    .platform-checkboxes {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        align-content: start;
+    }
+
+    .platform-option {
+        margin-bottom: 0 !important;
+        /* El gap del grid maneja la separación */
+    }
 }
 
 /* Scrollbar siempre visible para la lista de plataformas */
