@@ -2031,16 +2031,93 @@ footer {
     border-radius: var(--radius-lg);
     max-width: 900px;
     width: 95%;
-    max-height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    /* Eliminar scroll horizontal */
-    padding: 2.5rem 2rem;
+    max-height: 95vh;
+    /* Un poco más de alto */
+    overflow: hidden;
+    /* IMPORTANTE: Bloquear scroll de toda la ventana */
+    padding: 2.5rem 2rem 1.5rem;
+    /* Padding inferior ajustado */
     position: relative;
     animation: modalSlideIn 0.3s ease-out;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.combo-modal-content .section-header {
+    flex-shrink: 0;
+}
+
+.combo-modal-content .combos-grid {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.combo-modal-content .combo-ultimate {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.combo-modal-content .card-top-row {
+    flex-shrink: 0;
+}
+
+.combo-modal-content .combo-body-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.combo-modal-content .custom-combo-selector {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.platform-checkboxes {
+    flex: 1;
+    overflow-y: scroll !important;
+    /* Forzar scrollbar visible */
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-md);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Scrollbar siempre visible para la lista de plataformas */
+.platform-checkboxes::-webkit-scrollbar {
+    width: 10px;
+}
+
+.platform-checkboxes::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.platform-checkboxes::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+.platform-checkboxes::-webkit-scrollbar-thumb:hover {
+    background: #1373d3;
+}
+
+.combo-modal-content .card-bottom {
+    flex-shrink: 0;
+    padding-top: 1rem;
+    background: var(--light);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Scrollbar personalizada para el contenido del modal */
@@ -2059,7 +2136,7 @@ footer {
 }
 
 /* Ocultar flechas de scroll que sobresalen */
-.combo-modal-content::-webkit-scrollbar-button {
+.platform-checkboxes::-webkit-scrollbar-button {
     display: none;
 }
 
