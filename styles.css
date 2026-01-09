@@ -2108,7 +2108,8 @@ footer {
     background: #cbd5e1;
     /* Color de track más visible (gris azulado) */
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 15px 0;
+    /* Aumentado para proteger las esquinas redondeadas */
 }
 
 .platform-checkboxes::-webkit-scrollbar-thumb {

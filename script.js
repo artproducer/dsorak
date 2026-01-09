@@ -17,20 +17,20 @@ function openComboModal() {
             scrollList.scrollTop = 0; // Reset inicial
 
             setTimeout(() => {
-                // Baja de manera más notable (asomado más largo)
+                // Baja de manera mucho más notable y suave
                 scrollList.scrollTo({
-                    top: 150,
+                    top: 400, // Scroll mucho más largo
                     behavior: 'smooth'
                 });
 
-                // Espera un momento para que el usuario lo vea
+                // Espera un momento largo abajo para que se aprecie el contenido
                 setTimeout(() => {
                     scrollList.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
-                }, 1000);
-            }, 600); // Un poco más de espera inicial para que el modal se asiente
+                }, 1500); // Retorno más pausado
+            }, 800); // Esperar un poco más para que la transición del modal sea fluida
         }
     }
 }
