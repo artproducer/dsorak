@@ -1393,7 +1393,8 @@ footer {
 /* ===== PAYMENT INFO CARD ===== */
 /* ===== PAYMENT INFO CARD ===== */
 .payment-info-card {
-    background: #0a0f1d;
+    background: #0d4f5c;
+    /* Cian oscuro */
     /* Suavizado (menos oscuro que el anterior) */
     padding: 0.75rem 2.5rem;
     border-radius: var(--radius-md);
