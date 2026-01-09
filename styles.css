@@ -801,6 +801,13 @@ section {
 .combo-ultimate {
     padding-top: 3.5rem !important;
     /* Espacio para el precio absoluto */
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+    border: none !important;
+    /* Quitar borde para ganar espacio horizontal */
+    background: transparent !important;
+    /* Quitar fondo extra */
+    box-shadow: none !important;
 }
 
 .combo-ultimate .price-corner {
@@ -2076,13 +2083,14 @@ footer {
     background: var(--light);
     border-radius: var(--radius-lg);
     max-width: 900px;
-    width: 95%;
+    width: 96%;
+    /* Un poco más ancho */
     max-height: 95vh;
     /* Un poco más de alto */
     overflow: hidden;
     /* IMPORTANTE: Bloquear scroll de toda la ventana */
-    padding: 2.5rem 2rem 1.5rem;
-    /* Padding inferior ajustado */
+    padding: 2.5rem 1rem 1.5rem;
+    /* Padding lateral reducido de 2rem a 1rem */
     position: relative;
     animation: modalSlideIn 0.3s ease-out;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -2281,12 +2289,12 @@ footer {
 
 @media (max-width: 768px) {
     .combo-modal-content {
-        padding: 2rem 1.25rem 1.5rem;
-        /* Más espacio para la X y laterales */
-        width: 90%;
-        /* Un poco más estrecho para mayor margen */
-        max-height: 85vh;
-        border-radius: 24px;
+        padding: 2rem 0.75rem 1.5rem;
+        /* Padding lateral muy reducido en móvil */
+        width: 98%;
+        /* Casi todo el ancho de la pantalla */
+        max-height: 92vh;
+        border-radius: 20px;
     }
 
     .payment-info-card {
