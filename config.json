@@ -1,0 +1,61 @@
+{
+    "platforms": {
+        "Netflix": {
+            "enabled": false
+        },
+        "Disney+ Premium": {
+            "enabled": true
+        },
+        "Disney+ Estándar": {
+            "enabled": true
+        },
+        "YouTube Premium": {
+            "enabled": true
+        },
+        "HBO Max": {
+            "enabled": true
+        },
+        "Prime Video": {
+            "enabled": true
+        },
+        "Crunchyroll MegaFan": {
+            "enabled": true
+        },
+        "VIX Premium": {
+            "enabled": true
+        },
+        "Spotify Premium": {
+            "enabled": true
+        },
+        "Paramount+": {
+            "enabled": true
+        },
+        "Apple TV+": {
+            "enabled": true
+        },
+        "IPTV Premium": {
+            "enabled": true
+        },
+        "Plex": {
+            "enabled": true
+        },
+        "Canva Pro": {
+            "enabled": true
+        },
+        "Gemini AI Pro": {
+            "enabled": true
+        },
+        "ChatGPT Go": {
+            "enabled": true
+        },
+        "CapCut Pro": {
+            "enabled": false
+        },
+        "Viki Rakuten": {
+            "enabled": false
+        },
+        "Microsoft Office": {
+            "enabled": true
+        }
+    }
+}

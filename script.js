@@ -53,11 +53,100 @@ function toggleFaq(element) {
     }
 }
 
+// ===== SYNC DISABLED PLATFORMS FROM CONFIG =====
+async function syncDisabledPlatforms() {
+    let disabledPlatforms = new Set();
+
+    // Load config from JSON
+    try {
+        const response = await fetch('config.json');
+        const config = await response.json();
+
+        // Get disabled platforms from config
+        for (const [platform, settings] of Object.entries(config.platforms)) {
+            if (!settings.enabled) {
+                disabledPlatforms.add(platform);
+            }
+        }
+    } catch (error) {
+        console.error('Error loading config.json:', error);
+        return;
+    }
+
+    // Apply disabled state to platform cards
+    const platformCards = document.querySelectorAll('.platform-card[data-platform]');
+    platformCards.forEach(card => {
+        const platformName = card.getAttribute('data-platform');
+
+        if (disabledPlatforms.has(platformName)) {
+            // Add disabled class
+            card.classList.add('platform-disabled');
+
+            // Hide selectors
+            const selectorsRow = card.querySelector('.selectors-row-full');
+            if (selectorsRow) {
+                selectorsRow.style.display = 'none';
+            }
+
+            // Replace buy button with disabled button
+            const buyBtn = card.querySelector('.btn-buy');
+            if (buyBtn) {
+                const disabledBtn = document.createElement('span');
+                disabledBtn.className = 'btn btn-disabled btn-compact';
+                disabledBtn.textContent = 'No disponible';
+                buyBtn.replaceWith(disabledBtn);
+            }
+        } else {
+            // Remove disabled class if present
+            card.classList.remove('platform-disabled');
+        }
+    });
+
+    // Sync with combo checkboxes
+    const comboContainer = document.querySelector('.platform-checkboxes');
+    const comboOptions = document.querySelectorAll('.platform-option');
+    const disabledOptions = [];
+
+    comboOptions.forEach(option => {
+        const checkbox = option.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+            const name = checkbox.dataset.name;
+
+            if (disabledPlatforms.has(name)) {
+                // Disable the combo option
+                option.classList.add('platform-option-disabled');
+                checkbox.disabled = true;
+                checkbox.checked = false;
+
+                // Store to move to end later
+                disabledOptions.push(option);
+            } else {
+                // Enable the combo option
+                option.classList.remove('platform-option-disabled');
+                checkbox.disabled = false;
+            }
+        }
+    });
+
+    // Move disabled options to the end of the container
+    if (comboContainer) {
+        disabledOptions.forEach(option => {
+            comboContainer.appendChild(option);
+        });
+    }
+}
+
 // ===== QUANTITY SELECTOR FOR PLATFORMS =====
-function initQuantitySelectors() {
+async function initQuantitySelectors() {
+    // First, sync disabled platforms from config
+    await syncDisabledPlatforms();
+
     const platformCards = document.querySelectorAll('.platform-card[data-platform]');
 
     platformCards.forEach(card => {
+        // Skip disabled platforms
+        if (card.classList.contains('platform-disabled')) return;
+
         // Month selectors (first)
         const monthMinus = card.querySelector('.month-minus');
         const monthPlus = card.querySelector('.month-plus');
@@ -170,7 +259,7 @@ function initQuantitySelectors() {
             // Update selection badge with months and profiles
             if (selectionBadge) {
                 const monthsText = months === 1 ? '1 Mes' : `${months} Meses`;
-                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro'];
                 const isAccountBased = platformsWithAccount.includes(platform);
                 const unitLabel = isAccountBased ? (profiles === 1 ? 'Cuenta' : 'Cuentas') : (profiles === 1 ? 'Perfil' : 'Perfiles');
                 selectionBadge.textContent = `${monthsText} • ${profiles} ${unitLabel}`;
@@ -179,7 +268,7 @@ function initQuantitySelectors() {
             // Update WhatsApp link
             const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
             const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
-            const platformsWithAccountMsg = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+            const platformsWithAccountMsg = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro'];
             const unitText = platformsWithAccountMsg.includes(platform) ? 'cuentas' : 'perfiles';
             const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} ${unitText})` : ''} - Precio: ${priceText}`;
             buyBtn.href = `https://wa.me/573005965404?text=${encodeURIComponent(message)}`;
