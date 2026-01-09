@@ -73,15 +73,27 @@ function copyPaymentNumber(element) {
     navigator.clipboard.writeText(paymentNumber).then(() => {
         // Visual feedback on success
         container.classList.add('copied');
-        const feedbackEl = container.querySelector('.payment-number') || container;
-        const originalText = feedbackEl.innerText;
+        const numberEl = container.querySelector('.payment-number');
+        const btnCopy = container.querySelector('.btn-copy');
 
-        // Show temporary feedback text
-        if (container.querySelector('.payment-number')) {
-            feedbackEl.innerText = '¡Número Copiado!';
+        // Update number text temporarily
+        if (numberEl) {
+            const originalNumber = numberEl.innerText;
+            numberEl.innerText = '¡Copiado!';
             setTimeout(() => {
-                feedbackEl.innerText = paymentNumber;
+                numberEl.innerText = originalNumber;
                 container.classList.remove('copied');
+            }, 2000);
+        }
+
+        // Update button state
+        if (btnCopy) {
+            btnCopy.classList.add('copied');
+            const originalBtnHtml = btnCopy.innerHTML;
+            btnCopy.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copiado';
+            setTimeout(() => {
+                btnCopy.innerHTML = originalBtnHtml;
+                btnCopy.classList.remove('copied');
             }, 2000);
         }
     }).catch(err => {
