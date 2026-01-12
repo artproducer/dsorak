@@ -48,6 +48,9 @@
         "ChatGPT Go": {
             "enabled": true
         },
+        "ChatGPT Plus": {
+            "enabled": true
+        },
         "CapCut Pro": {
             "enabled": true
         },

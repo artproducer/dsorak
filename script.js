@@ -223,10 +223,10 @@ async function initQuantitySelectors() {
         const platform = card.getAttribute('data-platform');
         const basePrice = parseInt(card.getAttribute('data-price-1m'));
         const MAX_QTY = 3;
-        const MAX_MONTHS = 3;
+        const MAX_MONTHS = platform === 'ChatGPT Go' ? 6 : 3;
 
         // Change "Perfiles" label to "Cuentas" for account-based platforms
-        const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro'];
+        const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
         if (platformsWithAccount.includes(platform)) {
             const qtyLabels = card.querySelectorAll('.qty-label');
             qtyLabels.forEach(label => {
@@ -265,6 +265,17 @@ async function initQuantitySelectors() {
                 if (months === 3) pricePerOne = 16000;
 
                 finalPrice = pricePerOne * profiles;
+            } else if (platform === 'ChatGPT Go') {
+                // Custom pricing for ChatGPT Go
+                let pricePerOne = 7000; // Base price
+                if (months === 6) {
+                    finalPrice = 40000 * profiles; // Special price for 6 months
+                } else {
+                    // Standard calc for other months (with discounts)
+                    const totalBase = basePrice * profiles * months;
+                    const finalPriceStd = totalBase - totalDiscount;
+                    finalPrice = finalPriceStd;
+                }
             } else {
                 // Standard pricing for other platforms
                 const totalBase = basePrice * profiles * months;
@@ -284,7 +295,7 @@ async function initQuantitySelectors() {
 
             // Update price per unit with dynamic label
             if (pricePerUnit) {
-                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro'];
+                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
                 const isAccountBased = platformsWithAccount.includes(platform);
                 const unitName = isAccountBased ? 'cuenta' : 'perfil';
 
@@ -314,7 +325,7 @@ async function initQuantitySelectors() {
             // Update selection badge with months and profiles
             if (selectionBadge) {
                 const monthsText = months === 1 ? '1 Mes' : `${months} Meses`;
-                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro'];
+                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
                 const isAccountBased = platformsWithAccount.includes(platform);
                 const unitLabel = isAccountBased ? (profiles === 1 ? 'Cuenta' : 'Cuentas') : (profiles === 1 ? 'Perfil' : 'Perfiles');
                 selectionBadge.textContent = `${monthsText} • ${profiles} ${unitLabel}`;
@@ -323,7 +334,7 @@ async function initQuantitySelectors() {
             // Update WhatsApp link
             const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
             const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
-            const platformsWithAccountMsg = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro'];
+            const platformsWithAccountMsg = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
             const unitText = platformsWithAccountMsg.includes(platform) ? 'cuentas' : 'perfiles';
             const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} ${unitText})` : ''} - Precio: ${priceText}`;
             buyBtn.href = `https://wa.me/573005965404?text=${encodeURIComponent(message)}`;

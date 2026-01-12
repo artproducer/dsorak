@@ -63,6 +63,14 @@
         "gemini_ai": {
             "name": "Gemini AI Pro",
             "pricePerMonth": 8000
+        },
+        "chatgpt_go": {
+            "name": "ChatGPT Go",
+            "pricePerMonth": 7000
+        },
+        "chatgpt_plus": {
+            "name": "ChatGPT Plus",
+            "pricePerMonth": 10000
         }
     },
     "metadata": {
