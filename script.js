@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let discount = 0;
 
             if (count === 2) discount = 2000;
-            else if (count === 3) discount = 5000;
+            else if (count === 3) discount = 4000;
             else if (count === 4) discount = 7000;
             else if (count >= 5) discount = 10000;
 
