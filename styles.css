@@ -41,16 +41,16 @@ body {
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--light-gray);
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 4px;
+    background: rgba(22, 101, 175, 0.3);
+    border-radius: 3px;
 }
 
 /* ===== NETFLIX NOTICE BANNER ===== */
@@ -2166,25 +2166,20 @@ footer {
 
 .platform-checkboxes {
     flex: 1;
-    overflow-y: scroll !important;
-    /* Forzar scrollbar visible */
+    overflow-y: auto;
     padding: 0.5rem 0.75rem;
-    /* Padding lateral aumentado para dar aire a las tarjetas */
+    padding-right: 8px;
     margin: 0;
-    /* Eliminar margen */
     border: 1px solid rgba(0, 0, 0, 0.1);
-    /* Borde un poco más marcado */
     border-radius: var(--radius-md);
     background: rgba(0, 0, 0, 0.03);
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    /* Firefox scrollbar */
     scrollbar-width: thin;
-    /* Cambiado a thin para mayor consistencia */
-    scrollbar-color: var(--primary) #cbd5e1;
-    scrollbar-gutter: stable;
-    /* Reservar espacio para evitar saltos */
+    scrollbar-color: var(--primary) transparent;
 }
 
 @media (min-width: 769px) {
@@ -2192,40 +2187,36 @@ footer {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
-        /* Gap reducido de 0.75rem a 0.5rem */
         align-content: start;
     }
 
     .platform-option {
         margin-bottom: 0 !important;
-        /* El gap del grid maneja la separación */
     }
 }
 
-/* Scrollbar siempre visible para la lista de plataformas */
+/* Scrollbar para la lista de plataformas - Estilo gendir */
 .platform-checkboxes::-webkit-scrollbar {
-    width: 12px;
-    /* Un poco más ancha para resaltar */
+    width: 6px;
     display: block !important;
 }
 
 .platform-checkboxes::-webkit-scrollbar-track {
-    background: #cbd5e1;
-    /* Color de track más visible (gris azulado) */
-    border-radius: 10px;
-    margin: 8px 0;
-    /* Margen reducido para asegurar visibilidad */
+    background: transparent;
 }
 
 .platform-checkboxes::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 10px;
-    border: 2px solid #cbd5e1;
-    /* Borde para que resalte dentro del track */
+    background: rgba(22, 101, 175, 0.4);
+    border-radius: 3px;
 }
 
 .platform-checkboxes::-webkit-scrollbar-thumb:hover {
-    background: #1373d3;
+    background: rgba(22, 101, 175, 0.6);
+}
+
+/* Ocultar flechas de scroll que sobresalen */
+.platform-checkboxes::-webkit-scrollbar-button {
+    display: none;
 }
 
 .combo-modal-content .card-bottom {
@@ -2235,24 +2226,18 @@ footer {
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Scrollbar personalizada para el contenido del modal */
+/* Scrollbar del modal - Estilo gendir */
 .combo-modal-content::-webkit-scrollbar {
     width: 6px;
 }
 
 .combo-modal-content::-webkit-scrollbar-track {
     background: transparent;
-    margin: 10px 0;
 }
 
 .combo-modal-content::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-radius: 20px;
-}
-
-/* Ocultar flechas de scroll que sobresalen */
-.platform-checkboxes::-webkit-scrollbar-button {
-    display: none;
+    background: rgba(22, 101, 175, 0.3);
+    border-radius: 3px;
 }
 
 @keyframes modalSlideIn {
