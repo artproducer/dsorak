@@ -1,7 +1,7 @@
 {
     "platforms": {
         "Netflix": {
-            "enabled": false
+            "enabled": true
         },
         "Disney+ Premium": {
             "enabled": true
