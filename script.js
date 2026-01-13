@@ -109,23 +109,71 @@ function toggleFaq(element) {
 }
 
 // ===== SYNC DISABLED PLATFORMS FROM CONFIG =====
-async function syncDisabledPlatforms() {
-    let disabledPlatforms = new Set();
+// ===== GLOBAL STATE =====
+let appState = {
+    config: null,
+    prices: null
+};
 
-    // Load config from JSON
+// ===== DATA LOADING =====
+async function loadData() {
     try {
-        const response = await fetch('config.json');
-        const config = await response.json();
-
-        // Get disabled platforms from config
-        for (const [platform, settings] of Object.entries(config.platforms)) {
-            if (!settings.enabled) {
-                disabledPlatforms.add(platform);
-            }
-        }
+        const [configRes, pricesRes] = await Promise.all([
+            fetch('config.json'),
+            fetch('prices.json')
+        ]);
+        appState.config = await configRes.json();
+        appState.prices = await pricesRes.json();
+        return true;
     } catch (error) {
-        console.error('Error loading config.json:', error);
-        return;
+        console.error('Error loading data:', error);
+        return false;
+    }
+}
+
+// ===== HELPER: NORMALIZE PLATFORM NAME =====
+function normalizePlatformName(name) {
+    // Inverse mapping table since JSON keys don't always match simple lowercase rules
+    // We try to match the HTML data-platform to the JSON key
+    const mapping = {
+        "Netflix": "netflix",
+        "Disney+ Premium": "disney_premium",
+        "Disney+ Estándar": "disney_standard",
+        "HBO Max": "hbo_max",
+        "Prime Video": "prime_video",
+        "Paramount+": "paramount",
+        "Crunchyroll MegaFan": "crunchyroll",
+        "VIX Premium": "vix_premium",
+        "Spotify Premium": "spotify",
+        "YouTube Premium": "youtube_premium",
+        "Canva Pro": "canva_pro",
+        "Gemini AI Pro": "gemini_ai",
+        "ChatGPT Go": "chatgpt_go",
+        "ChatGPT Plus": "chatgpt_plus",
+        "Apple TV+": "apple_tv", // Assuming key might exist or fallback
+        "IPTV Premium": "iptv_premium", // Assuming key
+        "Plex": "plex", // Assuming key
+        "CapCut Pro": "capcut_pro" // Assuming key
+    };
+
+    return mapping[name] || name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
+// ===== SYNC DISABLED PLATFORMS FROM CONFIG =====
+async function syncDisabledPlatforms() {
+    // Ensure data is loaded
+    if (!appState.config) await loadData();
+    if (!appState.config) return;
+
+    let disabledPlatforms = new Set();
+    const config = appState.config;
+    // ... logic uses appState.config now
+
+    // Get disabled platforms from config
+    for (const [platform, settings] of Object.entries(config.platforms)) {
+        if (!settings.enabled) {
+            disabledPlatforms.add(platform);
+        }
     }
 
     // Apply disabled state to platform cards
@@ -191,10 +239,71 @@ async function syncDisabledPlatforms() {
     }
 }
 
+// ===== HELPER: UPDATE DOM PRICES FROM JSON =====
+function updateDomPrices() {
+    if (!appState.prices) return;
+
+    // Update Platform Cards
+    const cards = document.querySelectorAll('.platform-card[data-platform]');
+    cards.forEach(card => {
+        const platformName = card.getAttribute('data-platform');
+        const key = normalizePlatformName(platformName);
+        const platformData = appState.prices.platforms[key];
+
+        if (platformData) {
+            // Update base price attribute
+            if (platformData.pricePerMonth) {
+                card.setAttribute('data-price-1m', platformData.pricePerMonth);
+            }
+
+            // Update visible prices
+            const priceAmount = card.querySelector('.price-amount');
+            const pricePerUnit = card.querySelector('.price-per-unit');
+
+            // Initial state: 1 month, 1 profile
+            if (priceAmount && platformData.pricePerMonth) {
+                priceAmount.textContent = `$${platformData.pricePerMonth.toLocaleString('es-CO')}`;
+            }
+            if (pricePerUnit && platformData.pricePerMonth) {
+                const unit = platformData.pricing ? 'cuenta' : 'perfil'; // Heuristic
+                pricePerUnit.textContent = `$${platformData.pricePerMonth.toLocaleString('es-CO')}/${unit}`;
+            }
+        }
+    });
+
+    // Update Combo Checkboxes
+    const checkboxes = document.querySelectorAll('.platform-option input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        const platformName = cb.dataset.name;
+        const key = normalizePlatformName(platformName);
+        const platformData = appState.prices.platforms[key];
+
+        if (platformData && platformData.pricePerMonth) {
+            cb.dataset.price = platformData.pricePerMonth;
+
+            // Update label text
+            const label = cb.closest('label');
+            if (label) {
+                const textSpan = label.querySelector('.platform-name-text');
+                if (textSpan) {
+                    textSpan.textContent = `${platformName} ($${platformData.pricePerMonth.toLocaleString('es-CO')})`;
+                }
+            }
+        }
+    });
+}
+
 // ===== QUANTITY SELECTOR FOR PLATFORMS =====
 async function initQuantitySelectors() {
+    // Ensure data is loaded
+    if (!appState.prices) await loadData();
     // First, sync disabled platforms from config
     await syncDisabledPlatforms();
+
+    // Update prices in DOM from JSON
+    if (appState.prices) {
+        updateDomPrices();
+    }
 
     const platformCards = document.querySelectorAll('.platform-card[data-platform]');
 
@@ -239,9 +348,21 @@ async function initQuantitySelectors() {
         let profiles = 1;
         let months = 1;
 
+
         function calculateDiscount(qty) {
-            if (qty === 2) return 2000;
-            if (qty >= 3) return 6000;
+            if (!appState.prices) return 0;
+
+            const rules = appState.prices.discounts.profiles;
+            // Check exact match first, then "3+" type logic
+            if (rules[qty]) return rules[qty];
+
+            // Check for "+" rules (e.g. "3+")
+            for (const key of Object.keys(rules)) {
+                if (key.endsWith('+')) {
+                    const threshold = parseInt(key);
+                    if (qty >= threshold) return rules[key];
+                }
+            }
             return 0;
         }
 
@@ -257,28 +378,33 @@ async function initQuantitySelectors() {
 
 
             // Calculate final price
+            // Calculate final price
             let finalPrice;
-            if (platform === 'YouTube Premium') {
-                // Custom pricing for YouTube
-                let pricePerOne = 7000;
-                if (months === 2) pricePerOne = 12000;
-                if (months === 3) pricePerOne = 16000;
+
+            // Check if there is specific pricing logic for this platform in JSON
+            const platformKey = normalizePlatformName(platform);
+            const platformData = appState.prices ? appState.prices.platforms[platformKey] : null;
+
+            if (platformData && platformData.pricing) {
+                // Custom pricing logic found in JSON (like YouTube)
+                // We map 1, 2, 3 months to the keys in json
+                let pricePerOne = 0;
+                if (months === 1) pricePerOne = platformData.pricing["1_month"];
+                else if (months === 2) pricePerOne = platformData.pricing["2_months"];
+                else if (months === 3) pricePerOne = platformData.pricing["3_months"];
+                else if (months === 6 && platformData.pricing["6_months"]) pricePerOne = platformData.pricing["6_months"];
+                else pricePerOne = platformData.pricing["1_month"]; // Fallback
 
                 finalPrice = pricePerOne * profiles;
-            } else if (platform === 'ChatGPT Go') {
-                // Custom pricing for ChatGPT Go
-                let pricePerOne = 7000; // Base price
-                if (months === 6) {
-                    finalPrice = 40000 * profiles; // Special price for 6 months
-                } else {
-                    // Standard calc for other months (with discounts)
-                    const totalBase = basePrice * profiles * months;
-                    const finalPriceStd = totalBase - totalDiscount;
-                    finalPrice = finalPriceStd;
-                }
             } else {
                 // Standard pricing for other platforms
-                const totalBase = basePrice * profiles * months;
+                // Use price from JSON if available, otherwise use basePrice (HTML fallback)
+                let currentBasePrice = basePrice;
+                if (platformData && platformData.pricePerMonth) {
+                    currentBasePrice = platformData.pricePerMonth;
+                }
+
+                const totalBase = currentBasePrice * profiles * months;
                 const finalPriceStd = totalBase - totalDiscount;
                 finalPrice = finalPriceStd;
             }
@@ -591,8 +717,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
             checkboxes.forEach(cb => {
                 if (cb.checked) {
-                    total += parseInt(cb.dataset.price);
-                    selectedNames.push(cb.dataset.name);
+                    // Try to get price from JSON first
+                    const name = cb.dataset.name;
+                    const key = normalizePlatformName(name);
+                    let price = parseInt(cb.dataset.price);
+
+                    if (appState.prices && appState.prices.platforms[key]) {
+                        price = appState.prices.platforms[key].pricePerMonth;
+                    }
+
+                    total += price;
+                    selectedNames.push(name);
                 }
             });
 
@@ -600,10 +735,25 @@ document.addEventListener('DOMContentLoaded', function () {
             const count = selectedNames.length;
             let discount = 0;
 
-            if (count === 2) discount = 2000;
-            else if (count === 3) discount = 4000;
-            else if (count === 4) discount = 7000;
-            else if (count >= 5) discount = 10000;
+            if (appState.prices) {
+                const rules = appState.prices.discounts.combo;
+                if (rules[count]) discount = rules[count];
+                else {
+                    // Check for "+" rules
+                    for (const key of Object.keys(rules)) {
+                        if (key.endsWith('+')) {
+                            const threshold = parseInt(key);
+                            if (count >= threshold) discount = rules[key];
+                        }
+                    }
+                }
+            } else {
+                // Fallback only if JSON fails
+                if (count === 2) discount = 2000;
+                else if (count === 3) discount = 4000;
+                else if (count === 4) discount = 7000;
+                else if (count >= 5) discount = 10000;
+            }
 
             let finalPrice = total > 0 ? total - discount : 0;
             if (finalPrice < 0) finalPrice = 0;

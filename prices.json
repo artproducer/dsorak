@@ -1,8 +1,8 @@
 {
     "discounts": {
         "profiles": {
-            "2": 3000,
-            "3+": 6000
+            "2": 2500,
+            "3+": 5000
         },
         "combo": {
             "2": 2000,
@@ -14,7 +14,7 @@
     "platforms": {
         "netflix": {
             "name": "Netflix",
-            "pricePerMonth": 6000
+            "pricePerMonth": 16000
         },
         "disney_premium": {
             "name": "Disney+ Premium",
@@ -26,27 +26,27 @@
         },
         "hbo_max": {
             "name": "HBO Max",
-            "pricePerMonth": 5000
+            "pricePerMonth": 8000
         },
         "prime_video": {
             "name": "Prime Video",
-            "pricePerMonth": 5000
+            "pricePerMonth": 8000
         },
         "paramount": {
             "name": "Paramount+",
-            "pricePerMonth": 4000
+            "pricePerMonth": 7000
         },
         "crunchyroll": {
             "name": "Crunchyroll",
-            "pricePerMonth": 4000
+            "pricePerMonth": 7000
         },
         "vix_premium": {
             "name": "ViX Premium",
-            "pricePerMonth": 4000
+            "pricePerMonth": 7000
         },
         "spotify": {
             "name": "Spotify",
-            "pricePerMonth": 4000
+            "pricePerMonth": 8000
         },
         "youtube_premium": {
             "name": "YouTube Premium",
@@ -58,11 +58,11 @@
         },
         "canva_pro": {
             "name": "Canva Pro",
-            "pricePerMonth": 4000
+            "pricePerMonth": 8000
         },
         "gemini_ai": {
             "name": "Gemini AI Pro",
-            "pricePerMonth": 8000
+            "pricePerMonth": 10000
         },
         "chatgpt_go": {
             "name": "ChatGPT Go",
@@ -75,6 +75,6 @@
     },
     "metadata": {
         "currency": "COP",
-        "lastUpdated": "2026-01-05"
+        "lastUpdated": "2026-01-12"
     }
 }
