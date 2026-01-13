@@ -1,0 +1,11 @@
+# Robots.txt para Tienda Streaming DSORAK
+# https://tienda.dsorak.com/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tienda.dsorak.com/sitemap.xml
+
+# Crawl-delay (opcional, para no sobrecargar el servidor)
+Crawl-delay: 10
