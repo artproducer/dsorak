@@ -723,7 +723,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     let price = parseInt(cb.dataset.price);
 
                     if (appState.prices && appState.prices.platforms[key]) {
-                        price = appState.prices.platforms[key].pricePerMonth;
+                        const platformData = appState.prices.platforms[key];
+                        // Handle platforms with special pricing structure (like YouTube Premium)
+                        if (platformData.pricePerMonth) {
+                            price = platformData.pricePerMonth;
+                        } else if (platformData.pricing && platformData.pricing["1_month"]) {
+                            price = platformData.pricing["1_month"];
+                        }
                     }
 
                     total += price;
@@ -736,14 +742,28 @@ document.addEventListener('DOMContentLoaded', function () {
             let discount = 0;
 
             if (appState.prices) {
-                const rules = appState.prices.discounts.combo;
-                if (rules[count]) discount = rules[count];
-                else {
-                    // Check for "+" rules
-                    for (const key of Object.keys(rules)) {
-                        if (key.endsWith('+')) {
-                            const threshold = parseInt(key);
-                            if (count >= threshold) discount = rules[key];
+                // Check if Netflix is selected for special discount on duo combos
+                const hasNetflix = selectedNames.some(name =>
+                    normalizePlatformName(name) === 'netflix'
+                );
+
+                // Use special Netflix combo discount if applicable (only for 2 platforms)
+                if (hasNetflix && count === 2 && appState.prices.discounts.comboNetflix) {
+                    const netflixRules = appState.prices.discounts.comboNetflix;
+                    if (netflixRules[count]) {
+                        discount = netflixRules[count];
+                    }
+                } else {
+                    // Use standard combo discount rules
+                    const rules = appState.prices.discounts.combo;
+                    if (rules[count]) discount = rules[count];
+                    else {
+                        // Check for "+" rules
+                        for (const key of Object.keys(rules)) {
+                            if (key.endsWith('+')) {
+                                const threshold = parseInt(key);
+                                if (count >= threshold) discount = rules[key];
+                            }
                         }
                     }
                 }
