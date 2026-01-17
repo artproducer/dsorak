@@ -32,7 +32,7 @@
     <meta property="og:locale" content="es_CO">
     <meta property="og:site_name" content="Tienda Streaming DSORAK">
 
-    <!-- Schema.org Structured Data -->
+    <!-- Schema.org Structured Data - Store -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -53,63 +53,174 @@
         },
         "paymentAccepted": ["Nequi", "Daviplata"],
         "currenciesAccepted": "COP",
-        "openingHours": "Mo-Su 00:00-23:59",
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Plataformas de Streaming",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "Netflix",
-                        "description": "Series, películas y documentales en streaming"
+        "openingHours": "Mo-Su 00:00-23:59"
+    }
+    </script>
+
+    <!-- Schema.org Structured Data - Products with Offers -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Plataformas de Streaming",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Product",
+                    "name": "Netflix Colombia - Cuenta Streaming",
+                    "description": "Acceso a Netflix con series, películas y documentales en streaming. Perfil individual con garantía de 30 días.",
+                    "image": "https://tienda.dsorak.com/assets/images/netflix.png",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Netflix"
                     },
-                    "price": "16000",
-                    "priceCurrency": "COP"
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "Disney+ Premium",
-                        "description": "Marvel, Pixar, Star Wars, National Geographic y ESPN"
-                    },
-                    "price": "8000",
-                    "priceCurrency": "COP"
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "HBO Max",
-                        "description": "Series exclusivas y películas de Warner"
-                    },
-                    "price": "8000",
-                    "priceCurrency": "COP"
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "Spotify Premium",
-                        "description": "Música sin anuncios y descarga offline"
-                    },
-                    "price": "8000",
-                    "priceCurrency": "COP"
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "YouTube Premium",
-                        "description": "YouTube sin anuncios + YouTube Music incluido"
-                    },
-                    "price": "7000",
-                    "priceCurrency": "COP"
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://tienda.dsorak.com/#plataformas",
+                        "price": "16000",
+                        "priceCurrency": "COP",
+                        "availability": "https://schema.org/InStock",
+                        "priceValidUntil": "2026-12-31",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "DSORAK"
+                        }
+                    }
                 }
-            ]
-        }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Product",
+                    "name": "Disney+ Premium Colombia - Cuenta Streaming",
+                    "description": "Acceso a Disney+ Premium sin anuncios. Incluye Marvel, Pixar, Star Wars, National Geographic, ESPN y Hulu.",
+                    "image": "https://tienda.dsorak.com/assets/images/disney-plus.png",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Disney+"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://tienda.dsorak.com/#plataformas",
+                        "price": "8000",
+                        "priceCurrency": "COP",
+                        "availability": "https://schema.org/InStock",
+                        "priceValidUntil": "2026-12-31",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "DSORAK"
+                        }
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Product",
+                    "name": "HBO Max Colombia - Cuenta Streaming",
+                    "description": "Acceso a HBO Max con series exclusivas y películas de Warner Bros. Perfil individual con garantía.",
+                    "image": "https://tienda.dsorak.com/assets/images/hbo-max.png",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "HBO Max"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://tienda.dsorak.com/#plataformas",
+                        "price": "8000",
+                        "priceCurrency": "COP",
+                        "availability": "https://schema.org/InStock",
+                        "priceValidUntil": "2026-12-31",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "DSORAK"
+                        }
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "Product",
+                    "name": "Spotify Premium Colombia - Cuenta Streaming",
+                    "description": "Acceso a Spotify Premium. Música sin anuncios y descarga offline disponible.",
+                    "image": "https://tienda.dsorak.com/assets/images/spotify.png",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Spotify"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://tienda.dsorak.com/#plataformas",
+                        "price": "8000",
+                        "priceCurrency": "COP",
+                        "availability": "https://schema.org/InStock",
+                        "priceValidUntil": "2026-12-31",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "DSORAK"
+                        }
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "Product",
+                    "name": "YouTube Premium Colombia - Cuenta Streaming",
+                    "description": "Acceso a YouTube Premium sin anuncios. Incluye YouTube Music Premium.",
+                    "image": "https://tienda.dsorak.com/assets/images/youtube-premium.png",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "YouTube"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://tienda.dsorak.com/#plataformas",
+                        "price": "7000",
+                        "priceCurrency": "COP",
+                        "availability": "https://schema.org/InStock",
+                        "priceValidUntil": "2026-12-31",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "DSORAK"
+                        }
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                    "@type": "Product",
+                    "name": "Prime Video Colombia - Cuenta Streaming",
+                    "description": "Acceso a Amazon Prime Video con contenido exclusivo en 4K.",
+                    "image": "https://tienda.dsorak.com/assets/images/prime-video.png",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Amazon"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://tienda.dsorak.com/#plataformas",
+                        "price": "8000",
+                        "priceCurrency": "COP",
+                        "availability": "https://schema.org/InStock",
+                        "priceValidUntil": "2026-12-31",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "DSORAK"
+                        }
+                    }
+                }
+            }
+        ]
     }
     </script>
 
