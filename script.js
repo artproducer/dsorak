@@ -877,9 +877,21 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollUpBtn.addEventListener('click', () => {
             const sections = getSections();
             const currentIndex = getCurrentSectionIndex(sections);
-            const prevIndex = Math.max(0, currentIndex - 1);
+            const currentSection = sections[currentIndex];
 
-            sections[prevIndex].scrollIntoView({ behavior: 'smooth' });
+            // Check if we're NOT at the top of the current section (with a small threshold)
+            const scrollPosition = window.scrollY;
+            const sectionTop = currentSection.offsetTop;
+            const threshold = 100; // pixels tolerance
+
+            if (scrollPosition > sectionTop + threshold) {
+                // Not at the top of current section - scroll to top of current section
+                currentSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // At the top of current section - go to previous section
+                const prevIndex = Math.max(0, currentIndex - 1);
+                sections[prevIndex].scrollIntoView({ behavior: 'smooth' });
+            }
         });
 
         scrollDownBtn.addEventListener('click', () => {
