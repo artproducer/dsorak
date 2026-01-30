@@ -136,6 +136,7 @@ function normalizePlatformName(name) {
     // Inverse mapping table since JSON keys don't always match simple lowercase rules
     // We try to match the HTML data-platform to the JSON key
     const mapping = {
+        "Mubi": "mubi",
         "Netflix": "netflix",
         "Disney+ Premium": "disney_premium",
         "Disney+ Estándar": "disney_standard",

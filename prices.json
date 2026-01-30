@@ -1,7 +1,7 @@
 {
     "discounts": {
         "profiles": {
-            "2": 2500,
+            "2": 3000,
             "3+": 5000
         },
         "combo": {
@@ -15,6 +15,10 @@
         }
     },
     "platforms": {
+        "mubi": {
+            "name": "Mubi",
+            "pricePerMonth": 6000
+        },
         "netflix": {
             "name": "Netflix",
             "pricePerMonth": 16000
