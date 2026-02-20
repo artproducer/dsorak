@@ -559,6 +559,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===== ANIMATION ON SCROLL =====
+const isMobile = window.innerWidth <= 768;
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -576,10 +578,17 @@ const observer = new IntersectionObserver((entries) => {
 // Observe all cards when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.platform-card, .referencia-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(card);
+        if (isMobile) {
+            // On mobile: show all cards immediately
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        } else {
+            // On desktop: animate on scroll
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        }
     });
 
     // ===== CAROUSEL LOGIC =====
