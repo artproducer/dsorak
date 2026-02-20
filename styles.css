@@ -2371,3 +2371,323 @@ footer {
         font-size: 1.6rem;
     }
 }
+
+/* ===== DARK MODE (System Preference) ===== */
+@media (prefers-color-scheme: dark) {
+
+    /* Body & Base */
+    body {
+        background: #111111;
+        color: #e0e0e0;
+    }
+
+    /* Header */
+    header {
+        background: rgba(17, 17, 17, 0.95);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    header.scrolled {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo .streaming-text {
+        color: #999;
+    }
+
+    .nav-links a {
+        color: #e0e0e0;
+        background: #1c1c1c;
+        border-color: #333;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:active {
+        border-color: #555;
+        background: #252525;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        background: #1c1c1c;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .mobile-menu a {
+        color: #e0e0e0;
+        background: #272727;
+        border-color: #333;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:active {
+        background: #333;
+        color: white;
+        border-color: #555;
+    }
+
+    .close-menu {
+        color: #e0e0e0;
+    }
+
+    .menu-toggle span {
+        background: #e0e0e0;
+    }
+
+    /* Section Headers */
+    .section-header h2 {
+        color: #e0e0e0;
+    }
+
+    .section-header p {
+        color: #999;
+    }
+
+    /* Platform Cards */
+    .platform-card {
+        background: #1c1c1c;
+        border-color: #2e2e2e;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .platform-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        border-color: #444;
+    }
+
+    .platform-name {
+        color: #e0e0e0;
+    }
+
+    .platform-desc {
+        color: #999;
+    }
+
+    .platform-icon {
+        background: #272727;
+    }
+
+    /* Price Corner */
+    .price-amount {
+        background: #272727;
+        color: #fff;
+    }
+
+    .price-per-unit {
+        color: #888;
+    }
+
+    /* Selection Badge */
+    .selection-badge {
+        background: #272727;
+        color: #ccc;
+        border-color: #3a3a3a;
+    }
+
+    /* Guarantee Badge */
+    .guarantee-badge {
+        color: #2EC4B6;
+    }
+
+    /* Quantity Selector */
+    .quantity-selector {
+        background: #272727;
+    }
+
+    .qty-label {
+        color: #999;
+    }
+
+    .qty-value {
+        color: #2ecc71;
+    }
+
+    .qty-btn:disabled {
+        background: #333 !important;
+    }
+
+    /* FAQ Section */
+    .faq-item {
+        background: #1c1c1c;
+        border-color: #2e2e2e;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .faq-question:hover {
+        background: #272727;
+    }
+
+    .faq-question span:first-child {
+        color: #e0e0e0;
+    }
+
+    .faq-answer-content {
+        color: #999;
+    }
+
+    /* Footer */
+    footer {
+        background: #1c1c1c;
+        border-top-color: #2e2e2e;
+    }
+
+    .footer-brand p {
+        color: #999;
+    }
+
+    .footer-links h4 {
+        color: #e0e0e0;
+    }
+
+    .footer-links a {
+        color: #999;
+    }
+
+    .footer-links a:hover {
+        color: #fff;
+    }
+
+    .footer-bottom {
+        border-top-color: #2e2e2e;
+        color: #777;
+    }
+
+    /* Combo Modal */
+    .combo-modal-content {
+        background: #1c1c1c;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .combo-modal-close {
+        background: #272727;
+        color: #e0e0e0;
+        border-color: #333;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .combo-modal-close:hover {
+        background: #dc3545;
+        color: white;
+        border-color: #dc3545;
+    }
+
+    .combo-modal .platform-card {
+        background: transparent;
+    }
+
+    .combo-modal-content .card-bottom {
+        background: #1c1c1c;
+        border-top-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Combo Checkboxes */
+    .custom-combo-selector {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .platform-checkboxes {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .checkmark {
+        background: #272727;
+        border-color: #333;
+        color: #e0e0e0;
+    }
+
+    .platform-option:hover .checkmark {
+        border-color: #555;
+        background: #303030;
+    }
+
+    .platform-option input:checked~.checkmark {
+        background: #444;
+        border-color: #555;
+        color: white;
+    }
+
+    /* Combo Savings */
+    .combo-ultimate .combo-savings {
+        background: rgba(46, 196, 182, 0.1);
+        color: #2EC4B6;
+        border-color: rgba(46, 196, 182, 0.25) !important;
+    }
+
+    /* Combos Section */
+    #combos {
+        background: #111111;
+    }
+
+    /* Carousel */
+    .carousel-track-container {
+        background: #1c1c1c;
+    }
+
+    .carousel-indicator {
+        background: #333;
+    }
+
+    /* Disabled Platform */
+    .platform-disabled::before {
+        background: repeating-linear-gradient(45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.02) 10px,
+                rgba(255, 255, 255, 0.02) 20px);
+    }
+
+    .platform-disabled:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        border-color: #2e2e2e;
+    }
+
+    .platform-option-disabled .checkmark {
+        background: #1c1c1c;
+        border-color: #2e2e2e;
+        color: #777;
+    }
+
+    /* Disabled Badge */
+    .disabled-badge {
+        color: #f5c6cb;
+        background: rgba(114, 28, 36, 0.3);
+        border-color: rgba(245, 198, 203, 0.2);
+    }
+
+    /* Scroll Buttons */
+    .scroll-btn {
+        background: rgba(80, 80, 80, 0.7);
+        border-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Section Nav Buttons */
+    .section-nav-btn {
+        background: #1c1c1c;
+        color: #e0e0e0;
+        border-color: #333;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-nav-btn:hover {
+        border-color: #555;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Netflix Banner */
+    .netflix-notice-banner {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Promo Banner */
+    .promo-banner {
+        background: linear-gradient(135deg, #333 0%, #444 100%);
+    }
+}
