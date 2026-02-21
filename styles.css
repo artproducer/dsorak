@@ -801,11 +801,12 @@ section {
 .price-amount {
     font-size: 1.3rem;
     font-weight: 800;
-    color: #1e293b;
-    background: #f0ebe3;
+    color: #0c5460;
+    background: #d1ecf1;
     padding: 0.3rem 0.6rem;
     border-radius: 12px;
     line-height: 1.1;
+    border: 1px solid #bee5eb;
 }
 
 .price-per-unit {
@@ -1453,6 +1454,13 @@ footer {
     flex-wrap: wrap;
 }
 
+.payment-number-group {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+}
+
 
 .valid-dot {
     width: 7px;
@@ -1509,8 +1517,7 @@ footer {
     font-weight: 800;
     font-size: 1.5rem;
     letter-spacing: 1px;
-    color: #d18f00;
-    /* User preferred gold color */
+    color: #000;
     line-height: 1;
 }
 
@@ -2406,23 +2413,35 @@ footer {
 
     .payment-info-card {
         padding: 0.8rem 0.5rem !important;
-        /* Padding reducido para ganar espacio horizontal */
         width: 95% !important;
         margin: 0.5rem auto 1.25rem !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        /* FIX: era nowrap, impedía que el contenido se adaptara al ancho en móvil */
-        gap: 0.4rem !important;
-        /* Gap reducido */
-        justify-content: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
         font-size: 0.85rem !important;
-        /* Fuente un poco más pequeña si es necesario */
+    }
+
+    .payment-single-row {
+        flex-wrap: nowrap !important;
+        gap: 0.15rem !important;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
     }
 
     .payment-info-card .payment-label {
         margin-right: 0 !important;
-        font-size: 0.85rem !important;
+        font-size: 0.65rem !important;
         white-space: nowrap !important;
+    }
+
+    .payment-info-card .payment-number {
+        font-size: 0.8rem !important;
+    }
+
+    .payment-info-card .btn-copy {
+        padding: 0.2rem 0.4rem !important;
+        font-size: 0.65rem !important;
     }
 
     .combo-modal-close {
