@@ -285,6 +285,40 @@ nav {
     align-items: baseline;
     gap: 0.3rem;
     text-decoration: none;
+    position: relative;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 200%;
+    background: linear-gradient(90deg,
+            rgba(22, 101, 175, 0.1),
+            rgba(46, 196, 182, 0.15),
+            rgba(90, 200, 250, 0.1),
+            rgba(46, 196, 182, 0.15),
+            rgba(22, 101, 175, 0.1));
+    background-size: 300% 100%;
+    animation: logoGlow 5s ease-in-out infinite;
+    border-radius: 16px;
+    z-index: -1;
+    filter: blur(10px);
+}
+
+@keyframes logoGlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .logo .streaming-text {
@@ -582,7 +616,6 @@ section {
     font-weight: 700;
     margin-top: 1rem;
     margin-bottom: 0.25rem;
-    /* Reduced from 0.75rem */
     color: var(--text-dark);
 }
 
@@ -793,8 +826,8 @@ section {
 .price-amount {
     font-size: 1.3rem;
     font-weight: 800;
-    color: #1a5276;
-    background: #d4edfc;
+    color: #1e293b;
+    background: #f0ebe3;
     padding: 0.3rem 0.6rem;
     border-radius: 12px;
     line-height: 1.1;
