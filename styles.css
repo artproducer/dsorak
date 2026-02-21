@@ -29,6 +29,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* FIX: evita scroll horizontal en elementos fixed */
 }
 
 body {
@@ -647,6 +648,8 @@ section {
     gap: 1.5rem;
     /* Espacio para las flechas fuera */
     margin: 0.5rem 0;
+    max-width: 100%; /* FIX: evita desbordamiento en pantallas pequeñas */
+    flex-wrap: wrap; /* FIX: permite que los elementos bajen si no caben */
 }
 
 /* Botón CREAR COMBO - Estilo Píldora Pequeña */
@@ -1982,7 +1985,9 @@ footer {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, opacity 0.3s ease;
-    white-space: nowrap;
+    white-space: normal; /* FIX: era nowrap, causaba desbordamiento horizontal en móvil */
+    max-width: calc(100vw - 2rem); /* FIX: nunca más ancho que la pantalla */
+    text-align: center;
 }
 
 .payment-banner.hidden {
@@ -2441,8 +2446,7 @@ footer {
         width: 95% !important;
         margin: 0.5rem auto 1.25rem !important;
         flex-direction: row !important;
-        /* Forzar una sola línea */
-        flex-wrap: nowrap !important;
+        flex-wrap: wrap !important; /* FIX: era nowrap, impedía que el contenido se adaptara al ancho en móvil */
         gap: 0.4rem !important;
         /* Gap reducido */
         justify-content: center !important;
