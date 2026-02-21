@@ -289,38 +289,7 @@ nav {
     position: relative;
 }
 
-.logo::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 140%;
-    height: 200%;
-    background: linear-gradient(90deg,
-            rgba(22, 101, 175, 0.1),
-            rgba(46, 196, 182, 0.15),
-            rgba(90, 200, 250, 0.1),
-            rgba(46, 196, 182, 0.15),
-            rgba(22, 101, 175, 0.1));
-    background-size: 300% 100%;
-    animation: logoGlow 5s ease-in-out infinite;
-    border-radius: 16px;
-    z-index: -1;
-    filter: blur(10px);
-}
 
-@keyframes logoGlow {
-
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-}
 
 .logo .streaming-text {
     font-size: 0.75rem;
