@@ -711,7 +711,7 @@ section {
 }
 
 .platform-card {
-    background: #f0f4f8;
+    background: #f2f2f2;
     border-radius: var(--radius-md);
     padding: 1.25rem;
     box-shadow: var(--shadow-sm);
@@ -719,7 +719,7 @@ section {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    border: 1px solid #dce3ea;
+    border: 1px solid #e0e0e0;
     position: relative;
     min-width: 0;
     /* Allow grid to control width, prevent content from expanding */
@@ -1037,7 +1037,8 @@ section {
     align-items: center;
     gap: 0.35rem;
     padding: 0.35rem 0.5rem;
-    background: var(--light-gray);
+    background: #fff;
+    border: 1.5px solid rgba(22, 101, 175, 0.3);
     border-radius: 8px;
     font-size: 0.75rem;
     flex: 1;
@@ -1062,12 +1063,14 @@ section {
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    line-height: 1;
+    padding: 0;
 }
 
 /* Increase buttons - Bright Green */
 .qty-plus,
 .month-plus {
-    background: #2ecc71;
+    background: #25D366;
 }
 
 .qty-plus:hover,
@@ -1403,24 +1406,66 @@ footer {
 }
 
 /* ===== PAYMENT INFO CARD ===== */
-/* ===== PAYMENT INFO CARD ===== */
 .payment-info-card {
     background: #0a0f1d;
-    /* Azul profundo */
-    /* Suavizado (menos oscuro que el anterior) */
     padding: 0.75rem 2.5rem;
     border-radius: var(--radius-md);
     margin: 0.5rem auto 1rem;
     max-width: 700px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     color: white;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     animation: fadeIn 0.5s ease-out;
     border: 1px solid rgba(255, 255, 255, 0.12);
     transition: all 0.3s ease;
+}
+
+.payment-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #f0c040;
+    letter-spacing: 0.3px;
+}
+
+.payment-title-row .valid-date {
+    opacity: 0.8;
+}
+
+.payment-main-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.valid-dot {
+    width: 7px;
+    height: 7px;
+    background: #f0c040;
+    border-radius: 50%;
+    display: inline-block;
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(240, 192, 64, 0.5);
+    }
+
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 0 4px rgba(240, 192, 64, 0);
+    }
 }
 
 .payment-info-card:hover {
@@ -1489,15 +1534,28 @@ footer {
 
 @media (max-width: 600px) {
     .payment-info-card {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 0.4rem;
+        flex-direction: column;
+        gap: 0.35rem;
         padding: 0.6rem 0.8rem;
+    }
+
+    .payment-title-row {
+        font-size: 0.72rem;
+        gap: 0.35rem;
+    }
+
+    .payment-main-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.3rem;
     }
 
     .payment-info-card .payment-label {
         font-size: 0.7rem;
         gap: 0.3rem;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
     }
 
     .payment-info-card .payment-label svg {
@@ -2190,7 +2248,7 @@ footer {
     align-items: stretch;
     /* Firefox scrollbar */
     scrollbar-width: thin;
-    scrollbar-color: var(--primary) transparent;
+    scrollbar-color: #2ecc71 transparent;
 }
 
 @media (min-width: 769px) {
@@ -2217,12 +2275,12 @@ footer {
 }
 
 .platform-checkboxes::-webkit-scrollbar-thumb {
-    background: rgba(22, 101, 175, 0.4);
+    background: rgba(46, 204, 113, 0.4);
     border-radius: 3px;
 }
 
 .platform-checkboxes::-webkit-scrollbar-thumb:hover {
-    background: rgba(22, 101, 175, 0.6);
+    background: rgba(46, 204, 113, 0.6);
 }
 
 /* Ocultar flechas de scroll que sobresalen */
@@ -2247,7 +2305,7 @@ footer {
 }
 
 .combo-modal-content::-webkit-scrollbar-thumb {
-    background: rgba(22, 101, 175, 0.3);
+    background: rgba(46, 204, 113, 0.3);
     border-radius: 3px;
 }
 
@@ -2295,10 +2353,10 @@ footer {
     height: 60px;
     /* Agrandado */
     border-radius: 50%;
-    border: 3px solid var(--primary);
+    border: 3px solid #2ecc71;
     /* Borde más visible */
     background: white;
-    color: var(--primary);
+    color: #2ecc71;
     font-size: 2.5rem;
     /* X más grande */
     font-weight: 700;
@@ -2374,359 +2432,124 @@ footer {
     }
 }
 
-/* ===== DARK MODE (System Preference) ===== */
-@media (prefers-color-scheme: dark) {
-
-    /* Body & Base */
-    body {
-        background: #111111;
-        color: #e0e0e0;
-    }
-
-    /* Header */
-    header {
-        background: rgba(17, 17, 17, 0.95);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    }
-
-    header.scrolled {
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-    }
-
-    .logo .streaming-text {
-        color: #999;
-    }
-
-    .nav-links a {
-        color: #e0e0e0;
-        background: #1c1c1c;
-        border-color: #333;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-links a:hover,
-    .nav-links a:active {
-        border-color: #555;
-        background: #252525;
-    }
-
-    /* Mobile Menu */
-    .mobile-menu {
-        background: #1c1c1c;
-        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .mobile-menu a {
-        color: #e0e0e0;
-        background: #272727;
-        border-color: #333;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .mobile-menu a:hover,
-    .mobile-menu a:active {
-        background: #333;
-        color: white;
-        border-color: #555;
-    }
-
-    .close-menu {
-        color: #e0e0e0;
-    }
-
-    .menu-toggle span {
-        background: #e0e0e0;
-    }
-
-    /* Section Headers */
-    .section-header h2 {
-        color: #e0e0e0;
-    }
-
-    .section-header p {
-        color: #999;
-    }
-
-    /* Platform Cards */
-    .platform-card {
-        background: #1c1c1c;
-        border-color: #2e2e2e;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .platform-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-        border-color: #444;
-    }
-
-    .platform-name {
-        color: #e0e0e0;
-    }
-
-    .platform-desc {
-        color: #999;
-    }
-
-    .platform-icon {
-        background: #272727;
-    }
-
-    /* Price Corner */
-    .price-amount {
-        background: #272727;
-        color: #fff;
-    }
-
-    .price-per-unit {
-        color: #888;
-    }
-
-    /* Selection Badge */
-    .selection-badge {
-        background: #272727;
-        color: #ccc;
-        border-color: #3a3a3a;
-    }
-
-    /* Guarantee Badge */
-    .guarantee-badge {
-        color: #2EC4B6;
-    }
-
-    /* Quantity Selector */
-    .quantity-selector {
-        background: #272727;
-    }
-
-    .qty-label {
-        color: #999;
-    }
-
-    .qty-value {
-        color: #48e5d6;
-        /* Muted cyan instead of neon green */
-    }
-
-    .qty-plus,
-    .month-plus {
-        background: #158b75;
-        /* Softer, darker teal-green */
-    }
-
-    .qty-minus,
-    .month-minus {
-        background: #aa4242;
-        /* Softer, muted red */
-    }
-
-    .qty-btn:disabled {
-        background: #333 !important;
-        color: #555;
-    }
-
-    /* FAQ Section */
-    .faq-item {
-        background: #1c1c1c;
-        border-color: #2e2e2e;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .faq-question:hover {
-        background: #272727;
-    }
-
-    .faq-question span:first-child {
-        color: #e0e0e0;
-    }
-
-    .faq-answer-content {
-        color: #999;
-    }
-
-    /* Footer */
-    footer {
-        background: #1c1c1c;
-        border-top-color: #2e2e2e;
-    }
-
-    .footer-brand p {
-        color: #999;
-    }
-
-    .footer-links h4 {
-        color: #e0e0e0;
-    }
-
-    .footer-links a {
-        color: #999;
-    }
-
-    .footer-links a:hover {
-        color: #fff;
-    }
-
-    .footer-bottom {
-        border-top-color: #2e2e2e;
-        color: #777;
-    }
-
-    /* Combo Modal */
-    .combo-modal-content {
-        background: #1c1c1c;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-    }
-
-    .combo-modal-close {
-        background: #272727;
-        color: #e0e0e0;
-        border-color: #333;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .combo-modal-close:hover {
-        background: #dc3545;
-        color: white;
-        border-color: #dc3545;
-    }
-
-    .combo-modal .platform-card {
-        background: transparent;
-    }
-
-    .combo-modal-content .card-bottom {
-        background: #1c1c1c;
-        border-top-color: rgba(255, 255, 255, 0.05);
-    }
-
-    /* Combo Checkboxes */
-    .custom-combo-selector {
-        background: rgba(255, 255, 255, 0.04);
-    }
-
-    .platform-checkboxes {
-        background: rgba(255, 255, 255, 0.02);
-        border-color: rgba(255, 255, 255, 0.06);
-    }
-
-    .checkmark {
-        background: #272727;
-        border-color: #333;
-        color: #e0e0e0;
-    }
-
-    .platform-option:hover .checkmark {
-        border-color: rgba(46, 196, 182, 0.5);
-        background: #303030;
-    }
-
-    .platform-option input:checked~.checkmark {
-        background: #1a6b7a;
-        border-color: #2EC4B6;
-        color: white;
-        box-shadow: 0 4px 10px rgba(46, 196, 182, 0.2);
-    }
-
-    .platform-option input:checked~.checkmark::after {
-        background: #111;
-        color: #2EC4B6;
-    }
-
-    /* Combo Savings */
-    .combo-ultimate .combo-savings {
-        background: rgba(46, 196, 182, 0.2);
-        color: #48e5d6;
-        /* Cian mas vibrante para modo dark */
-        border-color: rgba(46, 196, 182, 0.5) !important;
-        box-shadow: 0 0 12px rgba(46, 196, 182, 0.2);
-    }
-
-    /* Combos Section */
-    #combos {
-        background: #111111;
-    }
-
-    /* Carousel */
-    .carousel-track-container {
-        background: #1c1c1c;
-    }
-
-    .carousel-indicator {
-        background: #333;
-    }
-
-    /* Disabled Platform */
-    .platform-disabled::before {
-        background: repeating-linear-gradient(45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.02) 10px,
-                rgba(255, 255, 255, 0.02) 20px);
-    }
-
-    .platform-disabled:hover {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        border-color: #2e2e2e;
-    }
-
-    .platform-option-disabled .checkmark {
-        background: #1c1c1c;
-        border-color: #2e2e2e;
-        color: #777;
-    }
-
-    /* Disabled Badge */
-    .disabled-badge {
-        color: #f5c6cb;
-        background: rgba(114, 28, 36, 0.3);
-        border-color: rgba(245, 198, 203, 0.2);
-    }
-
-    /* Scroll Buttons */
-    .scroll-btn {
-        background: rgba(80, 80, 80, 0.7);
-        border-color: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Section Nav Buttons */
-    .section-nav-btn {
-        background: #1c1c1c;
-        color: #e0e0e0;
-        border-color: #333;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .section-nav-btn:hover {
-        border-color: #555;
-    }
-
-    /* Crear Combo Arrows */
-    .arrow-anim {
-        color: #2EC4B6;
-    }
-
-    .btn-crear-combo {
-        background: #1a6b7a !important;
-        box-shadow: 0 4px 15px rgba(46, 196, 182, 0.3) !important;
-    }
-
-    .btn-crear-combo:hover {
-        background: #228b9d !important;
-        box-shadow: 0 6px 18px rgba(46, 196, 182, 0.4) !important;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Netflix Banner */
-    .netflix-notice-banner {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    }
-
-    /* Promo Banner */
-    .promo-banner {
-        background: linear-gradient(135deg, #333 0%, #444 100%);
-    }
+/* Combo Checkboxes */
+.custom-combo-selector {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.platform-checkboxes {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.checkmark {
+    background: #eee;
+    border-color: #ccc;
+    color: #333;
+}
+
+.platform-option:hover .checkmark {
+    border-color: rgba(46, 204, 113, 0.5);
+    background: #e0e0e0;
+}
+
+.platform-option input:checked~.checkmark {
+    background: #2ecc71;
+    border-color: #2ecc71;
+    color: white;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+}
+
+.platform-option input:checked~.checkmark::after {
+    background: #fff;
+    color: #2ecc71;
+}
+
+/* Combo Savings */
+.combo-ultimate .combo-savings {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    border-color: rgba(46, 204, 113, 0.25) !important;
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.1);
+}
+
+/* Combos Section */
+#combos {
+    background: var(--light);
+}
+
+/* Carousel */
+.carousel-indicator.current-slide {
+    background: var(--primary);
+}
+
+/* Disabled Platform */
+.platform-disabled::before {
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(0, 0, 0, 0.02) 10px,
+            rgba(0, 0, 0, 0.02) 20px);
+}
+
+.platform-option-disabled .checkmark {
+    background: #f0f0f0;
+    border-color: #ddd;
+    color: #999;
+}
+
+/* Disabled Badge */
+.disabled-badge {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    border-color: rgba(220, 53, 69, 0.25);
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+    background: rgba(2, 138, 206, 0.719);
+    border-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Section Nav Buttons */
+.section-nav-btn {
+    background: white;
+    color: var(--text-dark);
+    border-color: #ddd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-nav-btn:hover {
+    border-color: var(--primary);
+}
+
+/* Crear Combo Arrows */
+.arrow-anim {
+    color: #1e293b;
+}
+
+.btn-crear-combo {
+    background: #0d4f5c !important;
+    box-shadow: 0 4px 15px rgba(10, 15, 29, 0.4) !important;
+}
+
+.btn-crear-combo:hover {
+    background: #1e293b !important;
+    box-shadow: 0 6px 18px rgba(10, 15, 29, 0.5) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Netflix Banner */
+.netflix-notice-banner {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Promo Banner */
+.promo-banner {
+    background: var(--gradient-1);
 }

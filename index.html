@@ -627,22 +627,76 @@
             </div>
             <h2>🎬 Nuestras Plataformas</h2>
             <p>Elige tu plataforma favorita y comienza a disfrutar hoy mismo.</p>
-            <!-- <div class="payment-info-card" title="Medios de pago disponibles">
-                <span class="payment-label">
-                    Daviplata • Nequi • Llave:
-                </span>
-                <span class="payment-number">3005965404</span>
-                <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                    Copiar
-                </button>
-            </div> -->
+            <div class="payment-info-card" title="Medios de pago disponibles">
+                <div class="payment-title-row">
+                    <span class="valid-dot"></span>
+                    Medios de pago vigentes hoy <span class="valid-date" id="paymentDate"></span>
+                </div>
+                <div class="payment-main-row">
+                    <span class="payment-label">
+                        Daviplata • Nequi • Llave:
+                    </span>
+                    <span class="payment-number">3005965404</span>
+                    <button class="btn-copy" onclick="copyPaymentNumber(this)" title="Copiar número">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copiar
+                    </button>
+                </div>
+            </div>
+            <script>
+                document.getElementById('paymentDate').textContent =
+                    new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' });
+            </script>
         </div>
         <div class="platforms-grid">
+            <!-- Apple TV+ -->
+            <div class="platform-card platform-card-v2" data-platform="Apple TV+" data-price-1m="8000">
+                <div class="price-corner">
+                    <span class="price-amount">$8.000</span>
+                    <span class="price-per-unit">$8.000/perfil</span>
+                </div>
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="assets/images/apple-tv.png" alt="Apple TV+">
+                    </div>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">Apple TV+</h3>
+
+                        </div>
+                        <p class="platform-desc">Contenido original Apple en 4K Dolby</p>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
+                        <div class="quantity-selector">
+                            <span class="qty-label">Meses</span>
+                            <button class="qty-btn month-minus">-</button>
+                            <span class="qty-value month-value">1</span>
+                            <button class="qty-btn month-plus">+</button>
+                        </div>
+                        <div class="quantity-selector">
+                            <span class="qty-label">Perfiles</span>
+                            <button class="qty-btn qty-minus">-</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn qty-plus">+</button>
+                        </div>
+                    </div>
+                    <div class="platform-footer-row">
+                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                            </svg> Garantía</span>
+                        <span class="selection-badge">1 Mes • 1 Perfil</span>
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
+                    </div>
+                </div>
+            </div>
             <!-- Disney+ Premium -->
             <div class="platform-card platform-card-v2" data-platform="Disney+ Premium" data-price-1m="8000">
                 <div class="price-corner">
@@ -1059,50 +1113,6 @@
 
                         </div>
                         <p class="platform-desc">Series, películas y deportes en vivo</p>
-                    </div>
-                </div>
-                <div class="card-bottom">
-                    <div class="selectors-row-full">
-                        <div class="quantity-selector">
-                            <span class="qty-label">Meses</span>
-                            <button class="qty-btn month-minus">-</button>
-                            <span class="qty-value month-value">1</span>
-                            <button class="qty-btn month-plus">+</button>
-                        </div>
-                        <div class="quantity-selector">
-                            <span class="qty-label">Perfiles</span>
-                            <button class="qty-btn qty-minus">-</button>
-                            <span class="qty-value">1</span>
-                            <button class="qty-btn qty-plus">+</button>
-                        </div>
-                    </div>
-                    <div class="platform-footer-row">
-                        <span class="guarantee-badge"><svg width="14" height="14" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-                            </svg> Garantía</span>
-                        <span class="selection-badge">1 Mes • 1 Perfil</span>
-                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Apple TV+ -->
-            <div class="platform-card platform-card-v2" data-platform="Apple TV+" data-price-1m="8000">
-                <div class="price-corner">
-                    <span class="price-amount">$8.000</span>
-                    <span class="price-per-unit">$8.000/perfil</span>
-                </div>
-                <div class="card-top-row">
-                    <div class="platform-icon">
-                        <img src="assets/images/apple-tv.png" alt="Apple TV+">
-                    </div>
-                    <div class="platform-info">
-                        <div class="platform-header-row">
-                            <h3 class="platform-name">Apple TV+</h3>
-
-                        </div>
-                        <p class="platform-desc">Contenido original Apple en 4K Dolby</p>
                     </div>
                 </div>
                 <div class="card-bottom">
@@ -1585,6 +1595,13 @@
 
                             <div class="platform-checkboxes">
                                 <label class="platform-option">
+                                    <input type="checkbox" data-price="8000" data-name="Apple TV+">
+                                    <span class="checkmark">
+                                        <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
+                                        <span class="platform-name-text">Apple TV+ ($8.000)</span>
+                                    </span>
+                                </label>
+                                <label class="platform-option">
                                     <input type="checkbox" data-price="8000" data-name="Disney+ Premium">
                                     <span class="checkmark">
                                         <img src="assets/images/disney-plus.png" alt="Disney+"
@@ -1650,13 +1667,6 @@
                                         <img src="assets/images/crunchyroll.png" alt="Crunchyroll"
                                             class="platform-mini-logo">
                                         <span class="platform-name-text">Crunchyroll ($7.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Apple TV+">
-                                    <span class="checkmark">
-                                        <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
-                                        <span class="platform-name-text">Apple TV+ ($8.000)</span>
                                     </span>
                                 </label>
                                 <label class="platform-option">
