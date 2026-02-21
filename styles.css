@@ -29,7 +29,8 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden; /* FIX: evita scroll horizontal en elementos fixed */
+    overflow-x: hidden;
+    /* FIX: evita scroll horizontal en elementos fixed */
 }
 
 body {
@@ -617,8 +618,10 @@ section {
     gap: 1.5rem;
     /* Espacio para las flechas fuera */
     margin: 0.5rem 0;
-    max-width: 100%; /* FIX: evita desbordamiento en pantallas pequeñas */
-    flex-wrap: wrap; /* FIX: permite que los elementos bajen si no caben */
+    max-width: 100%;
+    /* FIX: evita desbordamiento en pantallas pequeñas */
+    flex-wrap: wrap;
+    /* FIX: permite que los elementos bajen si no caben */
 }
 
 /* Botón CREAR COMBO - Estilo Píldora Pequeña */
@@ -1413,14 +1416,14 @@ footer {
 /* ===== PAYMENT INFO CARD ===== */
 .payment-info-card {
     background: #0a0f1d;
-    padding: 0.75rem 2.5rem;
+    padding: 0.6rem 2rem;
     border-radius: var(--radius-md);
     margin: 0.5rem auto 1rem;
     max-width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     color: white;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     animation: fadeIn 0.5s ease-out;
@@ -1442,13 +1445,14 @@ footer {
     opacity: 0.8;
 }
 
-.payment-main-row {
+.payment-single-row {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    width: 100%;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
 }
+
 
 .valid-dot {
     width: 7px;
@@ -1539,9 +1543,7 @@ footer {
 
 @media (max-width: 600px) {
     .payment-info-card {
-        flex-direction: column;
-        gap: 0.35rem;
-        padding: 0.6rem 0.8rem;
+        padding: 0.5rem 0.8rem;
     }
 
     .payment-title-row {
@@ -1549,23 +1551,14 @@ footer {
         gap: 0.35rem;
     }
 
-    .payment-main-row {
-        flex-wrap: wrap;
+    .payment-single-row {
+        gap: 0.35rem;
         justify-content: center;
-        gap: 0.3rem;
     }
 
     .payment-info-card .payment-label {
         font-size: 0.7rem;
         gap: 0.3rem;
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-    }
-
-    .payment-info-card .payment-label svg {
-        width: 14px;
-        height: 14px;
     }
 
     .payment-info-card .payment-number {
@@ -1954,8 +1947,10 @@ footer {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, opacity 0.3s ease;
-    white-space: normal; /* FIX: era nowrap, causaba desbordamiento horizontal en móvil */
-    max-width: calc(100vw - 2rem); /* FIX: nunca más ancho que la pantalla */
+    white-space: normal;
+    /* FIX: era nowrap, causaba desbordamiento horizontal en móvil */
+    max-width: calc(100vw - 2rem);
+    /* FIX: nunca más ancho que la pantalla */
     text-align: center;
 }
 
@@ -2415,7 +2410,8 @@ footer {
         width: 95% !important;
         margin: 0.5rem auto 1.25rem !important;
         flex-direction: row !important;
-        flex-wrap: wrap !important; /* FIX: era nowrap, impedía que el contenido se adaptara al ancho en móvil */
+        flex-wrap: wrap !important;
+        /* FIX: era nowrap, impedía que el contenido se adaptara al ancho en móvil */
         gap: 0.4rem !important;
         /* Gap reducido */
         justify-content: center !important;
