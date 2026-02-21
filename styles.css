@@ -845,17 +845,18 @@ section {
 }
 
 .combo-ultimate .combo-savings {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #0d4f5c;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0a3d47;
     /* Cian oscuro */
     /* Color unificado con Garantía */
-    background: rgba(46, 196, 182, 0.12);
-    /* Fondo más fuerte (antes 0.05) */
-    padding: 0 0.8rem !important;
-    border: 1.5px solid rgba(46, 196, 182, 0.4) !important;
+    background: rgba(46, 196, 182, 0.25);
+    /* Fondo más fuerte */
+    padding: 0.2rem 1rem !important;
+    border: 2px solid rgba(46, 196, 182, 0.6) !important;
     /* Borde sólido y más grueso */
     white-space: nowrap;
+    box-shadow: 0 3px 8px rgba(46, 196, 182, 0.15);
 }
 
 .combo-ultimate .price-amount {
@@ -878,7 +879,8 @@ section {
     }
 
     .combo-ultimate .combo-savings {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
+        padding: 0.1rem 0.6rem !important;
     }
 }
 
@@ -2501,11 +2503,25 @@ footer {
     }
 
     .qty-value {
-        color: #2ecc71;
+        color: #48e5d6;
+        /* Muted cyan instead of neon green */
+    }
+
+    .qty-plus,
+    .month-plus {
+        background: #158b75;
+        /* Softer, darker teal-green */
+    }
+
+    .qty-minus,
+    .month-minus {
+        background: #aa4242;
+        /* Softer, muted red */
     }
 
     .qty-btn:disabled {
         background: #333 !important;
+        color: #555;
     }
 
     /* FAQ Section */
@@ -2599,21 +2615,29 @@ footer {
     }
 
     .platform-option:hover .checkmark {
-        border-color: #555;
+        border-color: rgba(46, 196, 182, 0.5);
         background: #303030;
     }
 
     .platform-option input:checked~.checkmark {
-        background: #444;
-        border-color: #555;
+        background: #1a6b7a;
+        border-color: #2EC4B6;
         color: white;
+        box-shadow: 0 4px 10px rgba(46, 196, 182, 0.2);
+    }
+
+    .platform-option input:checked~.checkmark::after {
+        background: #111;
+        color: #2EC4B6;
     }
 
     /* Combo Savings */
     .combo-ultimate .combo-savings {
-        background: rgba(46, 196, 182, 0.1);
-        color: #2EC4B6;
-        border-color: rgba(46, 196, 182, 0.25) !important;
+        background: rgba(46, 196, 182, 0.2);
+        color: #48e5d6;
+        /* Cian mas vibrante para modo dark */
+        border-color: rgba(46, 196, 182, 0.5) !important;
+        box-shadow: 0 0 12px rgba(46, 196, 182, 0.2);
     }
 
     /* Combos Section */
@@ -2674,6 +2698,21 @@ footer {
 
     .section-nav-btn:hover {
         border-color: #555;
+    }
+
+    /* Crear Combo Arrows */
+    .arrow-anim {
+        color: #2EC4B6;
+    }
+
+    .btn-crear-combo {
+        background: #1a6b7a !important;
+        box-shadow: 0 4px 15px rgba(46, 196, 182, 0.3) !important;
+    }
+
+    .btn-crear-combo:hover {
+        background: #228b9d !important;
+        box-shadow: 0 6px 18px rgba(46, 196, 182, 0.4) !important;
     }
 
     /* Scrollbar */
