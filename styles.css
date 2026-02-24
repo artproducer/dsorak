@@ -801,8 +801,8 @@ section {
 .price-amount {
     font-size: 1.3rem;
     font-weight: 800;
-    color: #0c5460;
-    background: #d1ecf1;
+    color: #caa604;
+    background: #030303;
     padding: 0.3rem 0.6rem;
     border-radius: 12px;
     line-height: 1.1;
@@ -812,7 +812,7 @@ section {
 .price-per-unit {
     font-size: 0.65rem;
     font-weight: 500;
-    color: #888;
+    color: #272626;
 }
 
 /* Specific adjustment for combo-ultimate in modal */
