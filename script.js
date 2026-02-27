@@ -795,10 +795,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
             if (savingsDisplay) {
                 if (count >= 2) {
-                    savingsDisplay.textContent = `💰 Ahorro de $${discount.toLocaleString('es-CO')} aplicado`;
+                    savingsDisplay.textContent = `💰 Ahorras $${discount.toLocaleString('es-CO')}`;
                     savingsDisplay.classList.remove('error-shake');
                 } else {
-                    savingsDisplay.textContent = 'Selecciona 2 o más para descuento';
+                    savingsDisplay.textContent = 'Elige 2+ para descuento';
                     savingsDisplay.classList.remove('error-shake');
                 }
             }
@@ -818,7 +818,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
                 if (savingsDisplay) {
-                    savingsDisplay.textContent = '❌ Selecciona 2 o más para continuar';
+                    savingsDisplay.textContent = '❌ Elige 2+ para continuar';
                     savingsDisplay.classList.add('error-shake');
 
                     // Remove class after animation to allow re-trigger
