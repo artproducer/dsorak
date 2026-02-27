@@ -727,7 +727,7 @@ section {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    border: 1.5px solid rgba(13, 110, 253, 0.2);
+    border: 1.5px solid rgba(13, 110, 253, 0.4);
     position: relative;
     min-width: 0;
     /* Allow grid to control width, prevent content from expanding */
