@@ -455,7 +455,7 @@ async function initQuantitySelectors() {
                 const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
                 const isAccountBased = platformsWithAccount.includes(platform);
                 const unitLabel = isAccountBased ? (profiles === 1 ? 'Cuenta' : 'Cuentas') : (profiles === 1 ? 'Perfil' : 'Perfiles');
-                selectionBadge.textContent = `${monthsText} • ${profiles} ${unitLabel}`;
+                selectionBadge.textContent = `${profiles} ${unitLabel} • ${monthsText}`;
             }
 
             // Update WhatsApp link
