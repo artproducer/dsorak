@@ -175,7 +175,8 @@ async function loadData() {
             appState.prices.platforms[p.id] = {
                 name: p.name,
                 pricePerMonth: p.price_per_month,
-                pricing: p.pricing
+                pricing: p.pricing,
+                useCustomPricing: p.use_custom_pricing
             };
         });
 
@@ -481,7 +482,7 @@ function initCardLogic(card) {
         const platformKey = normalizePlatformName(platform);
         const platformData = appState.prices ? appState.prices.platforms[platformKey] : null;
 
-        if (platformData && platformData.pricing && platformData.pricing[`${profiles}_profile`]) {
+        if (platformData && platformData.useCustomPricing && platformData.pricing && platformData.pricing[`${profiles}_profile`]) {
             const profilePricing = platformData.pricing[`${profiles}_profile`];
             finalPrice = profilePricing[`${months}_month`] || (profilePricing[`1_month`] * months) || (basePrice * profiles * months);
         } else {
