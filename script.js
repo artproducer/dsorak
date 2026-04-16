@@ -172,12 +172,14 @@ async function loadData() {
 
         // Populate platforms
         platformsRes.data.forEach(p => {
-            appState.prices.platforms[p.id] = {
+            const platformConfig = {
                 name: p.name,
                 pricePerMonth: p.price_per_month,
                 pricing: p.pricing,
                 useCustomPricing: p.use_custom_pricing
             };
+            appState.prices.platforms[p.id] = platformConfig;
+            appState.prices.platforms[normalizePlatformName(p.name)] = platformConfig;
         });
 
         // Initialize config from platforms
@@ -196,6 +198,9 @@ async function loadData() {
         // Use default if not set
         if (!appState.whatsapp) appState.whatsapp = { number: '573005965404' };
 
+        // Update all static WhatsApp links in the page (Distributor, Footer, etc.)
+        updateAllWhatsAppLinks(appState.whatsapp.number);
+
         // Save raw data for dynamic rendering
         appState.rawPlatforms = platformsRes.data;
 
@@ -210,6 +215,33 @@ async function loadData() {
     }
 }
 
+function updateAllWhatsAppLinks(newNumber) {
+    const links = document.querySelectorAll('a[href*="wa.me/"]');
+    links.forEach(link => {
+        const oldHref = link.getAttribute('href');
+        // Update the link itself
+        const newHref = oldHref.replace(/(wa\.me\/)([0-9]+)(\?|$)/, `$1${newNumber}$3`);
+        link.setAttribute('href', newHref);
+        
+        // Update the visible text if it contains a phone number pattern
+        // This regex looks for digits possibly separated by spaces or dots, usually 10-12 digits
+        const phoneRegex = /[+]?[0-9]{2,3}[0-9\s.]{7,15}/; 
+        
+        if (phoneRegex.test(link.textContent)) {
+             // Formatting for Colombia (12 digits: 57 300...) or generic
+             let formatted = newNumber;
+             if (newNumber.length === 12) {
+                 formatted = `+${newNumber.slice(0,2)} ${newNumber.slice(2,5)} ${newNumber.slice(5,8)} ${newNumber.slice(8)}`;
+             } else if (newNumber.length === 10) {
+                 formatted = `${newNumber.slice(0,3)} ${newNumber.slice(3,6)} ${newNumber.slice(6)}`;
+             }
+             
+             // Replace the number part but keep icons/emojis (like the 📞)
+             link.innerHTML = link.innerHTML.replace(phoneRegex, formatted);
+        }
+    });
+}
+
 function renderMainPlatforms(platforms) {
     const grid = document.getElementById('main-platforms-grid');
     if (!grid) return;
@@ -219,6 +251,7 @@ function renderMainPlatforms(platforms) {
         try {
             const div = document.createElement('div');
             div.className = 'platform-card platform-card-v2';
+            div.dataset.id = p.id;
             div.dataset.platform = p.name;
             div.dataset.price1m = parseInt(p.price_per_month) || 0;
             div.dataset.maxQty = parseInt(p.max_profiles) || 1;
@@ -428,25 +461,27 @@ function normalizePlatformName(name) {
 
 // ===== QUANTITY SELECTOR FOR PLATFORMS =====
 function calculateDiscount(qty, type = 'profiles') {
-    if (!appState.prices || !appState.prices.discounts[type]) return 0;
+    if (!appState.prices || !appState.prices.discounts || !appState.prices.discounts[type]) return 0;
     const rules = appState.prices.discounts[type];
     
-    // Direct match
-    if (rules[qty]) return rules[qty];
+    const targetQty = parseInt(qty);
+    let bestDiscount = 0;
     
-    // Handle X+ keys
-    let maxThreshold = -1;
-    let maxValue = 0;
-    for (const key of Object.keys(rules)) {
+    // Check all rules to find the best match (direct or X+)
+    for (const [key, value] of Object.entries(rules)) {
         if (key.endsWith('+')) {
             const threshold = parseInt(key);
-            if (qty >= threshold && threshold > maxThreshold) {
-                maxThreshold = threshold;
-                maxValue = rules[key];
+            if (targetQty >= threshold) {
+                bestDiscount = Math.max(bestDiscount, parseInt(value) || 0);
+            }
+        } else {
+            if (targetQty === parseInt(key)) {
+                bestDiscount = Math.max(bestDiscount, parseInt(value) || 0);
             }
         }
     }
-    return maxValue;
+    
+    return bestDiscount;
 }
 
 function initCardLogic(card) {
@@ -462,6 +497,7 @@ function initCardLogic(card) {
 
     if (!profileMinus || !profilePlus || !profileValue || !buyBtn) return;
 
+    const platformId = card.getAttribute('data-id');
     const platform = card.getAttribute('data-platform');
     const basePrice = parseInt(card.getAttribute('data-price1m')) || 0;
     const MAX_QTY = parseInt(card.getAttribute('data-max-qty')) || 1;
@@ -479,7 +515,7 @@ function initCardLogic(card) {
         const totalDiscount = (profileDiscount * months) + (monthDiscount * profiles);
 
         let finalPrice;
-        const platformKey = normalizePlatformName(platform);
+        const platformKey = platformId || normalizePlatformName(platform);
         const platformData = appState.prices ? appState.prices.platforms[platformKey] : null;
 
         if (platformData && platformData.useCustomPricing && platformData.pricing && platformData.pricing[`${profiles}_profile`]) {
