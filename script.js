@@ -27,7 +27,9 @@ function initSupabase() {
 // ===== MOBILE MENU TOGGLE =====
 function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('active');
+    if (menu) {
+        menu.classList.toggle('active');
+    }
 }
 
 // ===== COMBO MODAL =====
@@ -213,54 +215,59 @@ function renderMainPlatforms(platforms) {
     grid.innerHTML = '';
 
     platforms.filter(p => p.enabled).forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'platform-card platform-card-v2';
-        div.dataset.platform = p.name;
-        div.dataset.price1m = p.price_per_month;
-        div.dataset.maxQty = p.max_profiles || 3;
-        div.dataset.maxMonths = p.max_months || 3;
-        
-        div.innerHTML = `
-            <div class="price-corner">
-                <span class="price-amount">$${p.price_per_month.toLocaleString('es-CO')}</span>
-                <span class="price-per-unit">$${p.price_per_month.toLocaleString('es-CO')}/${p.name.includes('Account') ? 'cuenta' : 'perfil'}</span>
-            </div>
-            <div class="card-top-row">
-                <div class="platform-icon">
-                    <img src="${p.image_url}" alt="${p.name}">
+        try {
+            const div = document.createElement('div');
+            div.className = 'platform-card platform-card-v2';
+            div.dataset.platform = p.name;
+            div.dataset.price1m = parseInt(p.price_per_month) || 0;
+            div.dataset.maxQty = parseInt(p.max_profiles) || 1;
+            div.dataset.maxMonths = parseInt(p.max_months) || 1;
+            
+            const safePrice = parseInt(p.price_per_month) || 0;
+            div.innerHTML = `
+                <div class="price-corner">
+                    <span class="price-amount">$${safePrice.toLocaleString('es-CO')}</span>
+                    <span class="price-per-unit">$${safePrice.toLocaleString('es-CO')}/${p.name.includes('Account') ? 'cuenta' : 'perfil'}</span>
                 </div>
-                <div class="platform-info">
-                    <div class="platform-header-row">
-                        <h3 class="platform-name">${p.name}</h3>
+                <div class="card-top-row">
+                    <div class="platform-icon">
+                        <img src="${p.image_url}" alt="${p.name}">
                     </div>
-                    <p class="platform-desc">${p.description || ''}</p>
-                </div>
-            </div>
-            <div class="card-bottom">
-                <div class="selectors-row-full">
-                    <div class="quantity-selector">
-                        <span class="qty-label">${p.name.includes('Account') ? 'Cuentas' : 'Perfiles'}</span>
-                        <button class="qty-btn qty-minus">-</button>
-                        <span class="qty-value">1</span>
-                        <button class="qty-btn qty-plus">+</button>
-                    </div>
-                    <div class="quantity-selector">
-                        <span class="qty-label">Meses</span>
-                        <button class="qty-btn month-minus">-</button>
-                        <span class="qty-value month-value">1</span>
-                        <button class="qty-btn month-plus">+</button>
-                    </div>
-                    <div class="platform-footer-row">
-                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
-                            Comprar
-                        </a>
+                    <div class="platform-info">
+                        <div class="platform-header-row">
+                            <h3 class="platform-name">${p.name}</h3>
+                        </div>
+                        <p class="platform-desc">${p.description || ''}</p>
                     </div>
                 </div>
-            </div>
-        `;
-        grid.appendChild(div);
-        initCardLogic(div);
+                <div class="card-bottom">
+                    <div class="selectors-row-full">
+                        <div class="quantity-selector">
+                            <span class="qty-label">${p.name.includes('Account') ? 'Cuentas' : 'Perfiles'}</span>
+                            <button class="qty-btn qty-minus">-</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn qty-plus">+</button>
+                        </div>
+                        <div class="quantity-selector">
+                            <span class="qty-label">Meses</span>
+                            <button class="qty-btn month-minus">-</button>
+                            <span class="qty-value month-value">1</span>
+                            <button class="qty-btn month-plus">+</button>
+                        </div>
+                        <div class="platform-footer-row">
+                            <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                                Comprar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(div);
+            initCardLogic(div);
+        } catch (e) {
+            console.error('Error rendering individual platform:', e, p);
+        }
     });
 }
 
@@ -277,7 +284,7 @@ function renderComboOptions(platforms) {
                 <input type="checkbox" data-price="${p.price_per_month}" data-name="${p.name}">
                 <span class="checkmark">
                     <img src="${p.image_url}" alt="${p.name}" class="platform-mini-logo">
-                    <span class="platform-name-text">${p.name} ($${p.price_per_month.toLocaleString('es-CO')})</span>
+                    <span class="platform-name-text">${p.name} ($${(p.price_per_month || 0).toLocaleString('es-CO')})</span>
                 </span>
             `;
             container.appendChild(label);
@@ -288,22 +295,7 @@ function renderComboOptions(platforms) {
     initComboLogic();
 }
 
-// ===== COMBO MODAL LOGIC =====
-function openComboModal() {
-    const modal = document.getElementById('combo-modal');
-    if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
-    }
-}
-
-function closeComboModal() {
-    const modal = document.getElementById('combo-modal');
-    if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scroll
-    }
-}
+// (Duplicates removed)
 
 // ===== CUSTOM COMBO LOGIC =====
 function initComboLogic() {
@@ -339,24 +331,26 @@ function initComboLogic() {
 
         const count = selectedNames.length;
         let discount = 0;
-
-        if (appState.prices && count >= 2) {
-            const hasNetflix = selectedNames.some(name => normalizePlatformName(name) === 'netflix');
-            if (hasNetflix && count === 2 && appState.prices.discounts.comboNetflix) {
-                const netflixRules = appState.prices.discounts.comboNetflix;
-                if (netflixRules[count]) discount = netflixRules[count];
-            } else {
+        if (appState.prices && appState.prices.discounts && appState.prices.discounts.combo) {
+            function getComboDiscount(count) {
                 const rules = appState.prices.discounts.combo;
-                if (rules[count]) discount = rules[count];
-                else {
-                    for (const key of Object.keys(rules)) {
-                        if (key.endsWith('+')) {
-                            const threshold = parseInt(key);
-                            if (count >= threshold) discount = rules[key];
+                if (rules[count]) return rules[count];
+                
+                // Handle X+ keys
+                let maxThreshold = -1;
+                let maxThresholdValue = 0;
+                for (const key of Object.keys(rules)) {
+                    if (key.endsWith('+')) {
+                        const threshold = parseInt(key);
+                        if (count >= threshold && threshold > maxThreshold) {
+                            maxThreshold = threshold;
+                            maxThresholdValue = rules[key];
                         }
                     }
                 }
+                return maxThresholdValue;
             }
+            discount = getComboDiscount(count);
         }
 
         let finalPrice = total > 0 ? total - discount : 0;
@@ -432,17 +426,26 @@ function normalizePlatformName(name) {
 }
 
 // ===== QUANTITY SELECTOR FOR PLATFORMS =====
-function calculateDiscount(qty) {
-    if (!appState.prices) return 0;
-    const rules = appState.prices.discounts.profiles;
+function calculateDiscount(qty, type = 'profiles') {
+    if (!appState.prices || !appState.prices.discounts[type]) return 0;
+    const rules = appState.prices.discounts[type];
+    
+    // Direct match
     if (rules[qty]) return rules[qty];
+    
+    // Handle X+ keys
+    let maxThreshold = -1;
+    let maxValue = 0;
     for (const key of Object.keys(rules)) {
         if (key.endsWith('+')) {
             const threshold = parseInt(key);
-            if (qty >= threshold) return rules[key];
+            if (qty >= threshold && threshold > maxThreshold) {
+                maxThreshold = threshold;
+                maxValue = rules[key];
+            }
         }
     }
-    return 0;
+    return maxValue;
 }
 
 function initCardLogic(card) {
@@ -459,9 +462,9 @@ function initCardLogic(card) {
     if (!profileMinus || !profilePlus || !profileValue || !buyBtn) return;
 
     const platform = card.getAttribute('data-platform');
-    const basePrice = parseInt(card.getAttribute('data-price1m'));
-    const MAX_QTY = parseInt(card.getAttribute('data-max-qty')) || 3;
-    const MAX_MONTHS = parseInt(card.getAttribute('data-max-months')) || 3;
+    const basePrice = parseInt(card.getAttribute('data-price1m')) || 0;
+    const MAX_QTY = parseInt(card.getAttribute('data-max-qty')) || 1;
+    const MAX_MONTHS = parseInt(card.getAttribute('data-max-months')) || 1;
 
     let profiles = 1;
     let months = 1;
@@ -470,26 +473,23 @@ function initCardLogic(card) {
         profileValue.textContent = profiles;
         if (monthValue) monthValue.textContent = months;
 
-        const profileDiscount = calculateDiscount(profiles);
-        const monthDiscount = calculateDiscount(months);
+        const profileDiscount = calculateDiscount(profiles, 'profiles');
+        const monthDiscount = calculateDiscount(months, 'months');
         const totalDiscount = (profileDiscount * months) + (monthDiscount * profiles);
 
         let finalPrice;
         const platformKey = normalizePlatformName(platform);
         const platformData = appState.prices ? appState.prices.platforms[platformKey] : null;
 
-        if (platformData && platformData.pricing) {
-            let pricePerOne = 0;
-            if (months === 1) pricePerOne = platformData.pricing["1_month"];
-            else if (months === 2) pricePerOne = platformData.pricing["2_months"];
-            else if (months === 3) pricePerOne = platformData.pricing["3_months"];
-            else if (months === 6 && platformData.pricing["6_months"]) pricePerOne = platformData.pricing["6_months"];
-            else pricePerOne = platformData.pricing["1_month"];
-            finalPrice = pricePerOne * profiles;
+        if (platformData && platformData.pricing && platformData.pricing[`${profiles}_profile`]) {
+            const profilePricing = platformData.pricing[`${profiles}_profile`];
+            finalPrice = profilePricing[`${months}_month`] || (profilePricing[`1_month`] * months) || (basePrice * profiles * months);
         } else {
             const totalBase = basePrice * profiles * months;
-            finalPrice = totalBase - totalDiscount;
+            finalPrice = totalBase - (totalDiscount || 0);
         }
+
+        if (isNaN(finalPrice)) finalPrice = 0;
 
         if (priceAmount) priceAmount.textContent = `$${finalPrice.toLocaleString('es-CO')}`;
 
