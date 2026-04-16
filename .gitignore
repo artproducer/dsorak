@@ -6,7 +6,7 @@ package-lock.json
 
 # Supabase
 supabase-config.js
-credentials.js
+
 
 # Admin Panel and Config
 admin/
