@@ -614,207 +614,29 @@
         <a href="#capturas" onclick="toggleMenu()">📸 Referencias</a>
         <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
     </div>
+
     <!-- Plataformas Section -->
     <section id="plataformas">
         <div class="section-header">
-            <div class="section-nav-buttons">
-                <div class="crear-combo-container">
-                    <button onclick="openComboModal()" class="section-nav-btn btn-crear-combo">
-                        🎁 CREAR COMBO
-                    </button>
-                </div>
+            <h2>🎬 Nuestras Plataformas</h2>
+            <p>Elige tu plataforma favorita con el mejor precio y garantía</p>
+        </div>
+        
+        <div class="section-nav-buttons">
+            <div class="crear-combo-container">
+                <button onclick="openComboModal()" class="section-nav-btn btn-crear-combo">
+                    🎁 ARMAR MI COMBO
+                </button>
+            </div>
+        </div>
+
         <div class="platforms-grid" id="main-platforms-grid">
             <!-- Cargado dinámicamente desde Supabase -->
+            <div class="loading-state">Cargando plataformas...</div>
         </div>
     </section>
 
-    <!-- Combos Section -->
-    <section id="combos">
-        <div class="section-header">
-            <h2>🎁 Arma tu Combo</h2>
-            <p>Ahorra más combinando tus plataformas favoritas</p>
-            <div class="combos-grid">
-                <!-- Combo Ultimate (Customizable) -->
-                <div id="comboscustom" class="platform-card platform-card-v2 combo-ultimate featured">
-                    <div class="price-corner">
-                        <span class="combo-savings">💰 Selecciona 2+ para descuento</span>
-                        <span class="price-amount" id="ultimate-price">$16.000</span>
-                    </div>
-                    <div class="combo-body-content">
 
-                        <div class="custom-combo-selector">
-
-                            <div class="platform-checkboxes">
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Apple TV+">
-                                    <span class="checkmark">
-                                        <img src="assets/images/apple-tv.png" alt="Apple TV" class="platform-mini-logo">
-                                        <span class="platform-name-text">Apple TV+ ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Prime Video">
-                                    <span class="checkmark">
-                                        <img src="assets/images/prime-video.png" alt="Prime" class="platform-mini-logo">
-                                        <span class="platform-name-text">Prime Video ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="16000" data-name="Netflix">
-                                    <span class="checkmark">
-                                        <img src="assets/images/netflix.png" alt="Netflix" class="platform-mini-logo">
-                                        <span class="platform-name-text">Netflix ($16.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Disney+ Premium">
-                                    <span class="checkmark">
-                                        <img src="assets/images/disney-plus.png" alt="Disney+"
-                                            class="platform-mini-logo">
-                                        <span class="platform-name-text">Disney+ Premium ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="HBO Max">
-                                    <span class="checkmark">
-                                        <img src="assets/images/hbo-max.png" alt="HBO" class="platform-mini-logo">
-                                        <span class="platform-name-text">HBO Max ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Spotify">
-                                    <span class="checkmark">
-                                        <img src="assets/images/spotify.png" alt="Spotify" class="platform-mini-logo">
-                                        <span class="platform-name-text">Spotify ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="5000" data-name="Disney+ Standard">
-                                    <span class="checkmark">
-                                        <img src="assets/images/disney-plus.png" alt="Disney+"
-                                            class="platform-mini-logo">
-                                        <span class="platform-name-text">Disney+ Estándar ($5.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="7000" data-name="YouTube Premium">
-                                    <span class="checkmark">
-                                        <img src="assets/images/youtube-premium.png" alt="YouTube"
-                                            class="platform-mini-logo">
-                                        <span class="platform-name-text">YouTube Premium ($7.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="7000" data-name="Paramount+">
-                                    <span class="checkmark">
-                                        <img src="assets/images/paramount-plus.png" alt="Paramount"
-                                            class="platform-mini-logo">
-                                        <span class="platform-name-text">Paramount+ ($7.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="7000" data-name="Crunchyroll">
-                                    <span class="checkmark">
-                                        <img src="assets/images/crunchyroll.png" alt="Crunchyroll"
-                                            class="platform-mini-logo">
-                                        <span class="platform-name-text">Crunchyroll ($7.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="10000" data-name="IPTV Premium">
-                                    <span class="checkmark">
-                                        <img src="assets/images/iptv.png" alt="IPTV" class="platform-mini-logo">
-                                        <span class="platform-name-text">IPTV Premium ($10.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Plex">
-                                    <span class="checkmark">
-                                        <img src="assets/images/plex.png" alt="Plex" class="platform-mini-logo">
-                                        <span class="platform-name-text">Plex ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="6000" data-name="Mubi">
-                                    <span class="checkmark">
-                                        <img src="assets/images/mubi.png" alt="Mubi" class="platform-mini-logo">
-                                        <span class="platform-name-text">Mubi ($6.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Canva Pro">
-                                    <span class="checkmark">
-                                        <img src="assets/images/canva.png" alt="Canva" class="platform-mini-logo">
-                                        <span class="platform-name-text">Canva Pro ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="10000" data-name="Gemini AI Pro">
-                                    <span class="checkmark">
-                                        <img src="assets/images/gemini.png" alt="Gemini" class="platform-mini-logo">
-                                        <span class="platform-name-text">Gemini AI Pro ($10.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="7000" data-name="ChatGPT Go">
-                                    <span class="checkmark">
-                                        <img src="assets/images/chatgpt.png" alt="ChatGPT" class="platform-mini-logo">
-                                        <span class="platform-name-text">ChatGPT Go ($7.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="10000" data-name="ChatGPT Plus">
-                                    <span class="checkmark">
-                                        <img src="assets/images/chatgpt.png" alt="ChatGPT" class="platform-mini-logo">
-                                        <span class="platform-name-text">ChatGPT Plus ($10.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="7000" data-name="VIX Premium">
-                                    <span class="checkmark">
-                                        <img src="assets/images/vix.png" alt="VIX" class="platform-mini-logo">
-                                        <span class="platform-name-text">VIX Premium ($7.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="8000" data-name="Viki Rakuten">
-                                    <span class="checkmark">
-                                        <img src="assets/images/viki.png" alt="Viki" class="platform-mini-logo">
-                                        <span class="platform-name-text">Viki Rakuten ($8.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="30000" data-name="Microsoft Office">
-                                    <span class="checkmark">
-                                        <img src="assets/images/office.png" alt="Office" class="platform-mini-logo">
-                                        <span class="platform-name-text">Microsoft Office ($30.000)</span>
-                                    </span>
-                                </label>
-                                <label class="platform-option">
-                                    <input type="checkbox" data-price="15000" data-name="CapCut Pro">
-                                    <span class="checkmark">
-                                        <img src="assets/images/capcut.png" alt="CapCut" class="platform-mini-logo">
-                                        <span class="platform-name-text">CapCut Pro ($15.000)</span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="card-bottom" style="margin-top: 0.5rem;">
-                            <div class="platform-footer-row">
-                                <a href="javascript:void(0)" id="btn-ultimate"
-                                    class="btn btn-danger btn-buy btn-compact" target="_blank"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="currentColor" style="flex-shrink:0">
-                                        <path
-                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                                    </svg> Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <section id="capturas">
         <div class="section-header">
@@ -1005,6 +827,43 @@
             <p>© 2026 DSORAK. Todos los derechos reservados. | Hecho con ❤️ en Colombia</p>
         </div>
     </footer>
+
+    <!-- Combo Modal -->
+    <div id="combo-modal" class="combo-modal">
+        <div class="combo-modal-content">
+            <button class="combo-modal-close" onclick="closeComboModal()">&times;</button>
+            <div class="section-header">
+                <h2>🎁 Arma tu Combo</h2>
+                <p>Ahorra más combinando tus plataformas favoritas</p>
+            </div>
+            <div class="combos-grid">
+                <!-- Combo Ultimate (Customizable) -->
+                <div id="comboscustom" class="platform-card platform-card-v2 combo-ultimate featured">
+                    <div class="price-corner">
+                        <span class="combo-savings">💰 Selecciona 2+ para descuento</span>
+                        <span class="price-amount" id="ultimate-price">$0</span>
+                    </div>
+                    <div class="combo-body-content">
+                        <div class="custom-combo-selector">
+                            <div class="platform-checkboxes">
+                                <!-- Dynamically populated by Supabase -->
+                                <p style="text-align: center; color: var(--text-muted); padding: 1rem;">Cargando opciones...</p>
+                            </div>
+                        </div>
+                        <div class="card-bottom" style="margin-top: 0.5rem;">
+                            <div class="platform-footer-row">
+                                <a href="javascript:void(0)" id="btn-ultimate" class="btn btn-danger btn-buy btn-compact">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                    </svg> Comprar Combo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">

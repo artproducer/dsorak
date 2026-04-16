@@ -1,7 +1,28 @@
 // ===== SUPABASE INITIALIZATION =====
-const SUPABASE_URL = window.ENV?.SUPABASE_URL || 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = window.ENV?.SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
-const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let _supabase;
+function initSupabase() {
+    if (typeof window.supabase === 'undefined') {
+        console.error('Supabase library not loaded! Check your script tags in index.html');
+        return false;
+    }
+    
+    const SUPABASE_URL = window.ENV?.SUPABASE_URL;
+    const SUPABASE_ANON_KEY = window.ENV?.SUPABASE_ANON_KEY;
+    
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+        console.error('Supabase credentials missing! Check credentials.js');
+        return false;
+    }
+
+    try {
+        _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log('Supabase client initialized successfully');
+        return true;
+    } catch (e) {
+        console.error('Failed to create Supabase client:', e);
+        return false;
+    }
+}
 
 // ===== MOBILE MENU TOGGLE =====
 function toggleMenu() {
@@ -122,7 +143,15 @@ let appState = {
 
 // ===== DATA LOADING =====
 async function loadData() {
+    if (!_supabase) {
+        if (!initSupabase()) {
+            document.getElementById('main-platforms-grid').innerHTML = '<div style="color: #ef4444; padding: 20px; text-align: center;">Error: Credenciales de base de datos no encontradas. Asegúrate de que credentials.js esté presente.</div>';
+            return false;
+        }
+    }
+
     try {
+        console.log('Fetching data from Supabase...');
         // Fetch everything from Supabase
         const [platformsRes, settingsRes] = await Promise.all([
             _supabase.from('platforms').select('*').order('display_order', { ascending: true }),
@@ -234,26 +263,143 @@ function renderMainPlatforms(platforms) {
         initCardLogic(div);
     });
 }
-    });
-}
 
 function renderComboOptions(platforms) {
-    const container = document.querySelector('.platform-checkboxes');
-    if (!container) return;
-    container.innerHTML = '';
+    const containers = document.querySelectorAll('.platform-checkboxes');
+    if (containers.length === 0) return;
     
-    platforms.filter(p => p.enabled).forEach(p => {
-        const label = document.createElement('label');
-        label.className = 'platform-option';
-        label.innerHTML = `
-            <input type="checkbox" data-price="${p.price_per_month}" data-name="${p.name}">
-            <span class="checkmark">
-                <img src="${p.image_url}" alt="${p.name}" class="platform-mini-logo">
-                <span class="platform-name-text">${p.name} ($${p.price_per_month.toLocaleString('es-CO')})</span>
-            </span>
-        `;
-        container.appendChild(label);
+    containers.forEach(container => {
+        container.innerHTML = '';
+        platforms.filter(p => p.enabled).forEach(p => {
+            const label = document.createElement('label');
+            label.className = 'platform-option';
+            label.innerHTML = `
+                <input type="checkbox" data-price="${p.price_per_month}" data-name="${p.name}">
+                <span class="checkmark">
+                    <img src="${p.image_url}" alt="${p.name}" class="platform-mini-logo">
+                    <span class="platform-name-text">${p.name} ($${p.price_per_month.toLocaleString('es-CO')})</span>
+                </span>
+            `;
+            container.appendChild(label);
+        });
     });
+
+    // Re-initialize combo logic after populating elements
+    initComboLogic();
+}
+
+// ===== COMBO MODAL LOGIC =====
+function openComboModal() {
+    const modal = document.getElementById('combo-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+}
+
+function closeComboModal() {
+    const modal = document.getElementById('combo-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scroll
+    }
+}
+
+// ===== CUSTOM COMBO LOGIC =====
+function initComboLogic() {
+    const checkboxes = document.querySelectorAll('.platform-option input[type="checkbox"]');
+    const priceDisplay = document.getElementById('ultimate-price');
+    const btnUltimate = document.getElementById('btn-ultimate');
+
+    if (!checkboxes.length || !priceDisplay || !btnUltimate) return;
+
+    function updateCombo() {
+        let total = 0;
+        let selectedNames = [];
+
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                const name = cb.dataset.name;
+                const key = normalizePlatformName(name);
+                let price = parseInt(cb.dataset.price);
+
+                if (appState.prices && appState.prices.platforms[key]) {
+                    const platformData = appState.prices.platforms[key];
+                    if (platformData.pricePerMonth) {
+                        price = platformData.pricePerMonth;
+                    } else if (platformData.pricing && platformData.pricing["1_month"]) {
+                        price = platformData.pricing["1_month"];
+                    }
+                }
+
+                total += price;
+                selectedNames.push(name);
+            }
+        });
+
+        const count = selectedNames.length;
+        let discount = 0;
+
+        if (appState.prices && count >= 2) {
+            const hasNetflix = selectedNames.some(name => normalizePlatformName(name) === 'netflix');
+            if (hasNetflix && count === 2 && appState.prices.discounts.comboNetflix) {
+                const netflixRules = appState.prices.discounts.comboNetflix;
+                if (netflixRules[count]) discount = netflixRules[count];
+            } else {
+                const rules = appState.prices.discounts.combo;
+                if (rules[count]) discount = rules[count];
+                else {
+                    for (const key of Object.keys(rules)) {
+                        if (key.endsWith('+')) {
+                            const threshold = parseInt(key);
+                            if (count >= threshold) discount = rules[key];
+                        }
+                    }
+                }
+            }
+        }
+
+        let finalPrice = total > 0 ? total - discount : 0;
+        if (finalPrice < 0) finalPrice = 0;
+
+        priceDisplay.textContent = '$' + finalPrice.toLocaleString('es-CO');
+
+        const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
+        if (savingsDisplay) {
+            if (count >= 2) {
+                savingsDisplay.textContent = `💰 Ahorras $${discount.toLocaleString('es-CO')}`;
+            } else {
+                savingsDisplay.textContent = 'Selecciona 2+ para descuento';
+            }
+        }
+
+        const whatsappNumber = appState.whatsapp ? appState.whatsapp.number : '573005965404';
+        const message = `Quiero mi Combo de: ${selectedNames.join(', ')}. Precio: $${finalPrice.toLocaleString('es-CO')}`;
+        btnUltimate.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        btnUltimate.dataset.selectedCount = count;
+    }
+
+    btnUltimate.addEventListener('click', function (e) {
+        e.preventDefault();
+        const count = parseInt(this.dataset.selectedCount || 0);
+        if (count >= 2) {
+            window.open(this.href, '_blank');
+        } else {
+            const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
+            if (savingsDisplay) {
+                savingsDisplay.textContent = '❌ Elige 2+ para continuar';
+                savingsDisplay.classList.add('error-shake');
+                setTimeout(() => savingsDisplay.classList.remove('error-shake'), 400);
+            }
+        }
+    });
+
+    checkboxes.forEach(cb => {
+        cb.removeEventListener('change', updateCombo);
+        cb.addEventListener('change', updateCombo);
+    });
+
+    updateCombo();
 }
 
 // ===== HELPER: NORMALIZE PLATFORM NAME =====
@@ -284,12 +430,6 @@ function normalizePlatformName(name) {
 
     return mapping[name] || name.toLowerCase().replace(/[^a-z0-9]/g, '_');
 }
-
-// ===== SYNC DISABLED PLATFORMS FROM CONFIG =====
-async function syncDisabledPlatforms() {
-    // Ensure data is loaded
-    if (!appState.config) await loadData();
-    if (!appState.config) return;
 
 // ===== QUANTITY SELECTOR FOR PLATFORMS =====
 function calculateDiscount(qty) {
@@ -604,135 +744,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ===== CUSTOM COMBO LOGIC =====
-    const checkboxes = document.querySelectorAll('.platform-option input[type="checkbox"]');
-    const priceDisplay = document.getElementById('ultimate-price');
-    const btnUltimate = document.getElementById('btn-ultimate');
-
-    if (checkboxes.length && priceDisplay && btnUltimate) {
-        console.log('Custom Combo elements found');
-
-        function updateCombo() {
-            let total = 0;
-            let selectedNames = [];
-
-            checkboxes.forEach(cb => {
-                if (cb.checked) {
-                    // Try to get price from JSON first
-                    const name = cb.dataset.name;
-                    const key = normalizePlatformName(name);
-                    let price = parseInt(cb.dataset.price);
-
-                    if (appState.prices && appState.prices.platforms[key]) {
-                        const platformData = appState.prices.platforms[key];
-                        // Handle platforms with special pricing structure (like YouTube Premium)
-                        if (platformData.pricePerMonth) {
-                            price = platformData.pricePerMonth;
-                        } else if (platformData.pricing && platformData.pricing["1_month"]) {
-                            price = platformData.pricing["1_month"];
-                        }
-                    }
-
-                    total += price;
-                    selectedNames.push(name);
-                }
-            });
-
-            // Calculate discount based on count
-            const count = selectedNames.length;
-            let discount = 0;
-
-            if (appState.prices) {
-                // Check if Netflix is selected for special discount on duo combos
-                const hasNetflix = selectedNames.some(name =>
-                    normalizePlatformName(name) === 'netflix'
-                );
-
-                // Use special Netflix combo discount if applicable (only for 2 platforms)
-                if (hasNetflix && count === 2 && appState.prices.discounts.comboNetflix) {
-                    const netflixRules = appState.prices.discounts.comboNetflix;
-                    if (netflixRules[count]) {
-                        discount = netflixRules[count];
-                    }
-                } else {
-                    // Use standard combo discount rules
-                    const rules = appState.prices.discounts.combo;
-                    if (rules[count]) discount = rules[count];
-                    else {
-                        // Check for "+" rules
-                        for (const key of Object.keys(rules)) {
-                            if (key.endsWith('+')) {
-                                const threshold = parseInt(key);
-                                if (count >= threshold) discount = rules[key];
-                            }
-                        }
-                    }
-                }
-            } else {
-                // Fallback only if JSON fails
-                if (count === 2) discount = 2000;
-                else if (count === 3) discount = 4000;
-                else if (count === 4) discount = 7000;
-                else if (count >= 5) discount = 10000;
-            }
-
-            let finalPrice = total > 0 ? total - discount : 0;
-            if (finalPrice < 0) finalPrice = 0;
-
-            // Format price
-            priceDisplay.textContent = '$' + finalPrice.toLocaleString('es-CO');
-
-            // Update savings text
-            const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
-            if (savingsDisplay) {
-                if (count >= 2) {
-                    savingsDisplay.textContent = `💰 Ahorras $${discount.toLocaleString('es-CO')}`;
-                    savingsDisplay.classList.remove('error-shake');
-                } else {
-                    savingsDisplay.textContent = 'Elige 2+ para descuento';
-                    savingsDisplay.classList.remove('error-shake');
-                }
-            }
-
-            // Update WhatsApp Link
-            const message = `Quiero mi Combo de: ${selectedNames.join(', ')}. Precio: $${finalPrice.toLocaleString('es-CO')}`;
-            const encodedMessage = encodeURIComponent(message);
-            btnUltimate.href = `https://wa.me/573005965404?text=${encodedMessage}`;
-
-            // Store count for validation
-            btnUltimate.dataset.selectedCount = count;
-        }
-
-        btnUltimate.addEventListener('click', function (e) {
-            const count = parseInt(this.dataset.selectedCount || 0);
-            if (count < 2) {
-                e.preventDefault();
-                const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
-                if (savingsDisplay) {
-                    savingsDisplay.textContent = '❌ Elige 2+ para continuar';
-                    savingsDisplay.classList.add('error-shake');
-
-                    // Remove class after animation to allow re-trigger
-                    setTimeout(() => {
-                        savingsDisplay.classList.remove('error-shake');
-                    }, 400);
-                }
-            }
-        });
-
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', updateCombo);
-        });
-
-        // Initial calculation
-        updateCombo();
-    } else {
-        console.error('Custom Combo elements missing:', {
-            checkboxes: checkboxes.length,
-            priceDisplay: !!priceDisplay,
-            btnUltimate: !!btnUltimate
-        });
-    }
 
     // Check for hash on load to open FAQ
     if (window.location.hash === '#faq-reseller') {
@@ -854,9 +865,11 @@ function closeLightbox() {
 // Add click events to carousel images and initialize quantity selectors
 document.addEventListener('DOMContentLoaded', function () {
     const carouselImages = document.querySelectorAll('.carousel-slide img');
-    carouselImages.forEach(img => {
-        img.addEventListener('click', () => openLightbox(img));
-    });
+    if (carouselImages.length > 0) {
+        carouselImages.forEach(img => {
+            img.addEventListener('click', () => openLightbox(img));
+        });
+    }
 
     // Initialize data from Supabase (this will also render platforms)
     loadData();
