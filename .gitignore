@@ -3,3 +3,12 @@ node_modules/
 
 # Package lock (optional - some prefer to commit it)
 package-lock.json
+
+# Supabase
+supabase-config.js
+credentials.js
+
+# Admin Panel and Config
+admin/
+migrate-to-supabase.js
+storage.js

@@ -1,3 +1,8 @@
+// ===== SUPABASE INITIALIZATION =====
+const SUPABASE_URL = window.ENV?.SUPABASE_URL || 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = window.ENV?.SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 // ===== MOBILE MENU TOGGLE =====
 function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
@@ -118,17 +123,137 @@ let appState = {
 // ===== DATA LOADING =====
 async function loadData() {
     try {
-        const [configRes, pricesRes] = await Promise.all([
-            fetch('config.json'),
-            fetch('prices.json')
+        // Fetch everything from Supabase
+        const [platformsRes, settingsRes] = await Promise.all([
+            _supabase.from('platforms').select('*').order('display_order', { ascending: true }),
+            _supabase.from('app_settings').select('*')
         ]);
-        appState.config = await configRes.json();
-        appState.prices = await pricesRes.json();
+
+        if (platformsRes.error) throw platformsRes.error;
+        if (settingsRes.error) throw settingsRes.error;
+
+        // Transform platforms to match previous prices.json structure
+        appState.prices = {
+            platforms: {},
+            discounts: {},
+            metadata: {}
+        };
+
+        // Populate platforms
+        platformsRes.data.forEach(p => {
+            appState.prices.platforms[p.id] = {
+                name: p.name,
+                pricePerMonth: p.price_per_month,
+                pricing: p.pricing
+            };
+        });
+
+        // Initialize config from platforms
+        appState.config = { platforms: {} };
+        platformsRes.data.forEach(p => {
+            appState.config.platforms[p.id] = { enabled: p.enabled };
+        });
+
+        // Populate settings
+        settingsRes.data.forEach(s => {
+            if (s.key === 'discounts') appState.prices.discounts = s.value;
+            if (s.key === 'metadata') appState.prices.metadata = s.value;
+            if (s.key === 'whatsapp') appState.whatsapp = s.value;
+        });
+
+        // Use default if not set
+        if (!appState.whatsapp) appState.whatsapp = { number: '573005965404' };
+
+        // Save raw data for dynamic rendering
+        appState.rawPlatforms = platformsRes.data;
+
+        // Render everything
+        renderMainPlatforms(platformsRes.data);
+        renderComboOptions(platformsRes.data);
+
         return true;
     } catch (error) {
-        console.error('Error loading data:', error);
+        console.error('Error loading data from Supabase:', error);
         return false;
     }
+}
+
+function renderMainPlatforms(platforms) {
+    const grid = document.getElementById('main-platforms-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    platforms.filter(p => p.enabled).forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'platform-card platform-card-v2';
+        div.dataset.platform = p.name;
+        div.dataset.price1m = p.price_per_month;
+        div.dataset.maxQty = p.max_profiles || 3;
+        div.dataset.maxMonths = p.max_months || 3;
+        
+        div.innerHTML = `
+            <div class="price-corner">
+                <span class="price-amount">$${p.price_per_month.toLocaleString('es-CO')}</span>
+                <span class="price-per-unit">$${p.price_per_month.toLocaleString('es-CO')}/${p.name.includes('Account') ? 'cuenta' : 'perfil'}</span>
+            </div>
+            <div class="card-top-row">
+                <div class="platform-icon">
+                    <img src="${p.image_url}" alt="${p.name}">
+                </div>
+                <div class="platform-info">
+                    <div class="platform-header-row">
+                        <h3 class="platform-name">${p.name}</h3>
+                    </div>
+                    <p class="platform-desc">${p.description || ''}</p>
+                </div>
+            </div>
+            <div class="card-bottom">
+                <div class="selectors-row-full">
+                    <div class="quantity-selector">
+                        <span class="qty-label">${p.name.includes('Account') ? 'Cuentas' : 'Perfiles'}</span>
+                        <button class="qty-btn qty-minus">-</button>
+                        <span class="qty-value">1</span>
+                        <button class="qty-btn qty-plus">+</button>
+                    </div>
+                    <div class="quantity-selector">
+                        <span class="qty-label">Meses</span>
+                        <button class="qty-btn month-minus">-</button>
+                        <span class="qty-value month-value">1</span>
+                        <button class="qty-btn month-plus">+</button>
+                    </div>
+                    <div class="platform-footer-row">
+                        <a href="#" class="btn btn-danger btn-buy btn-compact" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                            Comprar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+        grid.appendChild(div);
+        initCardLogic(div);
+    });
+}
+    });
+}
+
+function renderComboOptions(platforms) {
+    const container = document.querySelector('.platform-checkboxes');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    platforms.filter(p => p.enabled).forEach(p => {
+        const label = document.createElement('label');
+        label.className = 'platform-option';
+        label.innerHTML = `
+            <input type="checkbox" data-price="${p.price_per_month}" data-name="${p.name}">
+            <span class="checkmark">
+                <img src="${p.image_url}" alt="${p.name}" class="platform-mini-logo">
+                <span class="platform-name-text">${p.name} ($${p.price_per_month.toLocaleString('es-CO')})</span>
+            </span>
+        `;
+        container.appendChild(label);
+    });
 }
 
 // ===== HELPER: NORMALIZE PLATFORM NAME =====
@@ -166,343 +291,109 @@ async function syncDisabledPlatforms() {
     if (!appState.config) await loadData();
     if (!appState.config) return;
 
-    let disabledPlatforms = new Set();
-    const config = appState.config;
-    // ... logic uses appState.config now
-
-    // Get disabled platforms from config
-    for (const [platform, settings] of Object.entries(config.platforms)) {
-        if (!settings.enabled) {
-            disabledPlatforms.add(platform);
-        }
-    }
-
-    // Apply disabled state to platform cards
-    const platformCards = document.querySelectorAll('.platform-card[data-platform]');
-    platformCards.forEach(card => {
-        const platformName = card.getAttribute('data-platform');
-
-        if (disabledPlatforms.has(platformName)) {
-            // Add disabled class
-            card.classList.add('platform-disabled');
-
-            // Hide selectors
-            const selectorsRow = card.querySelector('.selectors-row-full');
-            if (selectorsRow) {
-                selectorsRow.style.display = 'none';
-            }
-
-            // Replace buy button with disabled button
-            const buyBtn = card.querySelector('.btn-buy');
-            if (buyBtn) {
-                const disabledBtn = document.createElement('span');
-                disabledBtn.className = 'btn btn-disabled btn-compact';
-                disabledBtn.textContent = 'No disponible';
-                buyBtn.replaceWith(disabledBtn);
-            }
-        } else {
-            // Remove disabled class if present
-            card.classList.remove('platform-disabled');
-        }
-    });
-
-    // Sync with combo checkboxes
-    const comboContainer = document.querySelector('.platform-checkboxes');
-    const comboOptions = document.querySelectorAll('.platform-option');
-    const disabledOptions = [];
-
-    comboOptions.forEach(option => {
-        const checkbox = option.querySelector('input[type="checkbox"]');
-        if (checkbox) {
-            const name = checkbox.dataset.name;
-
-            if (disabledPlatforms.has(name)) {
-                // Disable the combo option
-                option.classList.add('platform-option-disabled');
-                checkbox.disabled = true;
-                checkbox.checked = false;
-
-                // Store to move to end later
-                disabledOptions.push(option);
-            } else {
-                // Enable the combo option
-                option.classList.remove('platform-option-disabled');
-                checkbox.disabled = false;
-            }
-        }
-    });
-
-    // Move disabled options to the end of the container
-    if (comboContainer) {
-        disabledOptions.forEach(option => {
-            comboContainer.appendChild(option);
-        });
-    }
-}
-
-// ===== HELPER: UPDATE DOM PRICES FROM JSON =====
-function updateDomPrices() {
-    if (!appState.prices) return;
-
-    // Update Platform Cards
-    const cards = document.querySelectorAll('.platform-card[data-platform]');
-    cards.forEach(card => {
-        const platformName = card.getAttribute('data-platform');
-        const key = normalizePlatformName(platformName);
-        const platformData = appState.prices.platforms[key];
-
-        if (platformData) {
-            // Update base price attribute
-            if (platformData.pricePerMonth) {
-                card.setAttribute('data-price-1m', platformData.pricePerMonth);
-            }
-
-            // Update visible prices
-            const priceAmount = card.querySelector('.price-amount');
-            const pricePerUnit = card.querySelector('.price-per-unit');
-
-            // Initial state: 1 month, 1 profile
-            if (priceAmount && platformData.pricePerMonth) {
-                priceAmount.textContent = `$${platformData.pricePerMonth.toLocaleString('es-CO')}`;
-            }
-            if (pricePerUnit && platformData.pricePerMonth) {
-                const unit = platformData.pricing ? 'cuenta' : 'perfil'; // Heuristic
-                pricePerUnit.textContent = `$${platformData.pricePerMonth.toLocaleString('es-CO')}/${unit}`;
-            }
-        }
-    });
-
-    // Update Combo Checkboxes
-    const checkboxes = document.querySelectorAll('.platform-option input[type="checkbox"]');
-    checkboxes.forEach(cb => {
-        const platformName = cb.dataset.name;
-        const key = normalizePlatformName(platformName);
-        const platformData = appState.prices.platforms[key];
-
-        if (platformData && platformData.pricePerMonth) {
-            cb.dataset.price = platformData.pricePerMonth;
-
-            // Update label text
-            const label = cb.closest('label');
-            if (label) {
-                const textSpan = label.querySelector('.platform-name-text');
-                if (textSpan) {
-                    textSpan.textContent = `${platformName} ($${platformData.pricePerMonth.toLocaleString('es-CO')})`;
-                }
-            }
-        }
-    });
-}
-
 // ===== QUANTITY SELECTOR FOR PLATFORMS =====
-async function initQuantitySelectors() {
-    // Ensure data is loaded
-    if (!appState.prices) await loadData();
-    // First, sync disabled platforms from config
-    await syncDisabledPlatforms();
-
-    // Update prices in DOM from JSON
-    if (appState.prices) {
-        updateDomPrices();
+function calculateDiscount(qty) {
+    if (!appState.prices) return 0;
+    const rules = appState.prices.discounts.profiles;
+    if (rules[qty]) return rules[qty];
+    for (const key of Object.keys(rules)) {
+        if (key.endsWith('+')) {
+            const threshold = parseInt(key);
+            if (qty >= threshold) return rules[key];
+        }
     }
-
-    const platformCards = document.querySelectorAll('.platform-card[data-platform]');
-
-    platformCards.forEach(card => {
-        // Skip disabled platforms
-        if (card.classList.contains('platform-disabled')) return;
-
-        // Month selectors (first)
-        const monthMinus = card.querySelector('.month-minus');
-        const monthPlus = card.querySelector('.month-plus');
-        const monthValue = card.querySelector('.month-value');
-
-        // Profile selectors (find qty-value that is NOT month-value)
-        const profileMinus = card.querySelector('.qty-minus');
-        const profilePlus = card.querySelector('.qty-plus');
-        const profileValue = card.querySelector('.qty-value:not(.month-value)');
-
-        // Display elements
-        const priceAmount = card.querySelector('.price-amount');
-        const pricePerUnit = card.querySelector('.price-per-unit');
-        const selectionBadge = card.querySelector('.selection-badge');
-        const buyBtn = card.querySelector('.btn-buy');
-
-        if (!profileMinus || !profilePlus || !profileValue || !buyBtn) return;
-
-        const platform = card.getAttribute('data-platform');
-        const basePrice = parseInt(card.getAttribute('data-price-1m'));
-        const MAX_QTY = 3;
-        const MAX_MONTHS = platform === 'ChatGPT Go' ? 6 : 3;
-
-        // Change "Perfiles" label to "Cuentas" for account-based platforms
-        const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
-        if (platformsWithAccount.includes(platform)) {
-            const qtyLabels = card.querySelectorAll('.qty-label');
-            qtyLabels.forEach(label => {
-                if (label.textContent === 'Perfiles') {
-                    label.textContent = 'Cuentas';
-                }
-            });
-        }
-
-        let profiles = 1;
-        let months = 1;
-
-
-        function calculateDiscount(qty) {
-            if (!appState.prices) return 0;
-
-            const rules = appState.prices.discounts.profiles;
-            // Check exact match first, then "3+" type logic
-            if (rules[qty]) return rules[qty];
-
-            // Check for "+" rules (e.g. "3+")
-            for (const key of Object.keys(rules)) {
-                if (key.endsWith('+')) {
-                    const threshold = parseInt(key);
-                    if (qty >= threshold) return rules[key];
-                }
-            }
-            return 0;
-        }
-
-        function update() {
-            profileValue.textContent = profiles;
-            if (monthValue) monthValue.textContent = months;
-
-            // Calculate discounts
-            const profileDiscount = calculateDiscount(profiles);
-            const monthDiscount = calculateDiscount(months);
-            // Calculate total discount (scale profile discount by months, and month discount by profiles)
-            const totalDiscount = (profileDiscount * months) + (monthDiscount * profiles);
-
-
-            // Calculate final price
-            // Calculate final price
-            let finalPrice;
-
-            // Check if there is specific pricing logic for this platform in JSON
-            const platformKey = normalizePlatformName(platform);
-            const platformData = appState.prices ? appState.prices.platforms[platformKey] : null;
-
-            if (platformData && platformData.pricing) {
-                // Custom pricing logic found in JSON (like YouTube)
-                // We map 1, 2, 3 months to the keys in json
-                let pricePerOne = 0;
-                if (months === 1) pricePerOne = platformData.pricing["1_month"];
-                else if (months === 2) pricePerOne = platformData.pricing["2_months"];
-                else if (months === 3) pricePerOne = platformData.pricing["3_months"];
-                else if (months === 6 && platformData.pricing["6_months"]) pricePerOne = platformData.pricing["6_months"];
-                else pricePerOne = platformData.pricing["1_month"]; // Fallback
-
-                finalPrice = pricePerOne * profiles;
-            } else {
-                // Standard pricing for other platforms
-                // Use price from JSON if available, otherwise use basePrice (HTML fallback)
-                let currentBasePrice = basePrice;
-                if (platformData && platformData.pricePerMonth) {
-                    currentBasePrice = platformData.pricePerMonth;
-                }
-
-                const totalBase = currentBasePrice * profiles * months;
-                const finalPriceStd = totalBase - totalDiscount;
-                finalPrice = finalPriceStd;
-            }
-
-            // Calculate price per screen (per profile per month-unit)
-            // For display purposes, we just want the total / profiles usually, or just total.
-            // But preserving logic:
-            const pricePerScreen = Math.round(finalPrice / profiles / months);
-
-            // Update price display
-            if (priceAmount) {
-                priceAmount.textContent = `$${finalPrice.toLocaleString('es-CO')}`;
-            }
-
-            // Update price per unit with dynamic label
-            if (pricePerUnit) {
-                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
-                const isAccountBased = platformsWithAccount.includes(platform);
-                const unitName = isAccountBased ? 'cuenta' : 'perfil';
-
-                let priceValue, unitLabel;
-
-                if (months > 1 && profiles > 1) {
-                    // Both increased: show price per month per profile
-                    priceValue = Math.round(finalPrice / profiles / months);
-                    unitLabel = `mes x ${unitName}`;
-                } else if (months > 1) {
-                    // Only months increased: show price per month
-                    priceValue = Math.round(finalPrice / months);
-                    unitLabel = 'mes';
-                } else if (profiles > 1) {
-                    // Only profiles increased: show price per profile
-                    priceValue = Math.round(finalPrice / profiles);
-                    unitLabel = unitName;
-                } else {
-                    // Default: 1 month, 1 profile
-                    priceValue = finalPrice;
-                    unitLabel = unitName;
-                }
-
-                pricePerUnit.textContent = `$${priceValue.toLocaleString('es-CO')}/${unitLabel}`;
-            }
-
-            // Update selection badge with months and profiles
-            if (selectionBadge) {
-                const monthsText = months === 1 ? '1 Mes' : `${months} Meses`;
-                const platformsWithAccount = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
-                const isAccountBased = platformsWithAccount.includes(platform);
-                const unitLabel = isAccountBased ? (profiles === 1 ? 'Cuenta' : 'Cuentas') : (profiles === 1 ? 'Perfil' : 'Perfiles');
-                selectionBadge.textContent = `${profiles} ${unitLabel} • ${monthsText}`;
-            }
-
-            // Update WhatsApp link
-            const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
-            const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
-            const platformsWithAccountMsg = ['YouTube Premium', 'Canva Pro', 'Gemini AI Pro', 'CapCut Pro', 'ChatGPT Go', 'ChatGPT Plus'];
-            const unitText = platformsWithAccountMsg.includes(platform) ? 'cuentas' : 'perfiles';
-            const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} ${unitText})` : ''} - Precio: ${priceText}`;
-            buyBtn.href = `https://wa.me/573005965404?text=${encodeURIComponent(message)}`;
-
-            // Update button states
-            profileMinus.disabled = profiles <= 1;
-            profilePlus.disabled = profiles >= MAX_QTY;
-            if (monthMinus) monthMinus.disabled = months <= 1;
-            if (monthPlus) monthPlus.disabled = months >= MAX_MONTHS;
-        }
-
-        // Profile event listeners
-        profileMinus.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (profiles > 1) { profiles--; update(); }
-        });
-
-        profilePlus.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (profiles < MAX_QTY) { profiles++; update(); }
-        });
-
-        // Month event listeners
-        if (monthMinus && monthPlus) {
-            monthMinus.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (months > 1) { months--; update(); }
-            });
-
-            monthPlus.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (months < MAX_MONTHS) { months++; update(); }
-            });
-        }
-
-        // Initialize
-        update();
-    });
+    return 0;
 }
 
+function initCardLogic(card) {
+    const monthMinus = card.querySelector('.month-minus');
+    const monthPlus = card.querySelector('.month-plus');
+    const monthValue = card.querySelector('.month-value');
+    const profileMinus = card.querySelector('.qty-minus');
+    const profilePlus = card.querySelector('.qty-plus');
+    const profileValue = card.querySelector('.qty-value:not(.month-value)');
+    const priceAmount = card.querySelector('.price-amount');
+    const pricePerUnit = card.querySelector('.price-per-unit');
+    const buyBtn = card.querySelector('.btn-buy');
 
+    if (!profileMinus || !profilePlus || !profileValue || !buyBtn) return;
+
+    const platform = card.getAttribute('data-platform');
+    const basePrice = parseInt(card.getAttribute('data-price1m'));
+    const MAX_QTY = parseInt(card.getAttribute('data-max-qty')) || 3;
+    const MAX_MONTHS = parseInt(card.getAttribute('data-max-months')) || 3;
+
+    let profiles = 1;
+    let months = 1;
+
+    function update() {
+        profileValue.textContent = profiles;
+        if (monthValue) monthValue.textContent = months;
+
+        const profileDiscount = calculateDiscount(profiles);
+        const monthDiscount = calculateDiscount(months);
+        const totalDiscount = (profileDiscount * months) + (monthDiscount * profiles);
+
+        let finalPrice;
+        const platformKey = normalizePlatformName(platform);
+        const platformData = appState.prices ? appState.prices.platforms[platformKey] : null;
+
+        if (platformData && platformData.pricing) {
+            let pricePerOne = 0;
+            if (months === 1) pricePerOne = platformData.pricing["1_month"];
+            else if (months === 2) pricePerOne = platformData.pricing["2_months"];
+            else if (months === 3) pricePerOne = platformData.pricing["3_months"];
+            else if (months === 6 && platformData.pricing["6_months"]) pricePerOne = platformData.pricing["6_months"];
+            else pricePerOne = platformData.pricing["1_month"];
+            finalPrice = pricePerOne * profiles;
+        } else {
+            const totalBase = basePrice * profiles * months;
+            finalPrice = totalBase - totalDiscount;
+        }
+
+        if (priceAmount) priceAmount.textContent = `$${finalPrice.toLocaleString('es-CO')}`;
+
+        if (pricePerUnit) {
+            const isAccountBased = platform.toLowerCase().includes('account') || platform.toLowerCase().includes('google') || platform.toLowerCase().includes('canva');
+            const unitName = isAccountBased ? 'cuenta' : 'perfil';
+            let priceValue, unitLabel;
+            if (months > 1 && profiles > 1) {
+                priceValue = Math.round(finalPrice / profiles / months);
+                unitLabel = `mes x ${unitName}`;
+            } else if (months > 1) {
+                priceValue = Math.round(finalPrice / months);
+                unitLabel = 'mes';
+            } else if (profiles > 1) {
+                priceValue = Math.round(finalPrice / profiles);
+                unitLabel = unitName;
+            } else {
+                priceValue = finalPrice;
+                unitLabel = unitName;
+            }
+            pricePerUnit.textContent = `$${priceValue.toLocaleString('es-CO')}/${unitLabel}`;
+        }
+
+        const priceText = `$${finalPrice.toLocaleString('es-CO')}`;
+        const monthsText = months > 1 ? `${months} Meses` : '1 Mes';
+        const unitText = platform.toLowerCase().includes('account') ? 'cuentas' : 'perfiles';
+        const message = `Quiero comprar ${platform} ${monthsText}${profiles > 1 ? ` (${profiles} ${unitText})` : ''} - Precio: ${priceText}`;
+        const whatsappNumber = appState.whatsapp ? appState.whatsapp.number : '573005965404';
+        buyBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+        profileMinus.disabled = profiles <= 1;
+        profilePlus.disabled = profiles >= MAX_QTY;
+        if (monthMinus) monthMinus.disabled = months <= 1;
+        if (monthPlus) monthPlus.disabled = months >= MAX_MONTHS;
+    }
+
+    profileMinus.addEventListener('click', (e) => { e.preventDefault(); if (profiles > 1) { profiles--; update(); } });
+    profilePlus.addEventListener('click', (e) => { e.preventDefault(); if (profiles < MAX_QTY) { profiles++; update(); } });
+    if (monthMinus && monthPlus) {
+        monthMinus.addEventListener('click', (e) => { e.preventDefault(); if (months > 1) { months--; update(); } });
+        monthPlus.addEventListener('click', (e) => { e.preventDefault(); if (months < MAX_MONTHS) { months++; update(); } });
+    }
+    update();
+}
 
 // ===== HEADER SCROLL EFFECT =====
 let lastScrollTop = 0;
@@ -967,6 +858,6 @@ document.addEventListener('DOMContentLoaded', function () {
         img.addEventListener('click', () => openLightbox(img));
     });
 
-    // Initialize quantity selectors for platform cards
-    initQuantitySelectors();
+    // Initialize data from Supabase (this will also render platforms)
+    loadData();
 });
