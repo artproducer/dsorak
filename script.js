@@ -223,12 +223,10 @@ function updateAllWhatsAppLinks(newNumber) {
         const newHref = oldHref.replace(/(wa\.me\/)([0-9]+)(\?|$)/, `$1${newNumber}$3`);
         link.setAttribute('href', newHref);
         
-        // Update the visible text if it contains a phone number pattern
-        // This regex looks for digits possibly separated by spaces or dots, usually 10-12 digits
+        // Update the visible text safely without breaking SVG elements
         const phoneRegex = /[+]?[0-9]{2,3}[0-9\s.]{7,15}/; 
         
         if (phoneRegex.test(link.textContent)) {
-             // Formatting for Colombia (12 digits: 57 300...) or generic
              let formatted = newNumber;
              if (newNumber.length === 12) {
                  formatted = `+${newNumber.slice(0,2)} ${newNumber.slice(2,5)} ${newNumber.slice(5,8)} ${newNumber.slice(8)}`;
@@ -236,8 +234,15 @@ function updateAllWhatsAppLinks(newNumber) {
                  formatted = `${newNumber.slice(0,3)} ${newNumber.slice(3,6)} ${newNumber.slice(6)}`;
              }
              
-             // Replace the number part but keep icons/emojis (like the 📞)
-             link.innerHTML = link.innerHTML.replace(phoneRegex, formatted);
+             // Loop through child nodes to find the text node containing the number
+             // and only replace that, preserving SVGs/icons
+             Array.from(link.childNodes).forEach(node => {
+                 if (node.nodeType === 3) { // Text Node
+                     if (phoneRegex.test(node.textContent)) {
+                         node.textContent = node.textContent.replace(phoneRegex, formatted);
+                     }
+                 }
+             });
         }
     });
 }
@@ -395,7 +400,9 @@ function initComboLogic() {
         const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
         if (savingsDisplay) {
             if (count >= 2) {
-                savingsDisplay.textContent = `💰 Ahorras $${discount.toLocaleString('es-CO')}`;
+                savingsDisplay.innerHTML = `
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -2px; margin-right: 4px;"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 100 4h4a2 2 0 110 4H8"/><path d="M12 18V6"/></svg> 
+                    Ahorras $${discount.toLocaleString('es-CO')}`;
             } else {
                 savingsDisplay.textContent = 'Selecciona 2+ para descuento';
             }
@@ -415,7 +422,9 @@ function initComboLogic() {
         } else {
             const savingsDisplay = document.querySelector('.combo-ultimate .combo-savings');
             if (savingsDisplay) {
-                savingsDisplay.textContent = '❌ Elige 2+ para continuar';
+                savingsDisplay.innerHTML = `
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -2px; margin-right: 4px;"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    Elige 2+ para continuar`;
                 savingsDisplay.classList.add('error-shake');
                 setTimeout(() => savingsDisplay.classList.remove('error-shake'), 400);
             }

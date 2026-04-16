@@ -593,9 +593,15 @@
                 </h1>
             </a>
             <ul class="nav-links">
-                <li><a href="#plataformas">🎬 Plataformas</a></li>
-                <li><a href="javascript:void(0)" onclick="openComboModal()">🎁 Combos</a></li>
-                <li><a href="#capturas">📸 Referencias</a></li>
+                <li><a href="#plataformas">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    Plataformas</a></li>
+                <li><a href="javascript:void(0)" onclick="openComboModal()">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 4px;"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg> 
+                    Combos</a></li>
+                <li><a href="#capturas">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 4px;"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg> 
+                    Referencias</a></li>
                 <li><a href="#faq">? FAQ</a></li>
             </ul>
             <div class="menu-toggle" onclick="toggleMenu()">
@@ -609,23 +615,32 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <span class="close-menu" onclick="toggleMenu()">&times;</span>
-        <a href="#plataformas" onclick="toggleMenu()">🎬 Plataformas</a>
-        <a href="javascript:void(0)" onclick="openComboModal(); toggleMenu()">🎁 Combos</a>
-        <a href="#capturas" onclick="toggleMenu()">📸 Referencias</a>
-        <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
+        <a href="#plataformas" onclick="toggleMenu()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M2 13V8l4-3h12l4 3v5"/></svg>
+            Plataformas</a>
+        <a href="javascript:void(0)" onclick="openComboModal(); toggleMenu()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg> 
+            Combos</a>
+        <a href="#capturas" onclick="toggleMenu()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg> 
+            Referencias</a>
+        <a href="#faq" onclick="toggleMenu()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> 
+            FAQ</a>
     </div>
 
     <!-- Plataformas Section -->
     <section id="plataformas">
         <div class="section-header">
-            <h2>🎬 Nuestras Plataformas</h2>
+            <h2><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align: -5px; margin-right: 12px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Nuestras Plataformas</h2>
             <p>Elige tu plataforma favorita con el mejor precio y garantía</p>
         </div>
         
         <div class="section-nav-buttons">
             <div class="crear-combo-container">
                 <button onclick="openComboModal()" class="section-nav-btn btn-crear-combo">
-                    🎁 ARMAR MI COMBO
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align: -4px; margin-right: 8px;"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+                    ARMAR MI COMBO
                 </button>
             </div>
         </div>
@@ -640,7 +655,7 @@
 
     <section id="capturas">
         <div class="section-header">
-            <h2>📸 Galería de Clientes</h2>
+            <h2><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align: -5px; margin-right: 12px;"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg> Galería de Clientes</h2>
             <p>Evidencia real de nuestros servicios entregados</p>
         </div>
         <div class="carousel-container">
@@ -765,9 +780,9 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        ¡Por supuesto! ✅ Ponemos a tu disposición <strong>cuentas completas y pantallas a precios de
+                        ¡Por supuesto! <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px;"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-11l11 2-1 9-9 3z"/></svg> Ponemos a tu disposición <strong>cuentas completas y pantallas a precios de
                             mayorista</strong> para que puedas revender y obtener excelentes márgenes de ganancias.
-                        ¡Contáctanos y crece con nosotros! 🤝
+                        ¡Contáctanos y crece con nosotros! <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px;"><path d="M18 11V6a2 2 0 00-2-2v0a2 2 0 00-2 2v0"/><path d="M14 10V4a2 2 0 00-2-2v0a2 2 0 00-2 2v0"/><path d="M10 10.5V6a2 2 0 00-2-2v0a2 2 0 00-2 2v0"/><path d="M18 8a2 2 0 114 0v6a8 8 0 01-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 012.83-2.82L7 15"/></svg>
                     </div>
                 </div>
             </div>
@@ -776,7 +791,7 @@
 
     <!-- Promo Banner -->
     <div class="promo-banner">
-        <p>💼 ¿Quieres generar ingresos extra? <a
+        <p><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> ¿Quieres generar ingresos extra? <a
                 href="https://wa.me/573005965404?text=Quiero%20mismo%20ser%20distribuidor" target="_blank">¡Conviértete
                 en distribuidor hoy mismo!</a></p>
     </div>
@@ -812,14 +827,19 @@
             <div class="footer-links">
                 <h4>Contacto</h4>
                 <ul>
-                    <li><a href="https://wa.me/573005965404" target="_blank">📞 +57 300 596 5404</a></li>
+                    <li><a href="https://wa.me/573005965404" target="_blank">
+                        <!-- Reduced size for better balance -->
+                        <svg width="16" height="16" fill="none" stroke="#16a34a" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        +57 300 596 5404</a></li>
                     <li><a href="#"><svg style="width: 1em; height: 0.7em; vertical-align: middle; margin-right: 4px;"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2">
                                 <rect width="3" height="1" fill="#FCD116" />
                                 <rect width="3" height="0.5" y="1" fill="#003893" />
                                 <rect width="3" height="0.5" y="1.5" fill="#CE1126" />
                             </svg>Colombia</a></li>
-                    <li><a href="#">💬 Soporte 24/7</a></li>
+                    <li><a href="#">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -3px; margin-right: 6px;"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg> 
+                        Soporte 24/7</a></li>
                 </ul>
             </div>
         </div>
@@ -833,14 +853,16 @@
         <div class="combo-modal-content">
             <button class="combo-modal-close" onclick="closeComboModal()">&times;</button>
             <div class="section-header">
-                <h2>🎁 Arma tu Combo</h2>
+                <h2><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align: -5px; margin-right: 10px;"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg> Arma tu Combo</h2>
                 <p>Ahorra más combinando tus plataformas favoritas</p>
             </div>
             <div class="combos-grid">
                 <!-- Combo Ultimate (Customizable) -->
                 <div id="comboscustom" class="platform-card platform-card-v2 combo-ultimate featured">
                     <div class="price-corner">
-                        <span class="combo-savings">💰 Selecciona 2+ para descuento</span>
+                        <span class="combo-savings">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align: -2px; margin-right: 4px;"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 100 4h4a2 2 0 110 4H8"/><path d="M12 18V6"/></svg>
+                            Selecciona 2+ para descuento</span>
                         <span class="price-amount" id="ultimate-price">$0</span>
                     </div>
                     <div class="combo-body-content">
