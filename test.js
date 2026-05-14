@@ -3,6 +3,42 @@ var regexEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
 
 function verifyVixSignInLink(root, respuesta, subject, context) {
 
+  var normalizedSubject = String(subject || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  var from = String(context?.from || "").toLowerCase();
+  var bodyText = root.querySelector("body")?.innerText || root.innerText || root.textContent || "";
+  var normalizedBody = String(bodyText || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  var isVixSender = !from || from.includes("vix@vix.com") || from.includes("@vix.com");
+  var isVixEmail =
+    normalizedSubject.includes("inicia sesion en tu cuenta de vix") ||
+    (normalizedBody.includes("solicitud para iniciar sesion") && normalizedBody.includes("vix"));
+
+  if (isVixSender && isVixEmail) {
+    var linkElementFlexible = Array.from(root.querySelectorAll("a[href]") || []).find((link) => {
+      var href = link?._attrs?.href || link?.getAttribute?.("href") || "";
+      var text = String(link?.innerText || link?.textContent || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      return href.includes("link.vix.com") || text.includes("iniciar sesion");
+    });
+    var linkFlexible = linkElementFlexible?._attrs?.href || linkElementFlexible?.getAttribute?.("href") || "";
+
+    if (linkFlexible) {
+      context.keyword = "vix";
+      respuesta.noError = true;
+      respuesta.about = 'Codigo para iniciar sesion en Vix [Valido por 15 Min]';
+      respuesta.link = linkFlexible;
+      console.log("Es de Vix link de iniciar sesion");
+      return respuesta;
+    }
+  }
+
   if (subject?.includes("Inicia sesión en tu cuenta de Vix") === false) {
     return respuesta;
   }
@@ -21,6 +57,7 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
   if (!(bodyText.includes("Hemos recibido una solicitud para iniciar sesión en tu cuenta de Vix app.") && bodyText.includes("Este enlace expirará en 15 minutos por tu seguridad."))) return respuesta;
 
   if (linkElement._attrs?.href?.startsWith('http://link.vix.com/ls/click?upn=')) {
+    context.keyword = "vix";
     respuesta.noError = true;
     respuesta.about = 'Codigo para iniciar sesion en Vix [Valido por 15 Min]';
     respuesta.link = linkElement._attrs.href;
