@@ -22,7 +22,7 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
 
   if (linkElement._attrs?.href?.startsWith('http://link.vix.com/ls/click?upn=')) {
     respuesta.noError = true;
-    respuesta.about = 'Codigo para iniciar sesion en Vix (Valido por 15 min)';
+    respuesta.about = 'Codigo para iniciar sesion en Vix [Valido por 15 Min]';
     respuesta.link = linkElement._attrs.href;
     return respuesta;
   }
@@ -32,6 +32,38 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
 
 
 function verifyChatGpt(root, respuesta, subject, context) {
+
+  var openAiCodeRegex = /(?:^|\D)(\d{6})(?!\d)/;
+  var from = String(context?.from || "").toLowerCase();
+  var bodyText = root.querySelector("body")?.innerText || root.innerText || root.textContent || "";
+  var normalizedSubject = String(subject || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  var normalizedBody = String(bodyText || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  var isOpenAiSender = !from || from.includes("openai.com");
+  var isChatGptCode =
+    normalizedSubject.includes("your chatgpt code is") ||
+    normalizedSubject.includes("tu codigo de chatgpt es") ||
+    normalizedSubject.includes("your temporary chatgpt login code") ||
+    normalizedSubject.includes("tu codigo de openai es") ||
+    normalizedBody.includes("chatgpt log-in code") ||
+    normalizedBody.includes("chatgpt login code") ||
+    (normalizedBody.includes("introduce este codigo de verificacion temporal") && normalizedBody.includes("openai"));
+  var openAiCode = (String(subject || "").match(openAiCodeRegex) || bodyText.match(openAiCodeRegex))?.[1];
+
+  if (isOpenAiSender && isChatGptCode && openAiCode) {
+    respuesta.noError = true;
+    respuesta.code = openAiCode;
+    context.keyword = "chatgpt";
+    respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en ChatGPT'
+    console.log("Es de ChatGPT codigo")
+
+    return respuesta
+  }
 
   var chatgptCodeRegex = /\d{6}/g;
   if (!(subject.includes("Your ChatGPT code is") || subject.includes("Tu código de ChatGPT es"))) return respuesta;
@@ -482,8 +514,8 @@ function verifyNetflix(root, respuesta, context) {
     context.netflixTravel = true;
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.ifIsCodeAbout = "Codigo Estoy de Viaje Netflix\n(Valido por 15 Min)"
-    respuesta.about = "Enlace Codigo Estoy de Viaje Netflix\n(Valido por 15 Min)";
+    respuesta.ifIsCodeAbout = "Codigo Estoy de Viaje Netflix\n[Valido por 15 Min]"
+    respuesta.about = "Enlace Codigo Estoy de Viaje Netflix\n[Valido por 15 Min]";
     return respuesta;
   }
 
@@ -523,7 +555,7 @@ function verifyNetflix(root, respuesta, context) {
 
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.about = "Enlace Aprobacion Actualizar Hogar Netflix\n(Valido por 15 Min)";
+    respuesta.about = "Link para actualizar Hogar Netflix\n[Valido por 15 Min]";
     return respuesta;
   }
 
@@ -537,7 +569,7 @@ function verifyNetflix(root, respuesta, context) {
     console.log("Es para enlace de aprobacion en Netflix TV");
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.about = "Enlace de Aprobacion en TV - Netflix\n(Valido por 15 min)";
+    respuesta.about = "Enlace de Aprobacion en TV - Netflix\n[Valido por 15 Min]";
     context.netflixLinkTv = true;
   }
 
