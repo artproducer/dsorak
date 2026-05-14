@@ -56,7 +56,7 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
       context.keyword = "vix";
       context.shortLinkRequired = true;
       respuesta.noError = true;
-      respuesta.about = 'Codigo para iniciar sesion en Vix [Valido por 15 Min]';
+      respuesta.about = 'Enlace para iniciar sesion en Vix [Valido por 15 Min]';
       respuesta.link = linkFlexible;
       console.log("Es de Vix link de iniciar sesion");
       return respuesta;
@@ -85,7 +85,7 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
     context.keyword = "vix";
     context.shortLinkRequired = true;
     respuesta.noError = true;
-    respuesta.about = 'Codigo para iniciar sesion en Vix [Valido por 15 Min]';
+    respuesta.about = 'Enlace para iniciar sesion en Vix [Valido por 15 Min]';
     respuesta.link = link;
     return respuesta;
   }
@@ -333,14 +333,11 @@ function getEnvironment() {
      
       
       try {
-        // Usamos el endpoint POST de tu servidor
-        const urlServidor = "https://a.cuenticas.com/short"; 
+        // Usamos el endpoint GET de tu acortador
+        const urlServidor = "https://x.dsorak.com/short?url=" + encodeURIComponent(urlOriginal); 
         
         const opciones = {
-          method: "post",
-          contentType: "application/json",
-          // Convertimos el objeto a string JSON para el body
-          payload: JSON.stringify({ url: urlOriginal }), 
+          method: "get",
           muteHttpExceptions: true
         };
     
