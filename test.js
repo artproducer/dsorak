@@ -1,6 +1,29 @@
 var theContact = "";
 var regexEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
 
+function decodeHtmlUrl(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&#38;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function getElementHref(element) {
+  if (!element) return "";
+
+  var rawAttrs = element.rawAttrs || "";
+  var quotedHref = rawAttrs.match(/href\s*=\s*(["'])([\s\S]*?)\1/i);
+  if (quotedHref?.[2]) return decodeHtmlUrl(quotedHref[2]);
+
+  var unquotedHref = rawAttrs.match(/href\s*=\s*([^\s>]+)/i);
+  if (unquotedHref?.[1]) return decodeHtmlUrl(unquotedHref[1]);
+
+  return decodeHtmlUrl(element._attrs?.href || element.getAttribute?.("href") || "");
+}
+
 function verifyVixSignInLink(root, respuesta, subject, context) {
 
   var normalizedSubject = String(subject || "")
@@ -15,22 +38,23 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
     .replace(/[\u0300-\u036f]/g, "");
   var isVixSender = !from || from.includes("vix@vix.com") || from.includes("@vix.com");
   var isVixEmail =
-    normalizedSubject.includes("inicia sesion en tu cuenta de vix") ||
-    (normalizedBody.includes("solicitud para iniciar sesion") && normalizedBody.includes("vix"));
+    normalizedSubject.includes("vix") ||
+    normalizedBody.includes("vix");
 
   if (isVixSender && isVixEmail) {
     var linkElementFlexible = Array.from(root.querySelectorAll("a[href]") || []).find((link) => {
-      var href = link?._attrs?.href || link?.getAttribute?.("href") || "";
+      var href = getElementHref(link);
       var text = String(link?.innerText || link?.textContent || "")
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
       return href.includes("link.vix.com") || text.includes("iniciar sesion");
     });
-    var linkFlexible = linkElementFlexible?._attrs?.href || linkElementFlexible?.getAttribute?.("href") || "";
+    var linkFlexible = getElementHref(linkElementFlexible);
 
     if (linkFlexible) {
       context.keyword = "vix";
+      context.shortLinkRequired = true;
       respuesta.noError = true;
       respuesta.about = 'Codigo para iniciar sesion en Vix [Valido por 15 Min]';
       respuesta.link = linkFlexible;
@@ -56,11 +80,13 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
 
   if (!(bodyText.includes("Hemos recibido una solicitud para iniciar sesión en tu cuenta de Vix app.") && bodyText.includes("Este enlace expirará en 15 minutos por tu seguridad."))) return respuesta;
 
-  if (linkElement._attrs?.href?.startsWith('http://link.vix.com/ls/click?upn=')) {
+  var link = getElementHref(linkElement);
+  if (link.startsWith('http://link.vix.com/ls/click?upn=') || link.startsWith('https://link.vix.com/ls/click?upn=')) {
     context.keyword = "vix";
+    context.shortLinkRequired = true;
     respuesta.noError = true;
     respuesta.about = 'Codigo para iniciar sesion en Vix [Valido por 15 Min]';
-    respuesta.link = linkElement._attrs.href;
+    respuesta.link = link;
     return respuesta;
   }
 
@@ -377,6 +403,9 @@ function getEnvironment() {
     // 3. Definimos procesador de links
     globalThis.processIfLink = function(result, context) {
       var isCode = result.code !== undefined;
+      if (!isCode && result.link) {
+        result.link = decodeHtmlUrl(result.link);
+      }
 
       // Lógica Netflix Travel
       if (!isCode && context.netflixTravel) {
@@ -414,6 +443,8 @@ function getEnvironment() {
             var slug = shortenUrl.split("/").pop();
             result.link = "https://ac.cuenticas.com/#" + slug;
           }
+        } else if (context.shortLinkRequired) {
+          throw new Error("No se pudo acortar el link obligatorio; se cancela el envio para no mandar el enlace largo.");
         }
       }
     };
