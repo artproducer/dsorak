@@ -49,10 +49,11 @@ function verifyChatGpt(root, respuesta, subject, context) {
     normalizedSubject.includes("your chatgpt code is") ||
     normalizedSubject.includes("tu codigo de chatgpt es") ||
     normalizedSubject.includes("your temporary chatgpt login code") ||
+    normalizedSubject.includes("tu codigo de inicio de sesion temporal de chatgpt") ||
     normalizedSubject.includes("tu codigo de openai es") ||
     normalizedBody.includes("chatgpt log-in code") ||
     normalizedBody.includes("chatgpt login code") ||
-    (normalizedBody.includes("introduce este codigo de verificacion temporal") && normalizedBody.includes("openai"));
+    (normalizedBody.includes("introduce este codigo de verificacion temporal") && (normalizedBody.includes("openai") || normalizedBody.includes("chatgpt")));
   var openAiCode = (String(subject || "").match(openAiCodeRegex) || bodyText.match(openAiCodeRegex))?.[1];
 
   if (isOpenAiSender && isChatGptCode && openAiCode) {
