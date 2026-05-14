@@ -360,16 +360,28 @@ function verifyMax(root, respuesta, subject, context) {
     
     context.keyword = "max";
 
-    var regexSixNumberMax = /^\d{6}$/g;
+    var regexSixNumberMax = /(?:^|\D)(\d{6})(?!\d)/;
+    var normalizedSubject = String(subject || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+    var isOneTimeCodeSubject =
+      normalizedSubject.includes("urgente: tu codigo de un solo uso de hbo max") ||
+      (normalizedSubject.includes("tu codigo de un solo uso") && normalizedSubject.includes("hbo max")) ||
+      normalizedSubject.includes("time sensitive: your one-time hbo max code") ||
+      normalizedSubject.includes("one-time hbo max code");
     
     //if(subject.includes("Recuperación de contraseña") || subject.includes("Password recovery") ) return respuesta;
     //FORMATO CODIGO DE INICIO DE SESION EN LA WEB CON MAX:
     var emailHtml = root.querySelector("tr:nth-child(1) > td > p > span > b");
+    var bodyText = root.querySelector("body")?.innerText || root.innerText || root.textContent || "";
+    var textForCode = [emailHtml?.innerText?.trim(), bodyText].filter(Boolean).join("\n");
+    var code = textForCode.match(regexSixNumberMax)?.[1];
 
-    if (emailHtml?.innerText?.trim()?.match(regexSixNumberMax)?.length > 0 && (subject.includes("Urgente: Tu código de un solo uso de HBO Max") || subject.includes("Time Sensitive: Your One-Time HBO Max Code"))) {
+    if (code && isOneTimeCodeSubject) {
         
         respuesta.noError = true;
-        respuesta.code = emailHtml?.innerText?.trim()?.match(regexSixNumberMax)[0];
+        respuesta.code = code;
         respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en Hbo Max'
         console.log("Es de max codigo de iniciar sesion");
         
