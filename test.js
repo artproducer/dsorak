@@ -635,7 +635,7 @@ function verifyNetflix(root, respuesta, context) {
     console.log("Es para enlace de aprobacion en Netflix TV");
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.about = "Enlace de Aprobacion en TV - Netflix\n[Valido por 15 Min]";
+    respuesta.about = "Abrir enlace para aprobar solicitud en TV - Netflix\n[Valido por 15 Min]";
     context.netflixLinkTv = true;
   }
 
