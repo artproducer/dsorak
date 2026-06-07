@@ -56,7 +56,7 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
       context.keyword = "vix";
       context.shortLinkRequired = true;
       respuesta.noError = true;
-      respuesta.about = 'Enlace para iniciar sesion en Vix [Valido por 15 Min]';
+      respuesta.about = 'Enlace para iniciar sesion en Vix';
       respuesta.link = linkFlexible;
       console.log("Es de Vix link de iniciar sesion");
       return respuesta;
@@ -85,7 +85,7 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
     context.keyword = "vix";
     context.shortLinkRequired = true;
     respuesta.noError = true;
-    respuesta.about = 'Enlace para iniciar sesion en Vix [Valido por 15 Min]';
+    respuesta.about = 'Enlace para iniciar sesion en Vix';
     respuesta.link = link;
     return respuesta;
   }
@@ -580,8 +580,8 @@ function verifyNetflix(root, respuesta, context) {
     context.netflixTravel = true;
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.ifIsCodeAbout = "Codigo Estoy de Viaje Netflix\n[Valido por 15 Min]"
-    respuesta.about = "Enlace Codigo Estoy de Viaje Netflix\n[Valido por 15 Min]";
+    respuesta.ifIsCodeAbout = "Código de verificación 'Estoy de Viaje' Netflix"
+    respuesta.about = "Enlace para código de verificación 'Estoy de Viaje' Netflix";
     return respuesta;
   }
 
@@ -621,7 +621,7 @@ function verifyNetflix(root, respuesta, context) {
 
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.about = "Abrir enlace para aprobar actualizacion de Hogar Netflix\n[Valido por 15 Min]";
+    respuesta.about = "Enlace de Actualizacion de Hogar Netflix";
     return respuesta;
   }
 
@@ -635,7 +635,7 @@ function verifyNetflix(root, respuesta, context) {
     console.log("Es para enlace de aprobacion en Netflix TV");
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.about = "Abrir enlace para aprobar solicitud en TV - Netflix\n[Valido por 15 Min]";
+    respuesta.about = "Enlace de solicitud para iniciar sesion en TV - Netflix";
     context.netflixLinkTv = true;
   }
 
@@ -690,7 +690,7 @@ function verifyDisney(root, respuesta, context) {
 
       respuesta.noError = true;
       respuesta.code = code;
-      respuesta.about = "Código de acceso único Disney Plus (Válido por 15 min)";
+      respuesta.about = "Código de acceso único Disney Plus";
 
       return respuesta;
     }
