@@ -480,15 +480,15 @@ function verifyMax(root, respuesta, subject, context) {
 
     respuesta.noError = true;
     respuesta.code = code;
-    respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en Hbo Max'
-    console.log("Es de max codigo de iniciar sesion");
+    respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en HBO Max'
+    console.log("Es de HBO Max codigo de iniciar sesion");
 
     return respuesta
   }
 
 
 
-  console.log("no es de Max");
+  console.log("no es de HBOMax");
   return respuesta;
 }
 
@@ -580,8 +580,8 @@ function verifyNetflix(root, respuesta, context) {
     context.netflixTravel = true;
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.ifIsCodeAbout = "Código de verificación 'Estoy de Viaje' Netflix"
-    respuesta.about = "Enlace para código de verificación 'Estoy de Viaje' Netflix";
+    respuesta.ifIsCodeAbout = "Código de verificación `Estoy de Viaje` Netflix"
+    respuesta.about = "Enlace para código de verificación `Estoy de Viaje` Netflix";
     return respuesta;
   }
 
@@ -621,7 +621,7 @@ function verifyNetflix(root, respuesta, context) {
 
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.about = "Enlace de Actualizacion de Hogar Netflix";
+    respuesta.about = "Enlace de `Actualizacion de Hogar` Netflix";
     return respuesta;
   }
 
@@ -632,10 +632,10 @@ function verifyNetflix(root, respuesta, context) {
   var link = theLinkElement?.attributes?.href?.trim();
 
   if (bodyHtml.includes('Aprueba la nueva solicitud de inicio de sesión') && bodyHtml.includes("Tú o alguien que use tu cuenta ha solicitado un enlace de inicio de sesión.") && theLinkElement && link) {
-    console.log("Es para enlace de aprobacion en Netflix TV");
+    console.log("Es para enlace de aprobación en Netflix TV");
     respuesta.noError = true;
     respuesta.link = link;
-    respuesta.about = "Enlace de solicitud para iniciar sesion en TV - Netflix";
+    respuesta.about = "Enlace de inicio de sesión en TV - Netflix";
     context.netflixLinkTv = true;
   }
 
