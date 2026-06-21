@@ -100,7 +100,6 @@ function copyPaymentNumber(element) {
     // Copy to clipboard using modern API
     navigator.clipboard.writeText(paymentNumber).then(() => {
         // Visual feedback on success
-        container.classList.add('copied');
         const numberEl = container.querySelector('.payment-number');
         const btnCopy = container.querySelector('.btn-copy');
 
@@ -112,7 +111,6 @@ function copyPaymentNumber(element) {
             setTimeout(() => {
                 btnCopy.innerHTML = originalBtnHtml;
                 btnCopy.classList.remove('copied');
-                container.classList.remove('copied');
             }, 2000);
         }
     }).catch(err => {
@@ -200,6 +198,14 @@ async function loadData() {
 
         // Update all static WhatsApp links in the page (Distributor, Footer, etc.)
         updateAllWhatsAppLinks(appState.whatsapp.number);
+
+        // Update payment number display if present
+        const paymentNumberEl = document.getElementById('paymentNumber');
+        if (paymentNumberEl) {
+            const rawNum = appState.whatsapp.number;
+            const displayNum = rawNum.startsWith('57') ? rawNum.slice(2) : rawNum;
+            paymentNumberEl.textContent = displayNum;
+        }
 
         // Save raw data for dynamic rendering
         appState.rawPlatforms = platformsRes.data;
