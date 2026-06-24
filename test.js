@@ -871,14 +871,7 @@ function extractCode(htmlText, subject, context = {}) {
   verifyCrunchyrollLogin(root, respuesta, subject, context);
   if (respuesta.noError) return finalizar(respuesta);
 
-  verifyMaxPassReset(root, respuesta, subject, context);
-  if (respuesta.noError) return finalizar(respuesta);
 
-  verifyCrunchyPassReset(root, respuesta, subject, context);
-  if (respuesta.noError) return finalizar(respuesta);
-
-  verfiyNetflixAccountChanges(root, respuesta, subject, context);
-  if (respuesta.noError) return finalizar(respuesta);
 
   verifyAppleTv(root, respuesta, subject, context)
   if (respuesta.noError) return finalizar(respuesta);
