@@ -631,7 +631,7 @@ function verifyNetflix(root, respuesta, context) {
 
   var link = theLinkElement?.attributes?.href?.trim();
 
-  if (bodyHtml.includes('Aprueba la nueva solicitud de inicio de sesión') && bodyHtml.includes("Tú o alguien que use tu cuenta ha solicitado un enlace de inicio de sesión.") && theLinkElement && link) {
+  if (bodyHtml.includes('Aprueba la nueva solicitud de inicio de sesión') && (bodyHtml.includes("Tú o alguien que use tu cuenta ha solicitado un enlace de inicio de sesión.") || bodyHtml.includes("tú o alguien que usa tu cuenta solicitaron un enlace de inicio de sesión.")) && theLinkElement && link) {
     console.log("Es para enlace de aprobación en Netflix TV");
     respuesta.noError = true;
     respuesta.link = link;
