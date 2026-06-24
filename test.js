@@ -192,7 +192,6 @@ function verfiyNetflixAccountChanges(root, respuesta, subject, context) {
     context.keyword = 'netflix';
     respuesta.noError = true;
     respuesta.about = 'Codigo para cambios netflix (🚫 No Dar Al Cliente 🚫)';
-    context.sendJustIf = '{netflix-account-changes}'
     respuesta.code = codeEle.textContent;
     return respuesta
 
@@ -507,7 +506,6 @@ function verifyMaxPassReset(root, respuesta, subject, context) {
   var btnElement = root.querySelector('a[href^="https://auth.hbomax.com/set-new-password?passwordResetToken="]');
 
   if (btnElement) {
-    context.sendJustIf = '{max-reset-pass}';
     console.log("Es de enlace para cambiar contraseña HBOMAX");
 
     respuesta.noError = true;
@@ -684,7 +682,6 @@ function verifyDisney(root, respuesta, context) {
     //const isLabelCodigo = labelText === "Tu código de acceso único para Disney+";
 
     if (code?.match(regexSixNumberMax)) {
-      context.sendJustIf = "{enviar_codigos_disney}"
       context.keyword = "disney";
       console.log("Es de código de acceso único para Disney+");
 
@@ -766,7 +763,6 @@ function verifyCrunchyPassReset(root, respuesta, subject, context) {
   );
 
   if (resetBtn) {
-    context.sendJustIf = "{crunchy-reset-pass}";
     respuesta.noError = true;
     respuesta.link = parseAttributes(resetBtn).href;
     respuesta.about = "Enlace para cambiar contraseña Crunchyroll";
@@ -777,6 +773,47 @@ function verifyCrunchyPassReset(root, respuesta, subject, context) {
   console.log("no es de Reset password crunchyroll");
   return respuesta;
 }
+
+function verifySurfshark(root, respuesta, subject, context) {
+  if (context?.from?.includes("no-reply@account.surfshark.com") === false) {
+    return respuesta;
+  }
+
+  var normalizedSubject = (subject || "").toLowerCase().trim();
+  var code = null;
+
+  // Try extracting from subject first: "Your Surfshark 2FA code is 638482"
+  if (normalizedSubject.includes("surfshark") && normalizedSubject.includes("2fa")) {
+    const codeMatch = normalizedSubject.match(/\d{6}/);
+    if (codeMatch) {
+      code = codeMatch[0];
+    }
+  }
+
+  // Fallback to body text
+  if (!code) {
+    var bodyText = root.querySelector("body")?.innerText || root.innerText || root.textContent || "";
+    const codeFromBodyMatch = bodyText.match(/(?:^|\D)(\d{6})(?!\d)/);
+    if (codeFromBodyMatch) {
+      code = codeFromBodyMatch[1];
+    }
+  }
+
+  if (code) {
+    context.keyword = "surfshark";
+    console.log("Es de código 2FA para Surfshark");
+
+    respuesta.noError = true;
+    respuesta.code = code;
+    respuesta.about = "Código 2FA de Surfshark";
+
+    return respuesta;
+  }
+
+  console.log("No es de Surfshark");
+  return respuesta;
+}
+
 
 
 function extractCode(htmlText, subject, context = {}) {
@@ -847,6 +884,9 @@ function extractCode(htmlText, subject, context = {}) {
   if (respuesta.noError) return finalizar(respuesta);
 
   verifyVixSignInLink(root, respuesta, subject, context)
+  if (respuesta.noError) return finalizar(respuesta);
+
+  verifySurfshark(root, respuesta, subject, context);
   if (respuesta.noError) return finalizar(respuesta);
 
 
