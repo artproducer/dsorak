@@ -690,7 +690,13 @@ function verifyDisney(root, respuesta, context) {
 
       respuesta.noError = true;
       respuesta.code = code;
-      respuesta.about = "Código de acceso único Disney Plus";
+
+      const emailSubject = String(context.subject || "").toLowerCase();
+      if (emailSubject.includes("hogar")) {
+        respuesta.about = "Código para actualizar Hogar de Disney Plus";
+      } else {
+        respuesta.about = "Código de acceso único Disney Plus";
+      }
 
       return respuesta;
     }
