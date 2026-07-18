@@ -24,6 +24,24 @@ function getElementHref(element) {
   return decodeHtmlUrl(element._attrs?.href || element.getAttribute?.("href") || "");
 }
 
+function logDetectedPlatform(respuesta, context) {
+  var value = String((context?.keyword || "") + " " + (respuesta?.about || "")).toLowerCase();
+  var platform = context?.keyword || "Plataforma";
+  if (value.includes("disney")) platform = "Disney+";
+  else if (value.includes("amazon") || value.includes("prime")) platform = "Prime Video / Amazon";
+  else if (value.includes("netflix")) platform = "Netflix";
+  else if (value.includes("hbo") || value.includes("max")) platform = "Max / HBO";
+  else if (value.includes("youtube")) platform = "YouTube";
+  else if (value.includes("apple")) platform = "Apple TV";
+  else if (value.includes("chatgpt")) platform = "ChatGPT";
+  else if (value.includes("crunchy")) platform = "Crunchyroll";
+  else if (value.includes("surfshark")) platform = "Surfshark";
+  else if (value.includes("vix")) platform = "ViX";
+
+  var type = respuesta?.code !== undefined ? "CÓDIGO" : respuesta?.link ? "ENLACE" : "CONTENIDO";
+  console.log("[EXTRACTOR] Plataforma: " + platform + " | Tipo: " + type);
+}
+
 function verifyVixSignInLink(root, respuesta, subject, context) {
 
   var normalizedSubject = String(subject || "")
@@ -58,7 +76,6 @@ function verifyVixSignInLink(root, respuesta, subject, context) {
       respuesta.noError = true;
       respuesta.about = 'Enlace para iniciar sesion en Vix';
       respuesta.link = linkFlexible;
-      console.log("Es de Vix link de iniciar sesion");
       return respuesta;
     }
   }
@@ -124,7 +141,6 @@ function verifyChatGpt(root, respuesta, subject, context) {
     respuesta.code = openAiCode;
     context.keyword = "chatgpt";
     respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en ChatGPT'
-    console.log("Es de ChatGPT codigo")
 
     return respuesta
   }
@@ -142,7 +158,6 @@ function verifyChatGpt(root, respuesta, subject, context) {
   respuesta.code = codigo;
   context.keyword = "chatgpt";
   respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en ChatGPT'
-  console.log("Es de ChatGPT codigo")
 
   return respuesta
 
@@ -166,7 +181,6 @@ function verifyAppleTv(root, respuesta, subject, context) {
   var regexMatch = codeEle.textContent.trim().match(sixDigitsRegex)
 
   if (regexMatch) {
-    console.log("Es codigo de apple tv")
     context.keyword = "apple"
     respuesta.noError = true;
     respuesta.about = 'Codigo para iniciar sesion en Apple TV';
@@ -174,7 +188,6 @@ function verifyAppleTv(root, respuesta, subject, context) {
     return respuesta;
   }
 
-  console.log("No es de apple tv")
   return respuesta;
 }
 
@@ -230,7 +243,6 @@ function verifyAmazon(root, respuesta, subject, context) {
 
   if (emailHtml?.innerText?.trim()?.match(regexSixNumberAmazon)?.length > 0) {
     context.keyword = "prime";
-    console.log("Es de prime video app");
     respuesta.noError = true;
     respuesta.code = emailHtml?.innerText?.trim()?.match(regexSixNumberAmazon)[0];
     respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en Prime Video'
@@ -243,7 +255,6 @@ function verifyAmazon(root, respuesta, subject, context) {
 
 
   if (emailHtml?.innerText?.trim()?.match(regexSixNumberAmazon)?.length > 0) {
-    console.log("Es de primevideo.com")
     context.keyword = "prime";
 
     respuesta.noError = true;
@@ -261,7 +272,6 @@ function verifyAmazon(root, respuesta, subject, context) {
   if (emailHtml?.innerText?.trim()?.match(regexSixNumberAmazon)?.length > 0) {
     context.keyword = "prime";
 
-    console.log('Es de primevideo.com "HOLANDES"')
     respuesta.noError = true;
     respuesta.code = emailHtml?.innerText?.trim()?.match(regexSixNumberAmazon)[0];
     respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en Prime Video'
@@ -272,7 +282,6 @@ function verifyAmazon(root, respuesta, subject, context) {
 
 
 
-  console.log("no es de amazon");
   return respuesta;
 }
 
@@ -298,7 +307,6 @@ function verifyYoutube(root, respuesta, context) {
       email?.match(regexEmail)) {
       context.keyword = "youtube";
 
-      console.log("Es  codigo de verificacion de cuenta de yt");
       respuesta.noError = true;
       respuesta.code = code;
       respuesta.about = 'Codigo de verificacion Para Iniciar Sesion Youtube (Gmail)'
@@ -312,7 +320,6 @@ function verifyYoutube(root, respuesta, context) {
 
 
 
-  console.log("no es de YOutube");
   return respuesta;
 }
 function getEnvironment() {
@@ -406,7 +413,7 @@ function getEnvironment() {
       // Lógica Netflix Travel
       if (!isCode && context.netflixTravel) {
         try {
-          console.log("✈️ Extrayendo código Netflix...");
+          console.log("[NETFLIX] Extrayendo código de viaje...");
           var travelResult = globalThis.getNetflixTravelCode(result.link);
 
           if (travelResult.noError) {
@@ -480,14 +487,12 @@ function verifyMax(root, respuesta, subject, context) {
     respuesta.noError = true;
     respuesta.code = code;
     respuesta.about = 'Codigo de verificacion Para Iniciar Sesion en HBO Max'
-    console.log("Es de HBO Max codigo de iniciar sesion");
 
     return respuesta
   }
 
 
 
-  console.log("no es de HBOMax");
   return respuesta;
 }
 
@@ -506,7 +511,6 @@ function verifyMaxPassReset(root, respuesta, subject, context) {
   var btnElement = root.querySelector('a[href^="https://auth.hbomax.com/set-new-password?passwordResetToken="]');
 
   if (btnElement) {
-    console.log("Es de enlace para cambiar contraseña HBOMAX");
 
     respuesta.noError = true;
     respuesta.link = parseAttributes(btnElement)?.href || "";
@@ -515,7 +519,6 @@ function verifyMaxPassReset(root, respuesta, subject, context) {
     return respuesta
   }
 
-  console.log("no es de Max");
   return respuesta;
 }
 
@@ -536,7 +539,6 @@ function verifyNetflix(root, respuesta, context) {
 
 
   if (codeContainer && (bodyHtml.includes("Ingresa este código para iniciar sesión") || bodyHtml.includes("Enter this code to sign in") || bodyHtml.includes("Escribe este código para iniciar sesión"))) {
-    console.log("Es codigo 4 digitos de inicio de sesión Netflix ")
 
     respuesta.noError = true;
     respuesta.code = codeContainer.innerText.trim();
@@ -550,7 +552,6 @@ function verifyNetflix(root, respuesta, context) {
 
   var linkElementViaje = root.querySelector('a[href^="https://www.netflix.com/account/travel/verify?"]');
   if (linkElementViaje) {
-    console.log("Es para estoy estoy de viaje netflix");
 
     var link = linkElementViaje?.attributes?.href?.trim();
     var profileInfoElement = root.querySelector('td.profile-info');
@@ -587,7 +588,6 @@ function verifyNetflix(root, respuesta, context) {
   //COMPROBAR SI ES PARA ACTUALIZAR HOGAR
   var linkElement = root.querySelector('a[href^="https://www.netflix.com/account/update-primary-location?"]');
   if (linkElement) {
-    console.log("Es para actualizar hogar netflix");
 
     var link = linkElement?.attributes?.href?.trim();
 
@@ -630,14 +630,12 @@ function verifyNetflix(root, respuesta, context) {
   var link = theLinkElement?.attributes?.href?.trim();
 
   if (bodyHtml.includes('Aprueba la nueva solicitud de inicio de sesión') && (bodyHtml.includes("Tú o alguien que use tu cuenta ha solicitado un enlace de inicio de sesión.") || bodyHtml.includes("tú o alguien que usa tu cuenta solicitaron un enlace de inicio de sesión.")) && theLinkElement && link) {
-    console.log("Es para enlace de aprobación en Netflix TV");
     respuesta.noError = true;
     respuesta.link = link;
     respuesta.about = "Enlace de inicio de sesión en TV - Netflix";
     context.netflixLinkTv = true;
   }
 
-  console.log("NO continuar con netflix")
 
   return respuesta;
 
@@ -661,7 +659,6 @@ function verifyDisney(root, respuesta, context) {
   // 2. Buscar tabla
   const table = root.querySelector("table.module_1 table.module");
   if (!table) {
-    console.log("No se encontró tabla Disney");
     return respuesta;
   }
 
@@ -683,7 +680,6 @@ function verifyDisney(root, respuesta, context) {
 
     if (code?.match(regexSixNumberMax)) {
       context.keyword = "disney";
-      console.log("Es de código de acceso único para Disney+");
 
       respuesta.noError = true;
       respuesta.code = code;
@@ -699,7 +695,6 @@ function verifyDisney(root, respuesta, context) {
     }
   }
 
-  console.log("No es de Disney+");
   return respuesta;
 }
 
@@ -766,11 +761,9 @@ function verifyCrunchyPassReset(root, respuesta, subject, context) {
     respuesta.noError = true;
     respuesta.link = parseAttributes(resetBtn).href;
     respuesta.about = "Enlace para cambiar contraseña Crunchyroll";
-    console.log("Es de enlace para cambiar contraseña Crunchyroll");
     return respuesta;
   }
 
-  console.log("no es de Reset password crunchyroll");
   return respuesta;
 }
 
@@ -801,7 +794,6 @@ function verifySurfshark(root, respuesta, subject, context) {
 
   if (code) {
     context.keyword = "surfshark";
-    console.log("Es de código 2FA para Surfshark");
 
     respuesta.noError = true;
     respuesta.code = code;
@@ -810,7 +802,6 @@ function verifySurfshark(root, respuesta, subject, context) {
     return respuesta;
   }
 
-  console.log("No es de Surfshark");
   return respuesta;
 }
 
@@ -838,7 +829,7 @@ function extractCode(htmlText, subject, context = {}) {
   // --- Función interna para centralizar la salida ---
   // Esto asegura que si es GAS, procesamos el link antes de devolverlo
   const finalizar = (res) => {
-    console.log("es de " + context.keyword)
+    logDetectedPlatform(res, context);
     if (getEnvironment() === "GAS" && res.noError) {
       // Aquí se ejecutan las llamadas a is.gd o Netflix Travel
       processIfLink(res, context);
