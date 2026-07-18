@@ -39,7 +39,7 @@ function logDetectedPlatform(respuesta, context) {
   else if (value.includes("vix")) platform = "ViX";
 
   var type = respuesta?.code !== undefined ? "CÓDIGO" : respuesta?.link ? "ENLACE" : "CONTENIDO";
-  console.log("[EXTRACTOR] Plataforma: " + platform + " | Tipo: " + type);
+  console.log("[EXTRACTOR] ⚙️ Plataforma: " + platform + " | Tipo: " + type);
 }
 
 function verifyVixSignInLink(root, respuesta, subject, context) {
@@ -221,14 +221,14 @@ function verifyDisneyEmailChange(root, respuesta, subject, context) {
   }
   var htmlText = root.outerHTML;
   if (htmlText.includes("Correo electrónico de MyDisney actualizado")) {
-    console.log(`[DISNEY] Cambio de correo detectado | Destinatario: ${context.to || "DESCONOCIDO"}`)
+    console.log(`[DISNEY] 🏰 Cambio de correo detectado | Destinatario: ${context.to || "DESCONOCIDO"}`)
     context.keyword = "disney";
     context.fraud = true;
     respuesta.noError = true;
     return respuesta
   }
 
-  console.log("[DISNEY] Cambio de correo no detectado")
+  console.log("[DISNEY] 🏰 Cambio de correo no detectado")
 
   return respuesta;
 }
@@ -311,7 +311,7 @@ function verifyYoutube(root, respuesta, context) {
       respuesta.code = code;
       respuesta.about = 'Codigo de verificacion Para Iniciar Sesion Youtube (Gmail)'
       context.to = email;
-      console.log(`[YOUTUBE] Destinatario detectado en el contenido | Correo: ${email}`)
+      console.log(`[YOUTUBE] ▶️ Destinatario detectado en el contenido | Correo: ${email}`)
 
       return respuesta
     }
@@ -413,7 +413,7 @@ function getEnvironment() {
       // Lógica Netflix Travel
       if (!isCode && context.netflixTravel) {
         try {
-          console.log("[NETFLIX] Extrayendo código de viaje...");
+          console.log("[NETFLIX] 🎬 Extrayendo código de viaje...");
           var travelResult = globalThis.getNetflixTravelCode(result.link);
 
           if (travelResult.noError) {
@@ -426,7 +426,7 @@ function getEnvironment() {
             isCode = true;
           }
         } catch (error) {
-          console.warn(`[NETFLIX] Error extrayendo codigo de viaje | Detalle: ${error.toString()}`);
+          console.warn(`[NETFLIX] 🎬 Error extrayendo codigo de viaje | Detalle: ${error.toString()}`);
         }
       }
 
@@ -452,7 +452,7 @@ function getEnvironment() {
       }
     };
   } else {
-    console.log("[EXTRACTOR] Procesamiento de enlaces omitido | Motivo: entorno sin GAS");
+    console.log("[EXTRACTOR] ⚙️ Procesamiento de enlaces omitido | Motivo: entorno sin GAS");
   }
 })();
 
@@ -560,7 +560,7 @@ function verifyNetflix(root, respuesta, context) {
       var profileName = profileInfoElement?.innerText.split(firstOptionTravel)[1]?.split("desde:")[0]?.trim();
 
       if (profileName) {
-        console.log(`[NETFLIX] Perfil detectado | Nombre: ${profileName}`)
+        console.log(`[NETFLIX] 🎬 Perfil detectado | Nombre: ${profileName}`)
         context.noCredencialsRequired = true;
         context.profileName = profileName
       }
@@ -571,7 +571,7 @@ function verifyNetflix(root, respuesta, context) {
       var profileName = profileInfoElement?.innerText.split(secondOptionTravel)[0]?.trim();
 
       if (profileName) {
-        console.log(`[NETFLIX] Perfil detectado | Nombre: ${profileName}`)
+        console.log(`[NETFLIX] 🎬 Perfil detectado | Nombre: ${profileName}`)
         context.noCredencialsRequired = true;
         context.profileName = profileName
       }
@@ -598,7 +598,7 @@ function verifyNetflix(root, respuesta, context) {
 
       if (profileName) {
         context.noCredencialsRequired = true;
-        console.log(`[NETFLIX] Perfil detectado | Nombre: ${profileName}`)
+        console.log(`[NETFLIX] 🎬 Perfil detectado | Nombre: ${profileName}`)
         context.profileName = profileName
       }
 
@@ -610,7 +610,7 @@ function verifyNetflix(root, respuesta, context) {
 
       if (profileName) {
         context.noCredencialsRequired = true;
-        console.log(`[NETFLIX] Perfil detectado | Nombre: ${profileName}`)
+        console.log(`[NETFLIX] 🎬 Perfil detectado | Nombre: ${profileName}`)
         context.profileName = profileName
       }
 
@@ -970,7 +970,7 @@ function main(e) {
             codeResponse = result;
             mensajeUsado = msg;
           } else {
-            console.log(`[GMAIL] Mensaje omitido | Hilo: ${t + 1} | Motivo: contenido no valido`);
+            console.log(`[GMAIL] 📨 Mensaje omitido | Hilo: ${t + 1} | Motivo: contenido no valido`);
           }
 
           // AQUI ESTÁ EL CAMBIO:
@@ -1006,7 +1006,7 @@ function main(e) {
     response.contact = theContact;
 
   } catch (err) {
-    console.error(`[EXTRACTOR] Error en el proceso principal | Detalle: ${err.message}`);
+    console.error(`[EXTRACTOR] ⚙️ Error en el proceso principal | Detalle: ${err.message}`);
     response.noError = false;
     response.message = err.message;
     response.contact = theContact;
@@ -1024,7 +1024,7 @@ function VerifyContactAndEmail(userData, masterKey) {
     // 👑 VALIDACIÓN SUPERADMIN
     if (masterKey && userData.contact === masterKey) {
       theContact = "👑 MODO SUPERADMIN";
-      console.log("[AUTORIZACION] Acceso concedido | Metodo: MASTER KEY");
+      console.log("[AUTORIZACION] 🔐 Acceso concedido | Metodo: MASTER KEY");
       return true;
     }
 
@@ -1037,7 +1037,7 @@ function VerifyContactAndEmail(userData, masterKey) {
     // LÓGICA NUEVA: Solo si viene la variable 'wa'
     // ---------------------------------------------------------
     if (userData.wa) {
-      console.log("[AUTORIZACION] Validacion iniciada | Modo: MULTICONTACTO");
+      console.log("[AUTORIZACION] 🔐 Validacion iniciada | Modo: MULTICONTACTO");
 
       // 1. Filtrar todos los clientes con ese número activos
       var activeClients = clients.data.filter(c => c.contact === userData.contact && c.active === "1");
@@ -1064,7 +1064,7 @@ function VerifyContactAndEmail(userData, masterKey) {
     // ---------------------------------------------------------
     else {
 
-      console.log("[AUTORIZACION] Validacion iniciada | Modo: ESTANDAR");
+      console.log("[AUTORIZACION] 🔐 Validacion iniciada | Modo: ESTANDAR");
 
       // Buscamos el primer índice que coincida (comportamiento original)
       // Intentamos buscar por emailContact primero
@@ -1098,7 +1098,7 @@ function VerifyContactAndEmail(userData, masterKey) {
     }
 
   } catch (err) {
-    console.error(`[AUTORIZACION] Validacion rechazada | Detalle: ${err.message}`);
+    console.error(`[AUTORIZACION] 🔐 Validacion rechazada | Detalle: ${err.message}`);
     return err.message;
   }
 }
