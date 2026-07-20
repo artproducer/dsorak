@@ -141,6 +141,8 @@ let appState = {
     prices: null
 };
 
+const PAYMENT_NUMBER = '3005965404';
+
 // ===== DATA LOADING =====
 async function loadData() {
     if (!_supabase) {
@@ -199,12 +201,10 @@ async function loadData() {
         // Update all static WhatsApp links in the page (Distributor, Footer, etc.)
         updateAllWhatsAppLinks(appState.whatsapp.number);
 
-        // Update payment number display if present
+        // Keep the payment number independent from Supabase settings.
         const paymentNumberEl = document.getElementById('paymentNumber');
         if (paymentNumberEl) {
-            const rawNum = appState.whatsapp.number;
-            const displayNum = rawNum.startsWith('57') ? rawNum.slice(2) : rawNum;
-            paymentNumberEl.textContent = displayNum;
+            paymentNumberEl.textContent = PAYMENT_NUMBER;
         }
 
         // Save raw data for dynamic rendering
