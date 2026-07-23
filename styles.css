@@ -359,6 +359,58 @@ nav {
     transition: all 0.3s ease;
 }
 
+/* Switch to the compact navigation before the desktop links get cramped. */
+@media (max-width: 900px) {
+    header,
+    header.scrolled {
+        padding: 0.75rem 1rem;
+    }
+
+    .nav-links {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+    }
+}
+
+/* Keep the full navigation on medium screens without increasing header height. */
+@media (min-width: 901px) and (max-width: 1100px) {
+    header,
+    header.scrolled {
+        padding: 0.75rem 1rem;
+    }
+
+    .logo .brand-text {
+        font-size: 1.45rem;
+    }
+
+    .logo .streaming-text {
+        font-size: 0.65rem;
+    }
+
+    .flag-icon-svg {
+        width: 20px;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        gap: 3px;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.78rem;
+    }
+
+    .nav-links a svg {
+        width: 17px;
+        height: 17px;
+        margin-right: 2px !important;
+    }
+}
+
 
 
 /* ===== CUSTOM COMBO STYLES ===== */
@@ -504,12 +556,14 @@ nav {
     font-size: 0.9rem;
     white-space: nowrap;
     padding: 0.6rem 1.4rem;
-    background: white;
+    background: linear-gradient(135deg, #ffffff 0%, #eaf5ff 100%);
     border-radius: 12px;
-    color: #212529;
-    font-weight: 600;
-    border: 2px solid transparent;
-    box-shadow: 0 6px 25px rgba(52, 152, 219, 0.35);
+    color: var(--primary);
+    font-weight: 700;
+    border: 1.5px solid rgba(22, 101, 175, 0.28);
+    box-shadow:
+        0 5px 14px rgba(22, 101, 175, 0.2),
+        0 1px 3px rgba(22, 101, 175, 0.12);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -519,7 +573,10 @@ nav {
 .nav-links a:hover,
 .nav-links a:active {
     transform: translateY(-3px);
-    border-color: #3498db;
+    color: #ffffff;
+    background: var(--gradient-1);
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(22, 101, 175, 0.35);
 }
 
 .btn {
@@ -1591,6 +1648,11 @@ footer {
 .payment-info-card .btn-copy.copied {
     background: #2ecc71;
     border-color: #2ecc71;
+}
+
+/* Payment methods are temporarily disabled. */
+.payment-info-card {
+    display: none;
 }
 
 @media (max-width: 600px) {
