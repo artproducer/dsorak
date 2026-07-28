@@ -2721,30 +2721,9 @@ footer {
 .skeleton-text,
 .skeleton-selector,
 .skeleton-btn {
-    background: #e2e8f0;
+    background: #e8edf3;
     border-radius: 4px;
     position: relative;
-}
-
-/* Dark mode adjustment for skeletons */
-@media (prefers-color-scheme: dark) {
-    .skeleton-card::after {
-        background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.05) 20%,
-            rgba(255, 255, 255, 0.1) 60%,
-            rgba(255, 255, 255, 0) 100%
-        );
-    }
-    .skeleton-price-corner,
-    .skeleton-avatar,
-    .skeleton-title,
-    .skeleton-text,
-    .skeleton-selector,
-    .skeleton-btn {
-        background: #2d3748;
-    }
 }
 
 .skeleton-price-corner {
@@ -2796,17 +2775,11 @@ footer {
 
 .skeleton-option-card {
     height: 48px;
-    background: #e2e8f0;
+    background: #e8edf3;
     border-radius: 8px;
     margin-bottom: 0.5rem;
     position: relative;
     overflow: hidden;
-}
-
-@media (prefers-color-scheme: dark) {
-    .skeleton-option-card {
-        background: #2d3748;
-    }
 }
 
 .skeleton-option-card::after {
@@ -2825,16 +2798,4 @@ footer {
         rgba(255, 255, 255, 0) 100%
     );
     animation: shimmer-load 1.6s infinite;
-}
-
-@media (prefers-color-scheme: dark) {
-    .skeleton-option-card::after {
-        background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.05) 20%,
-            rgba(255, 255, 255, 0.1) 60%,
-            rgba(255, 255, 255, 0) 100%
-        );
-    }
 }
