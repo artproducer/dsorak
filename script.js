@@ -147,9 +147,9 @@ const DEFAULT_WHATSAPP_SETTINGS = {
     banner_enabled: false,
     banner_revision: 1
 };
-const SUPPORT_BANNER_DISMISS_KEY = 'dsorak-support-banner-dismissed-revision';
 let whatsappSettingsChannel = null;
 let whatsappSettingsPoll = null;
+let dismissedSupportBannerRevision = 0;
 
 function normalizeWhatsappSettings(value = {}) {
     const number = String(value.number || DEFAULT_WHATSAPP_SETTINGS.number).replace(/\D/g, '');
@@ -192,8 +192,10 @@ function renderSupportWhatsappBanner(settings) {
     numberLabel.textContent = formatWhatsappNumber(settings.number);
     chatLink.href = `https://wa.me/${settings.number}?text=${encodeURIComponent('Hola, necesito ayuda con mi servicio.')}`;
 
-    const dismissedRevision = Number(window.localStorage.getItem(SUPPORT_BANNER_DISMISS_KEY) || 0);
-    const shouldShow = settings.banner_enabled && dismissedRevision !== settings.banner_revision;
+    const shouldShow = (
+        settings.banner_enabled
+        && dismissedSupportBannerRevision !== settings.banner_revision
+    );
     banner.hidden = !shouldShow;
     document.body.classList.toggle('support-banner-visible', shouldShow);
     if (shouldShow) window.requestAnimationFrame(updateSupportBannerSpacing);
@@ -208,7 +210,7 @@ function applyWhatsappSettings(value) {
 
 function dismissSupportWhatsappBanner() {
     const settings = normalizeWhatsappSettings(appState.whatsapp);
-    window.localStorage.setItem(SUPPORT_BANNER_DISMISS_KEY, String(settings.banner_revision));
+    dismissedSupportBannerRevision = settings.banner_revision;
     renderSupportWhatsappBanner(settings);
 }
 
