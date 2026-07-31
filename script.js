@@ -272,38 +272,6 @@ function handleAdvertisingBannerImageError() {
     console.warn('No se pudo cargar la imagen del banner publicitario.');
 }
 
-function getAdvertisingBannerDownloadName(settings) {
-    const rawName = String(settings.advertising_banner_image_name || 'banner-dsorak.jpg');
-    return rawName
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-zA-Z0-9._-]+/g, '-')
-        .replace(/-+/g, '-')
-        .slice(0, 100) || 'banner-dsorak.jpg';
-}
-
-async function downloadAdvertisingBannerImage() {
-    const settings = normalizeWhatsappSettings(appState.whatsapp);
-    if (!settings.advertising_banner_image_url) return;
-
-    try {
-        const response = await fetch(settings.advertising_banner_image_url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const blob = await response.blob();
-        const objectUrl = URL.createObjectURL(blob);
-        const downloadLink = document.createElement('a');
-        downloadLink.href = objectUrl;
-        downloadLink.download = getAdvertisingBannerDownloadName(settings);
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        downloadLink.remove();
-        window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
-    } catch (error) {
-        console.warn('No se pudo descargar directamente el banner:', error);
-        window.open(settings.advertising_banner_image_url, '_blank', 'noopener');
-    }
-}
-
 async function refreshWhatsappSettings() {
     if (!_supabase) return;
     const { data, error } = await _supabase
