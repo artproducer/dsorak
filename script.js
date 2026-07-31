@@ -142,6 +142,100 @@ let appState = {
 };
 
 const PAYMENT_NUMBER = '3005965404';
+const DEFAULT_WHATSAPP_SETTINGS = {
+    number: '573005965404',
+    banner_enabled: false,
+    banner_revision: 1
+};
+const SUPPORT_BANNER_DISMISS_KEY = 'dsorak-support-banner-dismissed-revision';
+let whatsappSettingsChannel = null;
+let whatsappSettingsPoll = null;
+
+function normalizeWhatsappSettings(value = {}) {
+    const number = String(value.number || DEFAULT_WHATSAPP_SETTINGS.number).replace(/\D/g, '');
+    return {
+        ...value,
+        number: number || DEFAULT_WHATSAPP_SETTINGS.number,
+        banner_enabled: value.banner_enabled === true,
+        banner_revision: Math.max(1, Number(value.banner_revision) || 1)
+    };
+}
+
+function formatWhatsappNumber(value) {
+    const number = String(value || '').replace(/\D/g, '');
+    const localNumber = number.startsWith('57') && number.length === 12 ? number.slice(2) : number;
+    if (localNumber.length === 10) {
+        return `${localNumber.slice(0, 3)} ${localNumber.slice(3, 6)} ${localNumber.slice(6)}`;
+    }
+    return `+${number}`;
+}
+
+function updateSupportBannerSpacing() {
+    const banner = document.getElementById('support-whatsapp-banner');
+    if (!banner || banner.hidden) return;
+    document.documentElement.style.setProperty('--support-banner-height', `${banner.offsetHeight}px`);
+}
+
+function renderSupportWhatsappBanner(settings) {
+    const banner = document.getElementById('support-whatsapp-banner');
+    const numberLabel = document.getElementById('support-whatsapp-number');
+    const chatLink = document.getElementById('support-whatsapp-link');
+    if (!banner || !numberLabel || !chatLink) return;
+
+    numberLabel.textContent = formatWhatsappNumber(settings.number);
+    chatLink.href = `https://wa.me/${settings.number}?text=${encodeURIComponent('Hola, necesito ayuda con mi servicio.')}`;
+
+    const dismissedRevision = Number(window.localStorage.getItem(SUPPORT_BANNER_DISMISS_KEY) || 0);
+    const shouldShow = settings.banner_enabled && dismissedRevision !== settings.banner_revision;
+    banner.hidden = !shouldShow;
+    document.body.classList.toggle('support-banner-visible', shouldShow);
+    if (shouldShow) window.requestAnimationFrame(updateSupportBannerSpacing);
+}
+
+function applyWhatsappSettings(value) {
+    const settings = normalizeWhatsappSettings(value);
+    appState.whatsapp = settings;
+    updateAllWhatsAppLinks(settings.number);
+    renderSupportWhatsappBanner(settings);
+}
+
+function dismissSupportWhatsappBanner() {
+    const settings = normalizeWhatsappSettings(appState.whatsapp);
+    window.localStorage.setItem(SUPPORT_BANNER_DISMISS_KEY, String(settings.banner_revision));
+    renderSupportWhatsappBanner(settings);
+}
+
+async function refreshWhatsappSettings() {
+    if (!_supabase) return;
+    const { data, error } = await _supabase
+        .from('app_settings')
+        .select('value')
+        .eq('key', 'whatsapp')
+        .maybeSingle();
+
+    if (error) {
+        console.warn('No se pudo sincronizar la configuración de WhatsApp:', error.message);
+        return;
+    }
+    if (data?.value) applyWhatsappSettings(data.value);
+}
+
+function startWhatsappSettingsSync() {
+    if (!_supabase || whatsappSettingsChannel) return;
+
+    whatsappSettingsChannel = _supabase
+        .channel('dsorak-public-whatsapp-settings')
+        .on(
+            'postgres_changes',
+            { event: '*', schema: 'public', table: 'app_settings', filter: 'key=eq.whatsapp' },
+            (payload) => {
+                if (payload.new?.value) applyWhatsappSettings(payload.new.value);
+            }
+        )
+        .subscribe();
+
+    whatsappSettingsPoll = window.setInterval(refreshWhatsappSettings, 60000);
+}
 
 // ===== DATA LOADING =====
 async function loadData() {
@@ -195,11 +289,9 @@ async function loadData() {
             if (s.key === 'whatsapp') appState.whatsapp = s.value;
         });
 
-        // Use default if not set
-        if (!appState.whatsapp) appState.whatsapp = { number: '573005965404' };
-
-        // Update all static WhatsApp links in the page (Distributor, Footer, etc.)
-        updateAllWhatsAppLinks(appState.whatsapp.number);
+        // Apply the shared WhatsApp number and temporary banner configuration.
+        applyWhatsappSettings(appState.whatsapp || DEFAULT_WHATSAPP_SETTINGS);
+        startWhatsappSettingsSync();
 
         // Keep the payment number independent from Supabase settings.
         const paymentNumberEl = document.getElementById('paymentNumber');
@@ -925,4 +1017,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize data from Supabase (this will also render platforms)
     loadData();
+});
+
+window.addEventListener('focus', refreshWhatsappSettings);
+window.addEventListener('resize', updateSupportBannerSpacing);
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') refreshWhatsappSettings();
 });
