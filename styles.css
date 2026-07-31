@@ -260,13 +260,12 @@ body.support-banner-visible #plataformas {
     .support-whatsapp-banner__actions { width: 100%; padding-left: 54px; }
     .support-whatsapp-banner__actions a { flex: 1; }
 
-    .advertising-banner {
-        top: calc(var(--site-header-height, 64px) + 6px);
-        padding: 0 8px;
-    }
-
+    .advertising-banner,
     body.support-banner-visible .advertising-banner {
-        top: calc(var(--site-header-height, 64px) + var(--support-banner-height, 122px) + 12px);
+        top: 0;
+        bottom: 0;
+        align-items: center;
+        padding: 0 8px;
     }
 
     .advertising-banner__content { border-width: 1.5px; border-radius: 11px; }
