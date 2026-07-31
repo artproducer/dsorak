@@ -42,7 +42,8 @@ body {
 }
 
 /* ===== SHARED WHATSAPP SUPPORT BANNER ===== */
-.support-whatsapp-banner[hidden] {
+.support-whatsapp-banner[hidden],
+.advertising-banner[hidden] {
     display: none !important;
 }
 
@@ -86,14 +87,8 @@ body {
     line-height: 1.25;
 }
 
-.support-whatsapp-banner p strong {
-    font-size: 1.05rem;
-}
-
-.support-whatsapp-banner p span {
-    font-size: 0.9rem;
-    opacity: 0.94;
-}
+.support-whatsapp-banner p strong { font-size: 1.05rem; }
+.support-whatsapp-banner p span { font-size: 0.9rem; opacity: 0.94; }
 
 .support-whatsapp-banner__actions {
     display: flex;
@@ -132,55 +127,142 @@ body {
 }
 
 .support-whatsapp-banner__actions a:hover,
-.support-whatsapp-banner__actions button:hover {
-    filter: brightness(0.96);
+.support-whatsapp-banner__actions button:hover { filter: brightness(0.96); }
+
+/* ===== IMAGE ADVERTISING BANNER ===== */
+.advertising-banner {
+    position: fixed;
+    top: calc(var(--site-header-height, 70px) + 8px);
+    left: 0;
+    right: 0;
+    z-index: 998;
+    display: flex;
+    justify-content: center;
+    padding: 0 16px;
+    pointer-events: none;
+    animation: slideDown 0.35s ease-out;
+}
+
+body.support-banner-visible .advertising-banner {
+    top: calc(var(--site-header-height, 70px) + var(--support-banner-height, 82px) + 16px);
+}
+
+.advertising-banner__content {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.96);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 12px 36px rgba(13, 31, 45, 0.3);
+    pointer-events: auto;
+}
+
+.advertising-banner__image-link {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    background: #fff;
+    line-height: 0;
+}
+
+.advertising-banner__image-link img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(1120px, calc(100vw - 36px));
+    max-height: min(62vh, 620px);
+    object-fit: contain;
+}
+
+.advertising-banner__actions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.advertising-banner__actions button {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(12, 23, 33, 0.76);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px);
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.7rem;
+    line-height: 1;
+    transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.advertising-banner__actions button:hover {
+    transform: scale(1.06);
+    background: rgba(7, 94, 84, 0.94);
+}
+
+.advertising-banner__actions button:focus-visible,
+.advertising-banner__image-link:focus-visible {
+    outline: 3px solid #25d366;
+    outline-offset: 2px;
 }
 
 body.support-banner-visible #plataformas {
     padding-top: calc(var(--site-header-height, 70px) + var(--support-banner-height, 82px) + 22px) !important;
 }
 
+body.advertising-banner-visible #plataformas {
+    padding-top: calc(var(--site-header-height, 70px) + var(--advertising-banner-height, 120px) + 22px) !important;
+}
+
+body.support-banner-visible.advertising-banner-visible #plataformas {
+    padding-top: calc(var(--site-header-height, 70px) + var(--support-banner-height, 82px) + var(--advertising-banner-height, 120px) + 30px) !important;
+}
+
 @media (max-width: 768px) {
-    .support-whatsapp-banner {
-        padding: 12px;
+    .support-whatsapp-banner { padding: 12px; }
+    .support-whatsapp-banner__content { align-items: flex-start; flex-wrap: wrap; gap: 10px 12px; }
+    .support-whatsapp-banner__icon { width: 42px; height: 42px; min-width: 42px; }
+    .support-whatsapp-banner p { width: calc(100% - 54px); flex: 1 1 calc(100% - 54px); }
+    .support-whatsapp-banner p strong { font-size: 0.98rem; }
+    .support-whatsapp-banner p span { font-size: 0.84rem; }
+    .support-whatsapp-banner__actions { width: 100%; padding-left: 54px; }
+    .support-whatsapp-banner__actions a { flex: 1; }
+
+    .advertising-banner {
+        top: calc(var(--site-header-height, 64px) + 6px);
+        padding: 0 8px;
     }
 
-    .support-whatsapp-banner__content {
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 10px 12px;
+    body.support-banner-visible .advertising-banner {
+        top: calc(var(--site-header-height, 64px) + var(--support-banner-height, 122px) + 12px);
     }
 
-    .support-whatsapp-banner__icon {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-    }
-
-    .support-whatsapp-banner p {
-        width: calc(100% - 54px);
-        flex: 1 1 calc(100% - 54px);
-    }
-
-    .support-whatsapp-banner p strong {
-        font-size: 0.98rem;
-    }
-
-    .support-whatsapp-banner p span {
-        font-size: 0.84rem;
-    }
-
-    .support-whatsapp-banner__actions {
-        width: 100%;
-        padding-left: 54px;
-    }
-
-    .support-whatsapp-banner__actions a {
-        flex: 1;
-    }
+    .advertising-banner__content { border-width: 1.5px; border-radius: 11px; }
+    .advertising-banner__image-link img { max-width: calc(100vw - 18px); max-height: 56vh; }
+    .advertising-banner__actions { top: 6px; right: 6px; gap: 6px; }
+    .advertising-banner__actions button { width: 38px; height: 38px; font-size: 1.55rem; }
 
     body.support-banner-visible #plataformas {
         padding-top: calc(var(--site-header-height, 64px) + var(--support-banner-height, 122px) + 18px) !important;
+    }
+
+    body.advertising-banner-visible #plataformas {
+        padding-top: calc(var(--site-header-height, 64px) + var(--advertising-banner-height, 120px) + 14px) !important;
+    }
+
+    body.support-banner-visible.advertising-banner-visible #plataformas {
+        padding-top: calc(var(--site-header-height, 64px) + var(--support-banner-height, 122px) + var(--advertising-banner-height, 120px) + 24px) !important;
     }
 }
 

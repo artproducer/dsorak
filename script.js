@@ -145,11 +145,17 @@ const PAYMENT_NUMBER = '3005965404';
 const DEFAULT_WHATSAPP_SETTINGS = {
     number: '573005965404',
     banner_enabled: false,
-    banner_revision: 1
+    banner_revision: 1,
+    advertising_banner_enabled: false,
+    advertising_banner_revision: 1,
+    advertising_banner_image_url: '',
+    advertising_banner_image_name: 'banner-dsorak.jpg',
+    advertising_banner_message: 'Hola, quiero más información sobre esta promoción.'
 };
 let whatsappSettingsChannel = null;
 let whatsappSettingsPoll = null;
 let dismissedSupportBannerRevision = 0;
+let dismissedAdvertisingBannerRevision = 0;
 
 function normalizeWhatsappSettings(value = {}) {
     const number = String(value.number || DEFAULT_WHATSAPP_SETTINGS.number).replace(/\D/g, '');
@@ -157,7 +163,16 @@ function normalizeWhatsappSettings(value = {}) {
         ...value,
         number: number || DEFAULT_WHATSAPP_SETTINGS.number,
         banner_enabled: value.banner_enabled === true,
-        banner_revision: Math.max(1, Number(value.banner_revision) || 1)
+        banner_revision: Math.max(1, Number(value.banner_revision) || 1),
+        advertising_banner_enabled: value.advertising_banner_enabled === true,
+        advertising_banner_revision: Math.max(1, Number(value.advertising_banner_revision) || 1),
+        advertising_banner_image_url: String(value.advertising_banner_image_url || '').trim(),
+        advertising_banner_image_name: String(
+            value.advertising_banner_image_name || DEFAULT_WHATSAPP_SETTINGS.advertising_banner_image_name
+        ),
+        advertising_banner_message: String(
+            value.advertising_banner_message || DEFAULT_WHATSAPP_SETTINGS.advertising_banner_message
+        ).trim()
     };
 }
 
@@ -171,7 +186,8 @@ function formatWhatsappNumber(value) {
 }
 
 function updateSupportBannerSpacing() {
-    const banner = document.getElementById('support-whatsapp-banner');
+    const supportBanner = document.getElementById('support-whatsapp-banner');
+    const advertisingBanner = document.getElementById('advertising-whatsapp-banner');
     const header = document.querySelector('body > header') || document.querySelector('header');
     if (header) {
         document.documentElement.style.setProperty(
@@ -179,8 +195,12 @@ function updateSupportBannerSpacing() {
             `${Math.ceil(header.getBoundingClientRect().height)}px`
         );
     }
-    if (!banner || banner.hidden) return;
-    document.documentElement.style.setProperty('--support-banner-height', `${banner.offsetHeight}px`);
+    if (supportBanner && !supportBanner.hidden) {
+        document.documentElement.style.setProperty('--support-banner-height', `${supportBanner.offsetHeight}px`);
+    }
+    if (advertisingBanner && !advertisingBanner.hidden) {
+        document.documentElement.style.setProperty('--advertising-banner-height', `${advertisingBanner.offsetHeight}px`);
+    }
 }
 
 function renderSupportWhatsappBanner(settings) {
@@ -198,7 +218,31 @@ function renderSupportWhatsappBanner(settings) {
     );
     banner.hidden = !shouldShow;
     document.body.classList.toggle('support-banner-visible', shouldShow);
-    if (shouldShow) window.requestAnimationFrame(updateSupportBannerSpacing);
+    window.requestAnimationFrame(updateSupportBannerSpacing);
+}
+
+function renderAdvertisingBanner(settings) {
+    const banner = document.getElementById('advertising-whatsapp-banner');
+    const chatLink = document.getElementById('advertising-whatsapp-link');
+    const image = document.getElementById('advertising-whatsapp-image');
+    if (!banner || !chatLink || !image) return;
+
+    chatLink.href = `https://wa.me/${settings.number}?text=${encodeURIComponent(settings.advertising_banner_message)}`;
+    if (
+        settings.advertising_banner_image_url
+        && image.getAttribute('src') !== settings.advertising_banner_image_url
+    ) {
+        image.src = settings.advertising_banner_image_url;
+    }
+
+    const shouldShow = (
+        settings.advertising_banner_enabled
+        && Boolean(settings.advertising_banner_image_url)
+        && dismissedAdvertisingBannerRevision !== settings.advertising_banner_revision
+    );
+    banner.hidden = !shouldShow;
+    document.body.classList.toggle('advertising-banner-visible', shouldShow);
+    window.requestAnimationFrame(updateSupportBannerSpacing);
 }
 
 function applyWhatsappSettings(value) {
@@ -206,12 +250,58 @@ function applyWhatsappSettings(value) {
     appState.whatsapp = settings;
     updateAllWhatsAppLinks(settings.number);
     renderSupportWhatsappBanner(settings);
+    renderAdvertisingBanner(settings);
 }
 
 function dismissSupportWhatsappBanner() {
     const settings = normalizeWhatsappSettings(appState.whatsapp);
     dismissedSupportBannerRevision = settings.banner_revision;
     renderSupportWhatsappBanner(settings);
+}
+
+function dismissAdvertisingBanner() {
+    const settings = normalizeWhatsappSettings(appState.whatsapp);
+    dismissedAdvertisingBannerRevision = settings.advertising_banner_revision;
+    renderAdvertisingBanner(settings);
+}
+
+function handleAdvertisingBannerImageError() {
+    const banner = document.getElementById('advertising-whatsapp-banner');
+    if (banner) banner.hidden = true;
+    document.body.classList.remove('advertising-banner-visible');
+    console.warn('No se pudo cargar la imagen del banner publicitario.');
+}
+
+function getAdvertisingBannerDownloadName(settings) {
+    const rawName = String(settings.advertising_banner_image_name || 'banner-dsorak.jpg');
+    return rawName
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-zA-Z0-9._-]+/g, '-')
+        .replace(/-+/g, '-')
+        .slice(0, 100) || 'banner-dsorak.jpg';
+}
+
+async function downloadAdvertisingBannerImage() {
+    const settings = normalizeWhatsappSettings(appState.whatsapp);
+    if (!settings.advertising_banner_image_url) return;
+
+    try {
+        const response = await fetch(settings.advertising_banner_image_url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const blob = await response.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = objectUrl;
+        downloadLink.download = getAdvertisingBannerDownloadName(settings);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+        window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    } catch (error) {
+        console.warn('No se pudo descargar directamente el banner:', error);
+        window.open(settings.advertising_banner_image_url, '_blank', 'noopener');
+    }
 }
 
 async function refreshWhatsappSettings() {
