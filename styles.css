@@ -147,6 +147,26 @@ body.support-banner-visible .advertising-banner {
     top: calc(var(--site-header-height, 70px) + var(--support-banner-height, 82px) + 16px);
 }
 
+body.advertising-banner-visible::before {
+    content: '';
+    position: fixed;
+    top: var(--site-header-height, 70px);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 997;
+    background: rgba(5, 17, 29, 0.32);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    pointer-events: none;
+    animation: advertisingBackdropIn 0.25s ease-out both;
+}
+
+@keyframes advertisingBackdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .advertising-banner__content {
     position: relative;
     width: fit-content;
@@ -230,14 +250,6 @@ body.support-banner-visible #plataformas {
     padding-top: calc(var(--site-header-height, 70px) + var(--support-banner-height, 82px) + 22px) !important;
 }
 
-body.advertising-banner-visible #plataformas {
-    padding-top: calc(var(--site-header-height, 70px) + var(--advertising-banner-height, 120px) + 22px) !important;
-}
-
-body.support-banner-visible.advertising-banner-visible #plataformas {
-    padding-top: calc(var(--site-header-height, 70px) + var(--support-banner-height, 82px) + var(--advertising-banner-height, 120px) + 30px) !important;
-}
-
 @media (max-width: 768px) {
     .support-whatsapp-banner { padding: 12px; }
     .support-whatsapp-banner__content { align-items: flex-start; flex-wrap: wrap; gap: 10px 12px; }
@@ -264,14 +276,6 @@ body.support-banner-visible.advertising-banner-visible #plataformas {
 
     body.support-banner-visible #plataformas {
         padding-top: calc(var(--site-header-height, 64px) + var(--support-banner-height, 122px) + 18px) !important;
-    }
-
-    body.advertising-banner-visible #plataformas {
-        padding-top: calc(var(--site-header-height, 64px) + var(--advertising-banner-height, 120px) + 14px) !important;
-    }
-
-    body.support-banner-visible.advertising-banner-visible #plataformas {
-        padding-top: calc(var(--site-header-height, 64px) + var(--support-banner-height, 122px) + var(--advertising-banner-height, 120px) + 24px) !important;
     }
 }
 
