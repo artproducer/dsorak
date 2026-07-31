@@ -172,6 +172,13 @@ function formatWhatsappNumber(value) {
 
 function updateSupportBannerSpacing() {
     const banner = document.getElementById('support-whatsapp-banner');
+    const header = document.querySelector('body > header') || document.querySelector('header');
+    if (header) {
+        document.documentElement.style.setProperty(
+            '--site-header-height',
+            `${Math.ceil(header.getBoundingClientRect().height)}px`
+        );
+    }
     if (!banner || banner.hidden) return;
     document.documentElement.style.setProperty('--support-banner-height', `${banner.offsetHeight}px`);
 }
@@ -693,6 +700,7 @@ window.addEventListener('scroll', function () {
     } else {
         header.classList.remove('scrolled');
     }
+    window.requestAnimationFrame(updateSupportBannerSpacing);
 
     // Scroll Buttons collapsible logic
     if (scrollTop > lastScrollTop && scrollTop > 100) {
