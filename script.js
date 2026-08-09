@@ -428,6 +428,10 @@ function renderMainPlatforms(platforms) {
             div.dataset.maxMonths = parseInt(p.max_months) || 1;
             
             const safePrice = parseInt(p.price_per_month) || 0;
+            const seoUrl = getPlatformSeoUrl(p.name);
+            const platformTitle = seoUrl
+                ? `<a href="${seoUrl}" aria-label="Más información sobre ${p.name} en Colombia">${p.name}</a>`
+                : p.name;
             div.innerHTML = `
                 <div class="price-corner">
                     <span class="price-amount">$${safePrice.toLocaleString('es-CO')}</span>
@@ -439,7 +443,7 @@ function renderMainPlatforms(platforms) {
                     </div>
                     <div class="platform-info">
                         <div class="platform-header-row">
-                            <h3 class="platform-name">${p.name}</h3>
+                            <h3 class="platform-name">${platformTitle}</h3>
                         </div>
                         <p class="platform-desc">${p.description || ''}</p>
                     </div>
@@ -631,6 +635,20 @@ function normalizePlatformName(name) {
     };
 
     return mapping[name] || name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
+function getPlatformSeoUrl(name) {
+    const pages = {
+        "Netflix": "/netflix-colombia/",
+        "Disney+ Premium": "/disney-plus-colombia/",
+        "Disney+ Estándar": "/disney-plus-colombia/",
+        "HBO Max": "/max-colombia/",
+        "Prime Video": "/prime-video-colombia/",
+        "Spotify Premium": "/spotify-premium-colombia/",
+        "YouTube Premium": "/youtube-premium-colombia/"
+    };
+
+    return pages[name] || null;
 }
 
 // ===== QUANTITY SELECTOR FOR PLATFORMS =====
