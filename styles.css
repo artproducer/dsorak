@@ -547,6 +547,21 @@ nav {
     background-clip: text;
 }
 
+.brand-domain {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+}
+
+.domain-text {
+    margin-left: 0.12rem;
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
 .flag-icon-svg {
     width: 24px;
     height: auto;
@@ -622,6 +637,26 @@ nav {
         padding: 0.75rem 1rem;
     }
 
+    header .logo .brand-text {
+        font-size: 2.975rem;
+        line-height: 1;
+    }
+
+    header .logo .streaming-text {
+        font-size: 1.275rem;
+        line-height: 1;
+    }
+
+    header .domain-text {
+        font-size: 1.6rem;
+    }
+
+    header .logo-text {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
     .nav-links {
         display: none !important;
     }
@@ -632,10 +667,34 @@ nav {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 520px) {
+    header,
+    header.scrolled {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    header .logo-text {
+        display: grid;
+        gap: 0.1rem;
+        justify-items: start;
+    }
+
     .header-mascot {
-        left: calc(100% + 2px);
-        height: 88px;
+        left: calc(100% + 4px);
+    }
+}
+
+@media (max-width: 360px) {
+    header,
+    header.scrolled {
+        padding-right: 0.25rem;
+        padding-left: 0.25rem;
+    }
+
+    .header-mascot {
+        left: calc(100% - 2px);
+        height: 80px;
     }
 }
 
@@ -647,11 +706,15 @@ nav {
     }
 
     header .logo .brand-text {
-        font-size: 1.55rem;
+        font-size: 2rem;
     }
 
     header .logo .streaming-text {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
+    }
+
+    header .domain-text {
+        font-size: 1.125rem;
     }
 
     .flag-icon-svg {
@@ -665,12 +728,12 @@ nav {
     }
 
     .nav-links {
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .nav-links a {
         gap: 3px;
-        padding: 0.5rem 0.7rem;
+        padding: 0.5rem 0.55rem;
         font-size: 0.78rem;
     }
 
@@ -1032,13 +1095,27 @@ nav {
     }
 }
 
+@media (min-width: 901px) and (max-width: 980px) {
+    .nav-links {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+    }
+}
+
 @media (min-width: 1101px) {
     header .logo .brand-text {
-        font-size: 1.9rem;
+        font-size: 2.5rem;
     }
 
     header .logo .streaming-text {
-        font-size: 0.82rem;
+        font-size: 1.05rem;
+    }
+
+    header .domain-text {
+        font-size: 1.3125rem;
     }
 
     .header-mascot {
