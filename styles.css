@@ -860,12 +860,12 @@ nav {
 
 /* ===== SECTIONS ===== */
 #cuentas {
-    padding-top: 2.5rem !important;
+    padding-top: 0.75rem !important;
 }
 
 .seo-hero {
     max-width: none;
-    padding: 9rem 2rem 4.5rem;
+    padding: 9rem 2rem 2rem;
     text-align: center;
     background:
         radial-gradient(circle at 20% 20%, rgba(0, 191, 255, 0.13), transparent 34%),
@@ -971,8 +971,13 @@ nav {
 }
 
 @media (max-width: 768px) {
-    .seo-hero {
-        padding: 7rem 1rem 2.5rem;
+    .hero.seo-hero {
+        padding: 7rem 1rem 0.5rem;
+    }
+
+    #cuentas {
+        padding-top: 0 !important;
+        scroll-margin-top: calc(var(--site-header-height, 69px) + 4px);
     }
 
     .seo-hero__actions {
@@ -1014,6 +1019,10 @@ section {
     margin-top: 1rem;
     margin-bottom: 0.25rem;
     color: var(--text-dark);
+}
+
+#cuentas .section-header h2 {
+    margin-top: 0;
 }
 
 .section-header p {
