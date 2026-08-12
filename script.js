@@ -773,7 +773,7 @@ window.addEventListener('scroll', function () {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     // Header scrolled effect
-    if (scrollTop > 50) {
+    if (window.innerWidth > 900 && scrollTop > 50) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
