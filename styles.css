@@ -498,8 +498,9 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    overflow: hidden;
     z-index: 1000;
-    padding: 1rem 2rem;
+    padding: 1.125rem 2rem;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
@@ -507,7 +508,7 @@ header {
 }
 
 header.scrolled {
-    padding: 0.75rem 2rem;
+    padding: 1rem 2rem;
     box-shadow: var(--shadow-md);
 }
 
@@ -555,6 +556,18 @@ nav {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+.header-mascot {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 6px);
+    width: auto;
+    height: 100px;
+    transform: translateY(-38%);
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -582,15 +595,21 @@ nav {
 
 .menu-toggle {
     display: none;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     cursor: pointer;
-    padding: 10px;
+    padding: 8px;
 }
 
 .menu-toggle span {
-    width: 25px;
+    width: 24px;
     height: 3px;
+    flex: 0 0 3px;
     background: var(--text-dark);
     border-radius: 2px;
     transition: all 0.3s ease;
@@ -609,6 +628,14 @@ nav {
 
     .menu-toggle {
         display: flex !important;
+        height: 69px;
+    }
+}
+
+@media (max-width: 360px) {
+    .header-mascot {
+        left: calc(100% + 2px);
+        height: 88px;
     }
 }
 
@@ -616,19 +643,25 @@ nav {
 @media (min-width: 901px) and (max-width: 1100px) {
     header,
     header.scrolled {
-        padding: 0.75rem 1rem;
+        padding: 0.95rem 1rem;
     }
 
-    .logo .brand-text {
-        font-size: 1.45rem;
+    header .logo .brand-text {
+        font-size: 1.55rem;
     }
 
-    .logo .streaming-text {
-        font-size: 0.65rem;
+    header .logo .streaming-text {
+        font-size: 0.7rem;
     }
 
     .flag-icon-svg {
         width: 20px;
+    }
+
+    .header-mascot {
+        left: calc(100% + 4px);
+        height: 86px;
+        transform: translateY(-34%);
     }
 
     .nav-links {
@@ -977,7 +1010,7 @@ nav {
 
     #cuentas {
         padding-top: 0 !important;
-        scroll-margin-top: calc(var(--site-header-height, 69px) + 4px);
+        scroll-margin-top: calc(var(--site-header-height, 93px) + 4px);
     }
 
     .seo-hero__actions {
@@ -996,6 +1029,20 @@ nav {
 
     .seo-content__grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1101px) {
+    header .logo .brand-text {
+        font-size: 1.9rem;
+    }
+
+    header .logo .streaming-text {
+        font-size: 0.82rem;
+    }
+
+    .header-mascot {
+        transform: translateY(-34%);
     }
 }
 
@@ -1844,10 +1891,10 @@ footer {
 
 .menu-toggle span {
     display: block;
-    width: 25px;
+    width: 24px;
     height: 3px;
     background: var(--text-dark);
-    margin: 5px 0;
+    margin: 0;
     transition: all 0.3s ease;
 }
 
